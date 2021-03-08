@@ -1,0 +1,17 @@
+figure{
+    position: absolute;
+    z-index: -1;
+}
+
+.cover-image{
+    width: 100vw;
+    height: 100vh;
+}
+
+h1{
+    color: #001;
+    float: right;
+    /* font-family: var(--cover-font); */
+    font-weight: 700;
+    margin-top: 5%
+}
