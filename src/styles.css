@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Oi&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap');
 
 :root{
-    --cover-font: 'Archivo Black', sans-serif;;
+    --cover-fontPrimary: 'Oi', cursive;
+    --cover-fontSecondary: 'Akaya Telivigala', cursive;
 }
