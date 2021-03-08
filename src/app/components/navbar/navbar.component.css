@@ -1,0 +1,49 @@
+nav{
+    display: flex;
+    width: 100%;
+    padding-left: 1%;
+    background-color: gray;
+    padding-right: 1%;
+   
+}
+
+nav .imgContainer{
+width: 20%;
+align-items: center;
+}
+nav img{
+    width: 30%;
+    height: auto;
+    
+}
+nav .ulContainer{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    
+}
+nav ul{
+   margin: 0%;
+   width: 100%;
+}
+nav ul li{
+    display: inline-block;
+    padding-left: 5%;
+  
+}
+nav ul li a{
+    text-decoration: none;
+    color: white;
+}
+
+.userContainer{ 
+    width: 20%;
+    text-align: right;
+    padding:.5%;
+    margin: 0%;
+}
+.userContainer img{
+    border-radius: 50%;
+    width: 25%;
+}
