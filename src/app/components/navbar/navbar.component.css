@@ -1,22 +1,17 @@
-nav{
-    display: flex;
-    width: 100%;
-    padding-left: 1%;
-    background-color: gray;
-    padding-right: 1%;
+ nav{
+    justify-content: s;
    
 }
-
-nav .imgContainer{
-width: 20%;
-align-items: center;
+ nav .imgContainer{
+    max-width: 20%;
+    align-items: center;
 }
 nav img{
     width: 30%;
     height: auto;
     
-}
-nav .ulContainer{
+} 
+/* nav .ulContainer{
     width: 60%;
     display: flex;
     align-items: center;
@@ -35,15 +30,39 @@ nav ul li{
 nav ul li a{
     text-decoration: none;
     color: white;
-}
-
+} */
 .userContainer{ 
-    width: 20%;
+    width: 10%;
     text-align: right;
     padding:.5%;
     margin: 0%;
 }
 .userContainer img{
     border-radius: 50%;
-    width: 25%;
+    width: 50%;
+} 
+
+.transition{
+    transition: 0.5s;
+}
+
+@media(max-width:992px){
+    .border-bottom-nav{
+        border-bottom: 1px solid #666;
+    }
+    .border-bottom-nav:last-child{
+        border-bottom:none;
+    }
+    .border-bottom-nav:first-child{
+        border-bottom: 1px solid #666;
+    }
+    .userContainer{ 
+        width: 20%;
+
+    }
+    .userContainer img{
+    
+        width: 25%;
+    } 
+    
 }
