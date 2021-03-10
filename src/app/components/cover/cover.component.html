@@ -4,7 +4,7 @@
         <!-- <img src="" class="cover-image"> -->
     </figure>
 
-    <div class="container-lg">
+    <div class="container-lg" [ngClass]="{'disabled':isDisabled == true}">
         <img src="../../../assets/images/LogoLetsCollab.png" alt="logo" class="mt-5 logo">
         <h1>Let's Collab</h1>
         <p>Comparte tu música, conecta con más artistas como tu y crea algo único</p>
@@ -12,5 +12,9 @@
             <button class="btn btn-dark mr-4">Register</button>
             <button class="btn btn-warning">Log In</button>
         </div>
+    </div>
+
+    <div>
+
     </div>
 </div>

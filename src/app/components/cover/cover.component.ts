@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cover',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoverComponent implements OnInit {
 
-  constructor() {
+  isDisabled: boolean;
+
+  constructor(private router: Router) {
+
+    this.isDisabled = true;
   }
 
   ngOnInit(): void {

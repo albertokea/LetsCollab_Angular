@@ -7,6 +7,9 @@ import { CoverComponent } from './components/cover/cover.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarCoverComponent } from './components/navbar-cover/navbar-cover.component';
+import { HomeComponent } from './components/home/home.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,10 @@ import { NavbarCoverComponent } from './components/navbar-cover/navbar-cover.com
     CoverComponent,
     NavbarComponent,
     FooterComponent,
-    NavbarCoverComponent
+    NavbarCoverComponent,
+    HomeComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
