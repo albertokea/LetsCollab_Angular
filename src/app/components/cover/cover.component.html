@@ -4,17 +4,20 @@
         <!-- <img src="" class="cover-image"> -->
     </figure>
 
-    <div class="container-lg" [ngClass]="{'disabled':isDisabled == true}">
+    <div class="container-lg">
         <img src="../../../assets/images/LogoLetsCollab.png" alt="logo" class="mt-5 logo">
         <h1>Let's Collab</h1>
-        <p>Comparte tu música, conecta con más artistas como tu y crea algo único</p>
-        <div class="btn-container">
-            <button class="btn btn-dark mr-4">Register</button>
-            <button class="btn btn-warning">Log In</button>
+        <div [ngClass]="{'disabled':isDisabled}">
+            <p>Comparte tu música, conecta con más artistas como tu y crea algo único</p>
+            <div class="btn-container">
+                <button class="btn btn-dark mr-4">Register</button>
+                <button class="btn btn-warning" (click)="onClick()">Log In</button>
+            </div>
         </div>
-    </div>
+        <div class="login">
+            <login></login>
+        </div>
 
-    <div>
-        <footer></footer>
+        <router-outlet></router-outlet>
     </div>
 </div>
