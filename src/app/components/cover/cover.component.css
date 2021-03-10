@@ -8,6 +8,7 @@ figure{
     height: 100%;
     background-image: url('../../../assets/images/coverv2.jpg');
     background-size: cover;
+    position: absolute;
 }
 
 h1{
@@ -34,7 +35,6 @@ p{
     font-size: 1.5em;
     font-weight: 700;
     color: var(--color-grey);
-    transition: 2s;
 }
 
 .btn-container{
@@ -58,17 +58,11 @@ p{
         margin-top: 5%;
         margin-left: 60%;
     }
-
 }
 
 @media(max-width: 768px){
     h1, p, .btn-container, .logo{
         display: none;
-    }
-
-    h1{
-        font-size: calc(var(--font-size)*2);
-        margin-top: 50%;
     }
 }
 
@@ -77,6 +71,12 @@ p{
         display: none;
     }
     .logo{
+        display: none;
+    }
+}
+
+@media(min-width: 768px){
+    .display{
         display: none;
     }
 }

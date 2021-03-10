@@ -4,6 +4,7 @@ nav{
     padding-left: 1%;
     background-color: #444;
     padding-right: 1%;
+    position: absolute;
 }
  nav .imgContainer{
     max-width: 20%;
@@ -16,7 +17,8 @@ nav img{
 }
 nav .ulContainer{
     width: 70%;
-} 
+}
+
 /* nav .ulContainer{
     width: 60%;
     display: flex;
