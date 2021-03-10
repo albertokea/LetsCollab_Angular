@@ -1,49 +1,31 @@
- nav{
-    justify-content: s;
-   
-}
+
  nav .imgContainer{
     max-width: 20%;
     align-items: center;
 }
 nav img{
-    width: 30%;
+    width: 20%;
     height: auto;
     
 } 
-/* nav .ulContainer{
-    width: 60%;
-    display: flex;
-    align-items: center;
-    text-align: right;
-    
-}
-nav ul{
-   margin: 0%;
-   width: 100%;
-}
-nav ul li{
-    display: inline-block;
-    padding-left: 5%;
-  
-}
-nav ul li a{
-    text-decoration: none;
-    color: white;
-} */
+
 .userContainer{ 
-    width: 10%;
+    width: 30%;
     text-align: right;
     padding:.5%;
     margin: 0%;
 }
 .userContainer img{
     border-radius: 50%;
-    width: 50%;
+    width: 10%;
 } 
 
 .transition{
     transition: 0.5s;
+}
+
+.containerUl{
+    max-width: 50%;
 }
 
 @media(max-width:992px){
@@ -58,11 +40,44 @@ nav ul li a{
     }
     .userContainer{ 
         width: 20%;
-
+        text-align: left;
     }
     .userContainer img{
     
         width: 25%;
     } 
+ 
+    .containerUl{
+        max-width: none;
+    }
+    nav img{
+        width: 30%;
+        height: auto;
+        
+    } 
+}
+
+@media(max-width:768px){
+    .userContainer img{
     
+        width: 35%;
+    } 
+
+    nav img{
+        width: 30%;
+        height: auto;
+        
+    } 
+}
+
+
+@media(max-width:540px){
+    .userContainer img{
+        width: 45%;
+    } 
+
+    nav img{
+        width: 50%;
+        height: auto;  
+    } 
 }
