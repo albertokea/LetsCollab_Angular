@@ -9,19 +9,27 @@ import { Router } from '@angular/router';
 export class CoverComponent implements OnInit {
 
   isDisabled: boolean;
-  loginisDisabled: boolean;
-  registerisDisabled: boolean;
+  loginDisabled: boolean;
+  registerDisabled: boolean;
 
   constructor(private router: Router) {
-
     this.isDisabled = false;
+    this.loginDisabled = true;
+    this.registerDisabled = true;
   }
 
   ngOnInit(): void {
   }
 
-  onClick() {
+  onLogin() {
     this.isDisabled = true;
-    console.log(this.isDisabled);
+    this.registerDisabled = true;
+    this.loginDisabled = false;
+  }
+
+  onRegister() {
+    this.isDisabled = true;
+    this.loginDisabled = true;
+    this.registerDisabled = false;
   }
 }

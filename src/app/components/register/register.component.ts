@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-register',
+  selector: 'register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  @Output() onLoginClick: EventEmitter<void>
+
+  constructor() {
+    this.onLoginClick = new EventEmitter;
+  }
 
   ngOnInit(): void {
   }
 
+  onLogin() {
+    this.onLoginClick.emit()
+  }
 }

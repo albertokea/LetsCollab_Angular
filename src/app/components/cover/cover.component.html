@@ -1,5 +1,5 @@
 <div class="cover-container">
-    <navbar-cover class="display"></navbar-cover>
+    <navbar-cover class="display" (onLoginClick)="onLogin()" (onRegisterClick)="onRegister()"></navbar-cover>
     <figure class="cover-image">
         <!-- <img src="" class="cover-image"> -->
     </figure>
@@ -10,14 +10,15 @@
         <div [ngClass]="{'disabled':isDisabled}">
             <p>Comparte tu música, conecta con más artistas como tu y crea algo único</p>
             <div class="btn-container">
-                <button class="btn btn-dark mr-4">Register</button>
-                <button class="btn btn-warning" (click)="onClick()">Log In</button>
+                <button class="btn btn-dark ml-3 mr-4" (click)="onRegister()">Registro</button>
+                <button class="btn btn-warning" (click)="onLogin()">Log In</button>
             </div>
         </div>
-        <div class="login">
-            <login></login>
-        </div>
-
-        <router-outlet></router-outlet>
+    </div>
+    <div class="login" [ngClass]="{'disabled':loginDisabled}">
+        <login (onRegisterClick)="onRegister()"></login>
+    </div>
+    <div class="register" [ngClass]="{'disabled':registerDisabled}">
+        <register (onLoginClick)="onLogin()"></register>
     </div>
 </div>

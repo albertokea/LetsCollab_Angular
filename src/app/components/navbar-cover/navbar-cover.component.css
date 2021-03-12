@@ -5,8 +5,9 @@ nav{
     background-color: #444;
     padding-right: 1%;
     position: absolute;
+    z-index: 1;
 }
- nav .imgContainer{
+nav .imgContainer{
     max-width: 20%;
     align-items: center;
 }

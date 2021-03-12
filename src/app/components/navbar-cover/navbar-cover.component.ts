@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'navbar-cover',
@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarCoverComponent implements OnInit {
 
-  constructor() { }
+  @Output() onLoginClick: EventEmitter<void>;
+  @Output() onRegisterClick: EventEmitter<void>;
+
+  constructor() {
+    this.onLoginClick = new EventEmitter;
+    this.onRegisterClick = new EventEmitter;
+  }
 
   ngOnInit(): void {
   }
 
+  onLogin() {
+    this.onLoginClick.emit()
+  }
+
+  onRegister() {
+    this.onRegisterClick.emit()
+  }
 }

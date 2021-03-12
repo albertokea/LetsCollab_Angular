@@ -8,7 +8,7 @@ figure{
     height: 100%;
     background-image: url('../../../assets/images/coverv2.jpg');
     background-size: cover;
-    position: absolute;
+    position: fixed;
 }
 
 h1{
@@ -29,7 +29,7 @@ h1{
 p{
     float: right;
     margin-left: 30%;
-    margin-top: 5%;
+    margin-top: 7.5%;
     width: 40%;
     font-family: var(--cover-fontSecondary);
     font-size: 1.5em;
@@ -72,6 +72,11 @@ p{
     h1, p, .btn-container, .logo{
         display: none;
     }
+
+    .login{
+        padding-top: 5%;
+    }
+
 }
 
 @media(max-width: 540px){
