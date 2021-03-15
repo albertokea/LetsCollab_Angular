@@ -44,3 +44,5 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+src/assets/audio/Ocean_Chals_Feb21.mp3
+src/assets/audio/Ocean_Chals_Feb21.wav

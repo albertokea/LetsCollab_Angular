@@ -19,6 +19,14 @@
     width: 100%;
 }
 
+input.ng-invalid.ng-touched{
+    border-color: tomato;
+}
+
+.error{
+    color: tomato;
+}
+
 @media(max-width: 768px){
 
     .form-container{

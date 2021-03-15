@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'register',
@@ -9,8 +10,41 @@ export class RegisterComponent implements OnInit {
 
   @Output() onLoginClick: EventEmitter<void>
 
+  registerForm: FormGroup
+
   constructor() {
     this.onLoginClick = new EventEmitter;
+
+    this.registerForm = new FormGroup({
+      name: new FormControl('', [
+        Validators.required,
+      ]),
+      surname: new FormControl('', [
+        Validators.required
+      ]),
+      mail: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,4}$/)
+      ]),
+      birth_date: new FormControl('', [
+        Validators.required
+      ]),
+      gender: new FormControl('', [
+        Validators.required
+      ]),
+      user: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(15)
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$/)
+      ]),
+      password_repeat: new FormControl('', [
+        Validators.required
+      ]),
+    }, this.passwordValidator)
   }
 
   ngOnInit(): void {
@@ -19,4 +53,20 @@ export class RegisterComponent implements OnInit {
   onLogin() {
     this.onLoginClick.emit()
   }
+
+  passwordValidator(form: FormGroup) {
+    const passwordValue = form.get('password').value;
+    const passwordRepeatValue = form.get('password_repeat').value;
+
+    if (passwordValue === passwordRepeatValue) {
+      return null;
+    } else {
+      return { passwordvalidator: true }
+    }
+  }
+
+  checkValidator(controlName, validatorName) {
+    this.registerForm.get(controlName).hasError(validatorName) && this.registerForm.get(controlName).touched;
+  }
 }
+
