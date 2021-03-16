@@ -10,41 +10,24 @@ nav{
     align-items: center;
 }
 nav img{
-    width: 20%;
+    width: 30%;
     height: auto;
     
 }
 nav .ulContainer{
     width: 70%;
 } 
-/* nav .ulContainer{
-    width: 60%;
-    display: flex;
-    align-items: center;
-    text-align: right;
-}
-nav ul{
-   margin: 0%;
-   width: 100%;
-}
-nav ul li{
-    display: inline-block;
-    padding-left: 5%;
-  
-}
-nav ul li a{
-    text-decoration: none;
-    color: white;
-} */
+
 .userContainer{ 
     width: 30%;
     text-align: right;
     padding:.5%;
     margin: 0%;
+    margin-left: 3%;
 }
 .userContainer img{
     border-radius: 50%;
-    width: 10%;
+    width: 15%;
 } 
 
 .transition{
@@ -65,46 +48,34 @@ nav ul li a{
     .border-bottom-nav:first-child{
         border-bottom: 1px solid #666;
     }
-    .userContainer{ 
-        width: 20%;
-        text-align: left;
+    .userContainer{
+        width: auto;
     }
     .userContainer img{
     
-        width: 25%;
+        width: 50px;
     } 
  
     .containerUl{
         max-width: none;
     }
     nav img{
-        width: 30%;
+        width: 50px;
         height: auto;
         
     } 
+    .imgContainer{
+        width: auto;
+    }
 }
 
 @media(max-width:768px){
-    .userContainer img{
     
-        width: 35%;
-    } 
 
-    nav img{
-        width: 30%;
-        height: auto;
-        
-    } 
+    
 }
 
 
 @media(max-width:540px){
-    .userContainer img{
-        width: 45%;
-    } 
-
-    nav img{
-        width: 50%;
-        height: auto;  
-    } 
+    
 }
