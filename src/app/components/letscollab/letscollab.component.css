@@ -1,4 +1,21 @@
 .body{
-    height: 89.92vh;
-    background-color: #001e;
+    min-height: 89.92vh;
+    height: 100%;
+    background-color: var(--color-bg);
+
 }
+
+
+.filters-container{
+    width: 80%;
+    height: auto;
+    margin-left: 10%;
+    padding: 1em;
+    position: relative;
+}
+
+
+h2, label{
+    color: white;
+}
+
