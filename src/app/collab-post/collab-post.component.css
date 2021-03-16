@@ -17,12 +17,12 @@
 }
 
 h3{
-    display: inline;
+    display: inline-block;
     color: white;
 }
 
 h4{
-    color: white
+    color: white;
 }
 
 h6{
