@@ -1,0 +1,34 @@
+<div class="ml-5 mb-3">
+    <h3>Edit here your profile</h3>
+</div>
+
+<div class="row">
+    <form [formGroup]="editForm" class="col-12 row">
+
+        <div class="column col-md-4 col-lg-2 col-xl-2 col-12 offset-lg-1 p-3 text-center">
+            <div>
+                <div>
+                    <p class="small"><i class="fab fa-instagram"></i> <input type="text" class=" col-8 small ml-2 p-0"
+                            formControlName="instagram" placeholder="@LetsCollab"></p>
+                </div>
+                <div>
+                    <p class="small"><i class="fab fa-instagram"></i> <input type="text" class=" col-8 small ml-2 p-0"
+                            formControlName="twitter" placeholder="@LetsCollab"></p>
+                </div>
+                <div>
+                    <p class="small"><i class="fab fa-instagram"></i> <input type="text" class=" col-8 small ml-2 p-0"
+                            formControlName="facebook" placeholder="AlvGonz"></p>
+                </div>
+                <div>
+                    <p class="small"><input type="text" class=" col-12 small  p-0" formControlName="email"
+                            placeholder="letscollab@gmail.com"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 col-lg-7 col-xl-7 col-12  offset-lg-1  p-1 text-center text-md-left ">
+            <p class="small"><textarea formControlName='bio' name="" id=""
+                    style="resize:none;width:100%;min-height: 200px;"></textarea>
+            </p>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,13 @@
+.container{
+    padding: 0 100px 100px 100px;
+}
+.imageUser{
+    width: 200px;
+}
+.headerImg{
+    background-image: url("../../../../assets/images/lab_hero.jpg");
+    background-size: cover;
+}
+.disabled{
+    display: none;
+}
