@@ -12,6 +12,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LetscollabComponent } from './components/letscollab/letscollab.component';
+import { CollabPostComponent } from './collab-post/collab-post.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LetscollabComponent } from './components/letscollab/letscollab.componen
     HomeComponent,
     RegisterComponent,
     LoginComponent,
-    LetscollabComponent
+    LetscollabComponent,
+    CollabPostComponent
   ],
   imports: [
     BrowserModule,
