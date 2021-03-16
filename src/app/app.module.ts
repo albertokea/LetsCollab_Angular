@@ -15,6 +15,7 @@ import { LetscollabComponent } from './components/letscollab/letscollab.componen
 import { UserComponent } from './components/fullUser/user/user.component';
 import { UserEditComponent } from './components/fullUser/user-edit/user-edit.component';
 import { CollabPostComponent } from './collab-post/collab-post.component';
+import { MessagesComponent } from './components/messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CollabPostComponent } from './collab-post/collab-post.component';
     LetscollabComponent,
     UserComponent,
     UserEditComponent,
-    CollabPostComponent
+    CollabPostComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
