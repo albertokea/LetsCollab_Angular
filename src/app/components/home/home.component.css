@@ -3,6 +3,23 @@
     background-color: #112e;
 }
 
-.img-1{
-    height: 15em;
+.container{
+    margin-left: 12.5%;
+}
+
+.carousel-item{
+    position: relative;
+}
+h1{
+    position: absolute;
+    margin-left: 12.5%;
+    margin-top: 25%;
+}
+
+p{
+    font-family: var(--cover-fontSecondary);
+}
+
+img{
+    z-index: -1;
 }
