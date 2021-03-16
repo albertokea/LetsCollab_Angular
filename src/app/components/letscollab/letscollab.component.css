@@ -1,6 +1,8 @@
 .body{
-    height: 89.92vh;
+    min-height: 89.92vh;
+    height: 100%;
     background-color: var(--color-bg);
+
 }
 
 
@@ -8,7 +10,6 @@
     width: 80%;
     height: auto;
     margin-left: 10%;
-    border: 1px solid yellow;
     padding: 1em;
     position: relative;
 }

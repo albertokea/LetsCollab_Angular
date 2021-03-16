@@ -1,0 +1,65 @@
+.container{
+    border: 1px solid white;
+    padding: 1em;
+}
+
+.post-img{
+    width: 5em;
+}
+
+.reply-img{
+    width: 2.5em;
+}
+
+.reply-input{
+    height: 2em;
+}
+
+h3{
+    display: inline;
+    color: white;
+}
+
+h4{
+    color: white
+}
+
+h6{
+    display: inline;
+    color: white;
+}
+
+hr{
+    background-color: white;
+}
+
+h5{
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    display: inline;
+    padding: 2px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+a{
+    width: 2em;
+}
+
+#waveform{
+    width: 100%;
+}
+
+label{
+    color: white;
+}
+
+.disabled{
+    display: none;
+}
+@media(max-width: 576){
+    p{
+        display: block;
+    }
+}
