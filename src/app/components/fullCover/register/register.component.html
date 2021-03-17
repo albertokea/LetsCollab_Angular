@@ -2,11 +2,15 @@
     <div class="form-group col-12">
         <h5>Nombre</h5>
         <input type="text" name="" id="" class="form-control" formControlName="name">
+        <!-- <p class="error" *ngIf="checkValidator('apellidos', 'maxlength')">El
+            campo apellido debe tener máximo 10 caracteres </p> -->
     </div>
     <div class="form-group col-12">
         <h5>Apellidos</h5>
         <input type="password" name="" id="" class="form-control" formControlName="surname">
-        <p class="error" *ngIf="checkValidator('surname', 'required')">Introduzca sus apellidos</p>
+        <!-- <p class="error"
+            *ngIf="this.registerForm.get('surname').hasError('required') && this.registerForm.get('surname').touched;">
+            Introduzca sus apellidos</p> -->
     </div>
     <div class="form-group col-12">
         <h5>Email</h5>

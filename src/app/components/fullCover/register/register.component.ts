@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'register',
@@ -12,7 +13,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup
 
-  constructor() {
+  constructor(private usersService: UsersService) {
     this.onLoginClick = new EventEmitter;
 
     this.registerForm = new FormGroup({
