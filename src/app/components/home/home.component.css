@@ -3,6 +3,30 @@
     background-color: #112e;
 }
 
-.img-1{
-    height: 25em;
+.container{
+    margin-left: 12.5%;
+}
+
+.carousel-item{
+    position: relative;
+}
+h1{
+    position: absolute;
+    margin-left: 5%;
+    margin-top: 15%;
+    font-family: var(--fontThird);
+    font-size: calc(var(--font-size)*3);
+}
+
+p{
+    color: white;
+    font-family: var(--fontThird);
+    font-size: 1.5em;
+    position: absolute;
+    margin-top: 15%;
+    margin-left: 70%;
+}
+
+img{
+    z-index: -1;
 }

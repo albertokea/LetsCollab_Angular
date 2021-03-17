@@ -1,5 +1,6 @@
 .container{
-    border: 1px solid white;
+    border: 3px solid #666;
+    border-radius: 10px;
     padding: 1em;
 }
 
@@ -16,12 +17,12 @@
 }
 
 h3{
-    display: inline;
+    display: inline-block;
     color: white;
 }
 
 h4{
-    color: white
+    color: white;
 }
 
 h6{
