@@ -19,6 +19,10 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+<<<<<<< HEAD
+=======
+import { PostFormComponent } from './components/post-form/post-form.component';
+>>>>>>> 1d79027c31a3c19e2e329f63636c1842e71829ce
 
 @NgModule({
   declarations: [
@@ -35,6 +39,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     UserEditComponent,
     CollabPostComponent,
     MessagesComponent,
+<<<<<<< HEAD
+=======
+    PostFormComponent
+>>>>>>> 1d79027c31a3c19e2e329f63636c1842e71829ce
   ],
   imports: [
     BrowserModule,
