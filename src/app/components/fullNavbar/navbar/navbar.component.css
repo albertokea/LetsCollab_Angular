@@ -24,6 +24,7 @@ nav .ulContainer{
     padding:.5%;
     margin: 0%;
     margin-left: 3%;
+    cursor: pointer;
 }
 .userContainer img{
     border-radius: 50%;

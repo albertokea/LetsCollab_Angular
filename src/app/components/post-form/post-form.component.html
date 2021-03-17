@@ -1,0 +1,94 @@
+<navbar></navbar>
+<div class="body">
+    <div class="container">
+        <form class="pt-4 pb-5" [formGroup]="postForm">
+            <div class="form-group">
+                <label for="">¿Que quieres ofrecer?*</label>
+                <input type="text" class="form-control" placeholder="Riff de guitarra, base de hip hop, vocal..."
+                    formGroupName="type">
+            </div>
+            <div class="sm-column row">
+                <div class="form-group col-6">
+                    <label>Género</label>
+                    <select class="form-control" formGroupName="genre">
+                        <option value=""></option>
+                        <option value="rock">Rock</option>
+                        <option value="pop">Pop</option>
+                        <option value="jazz">Jazz</option>
+                        <option value="heavymetal">Heavy Metal</option>
+                        <option value="rap">Rap</option>
+                        <option value="trap">Trap</option>
+                        <option value="reggae">Reggae</option>
+                        <option value="dub">Dub</option>
+                        <option value="cumbia">Cumbia</option>
+                        <option value="worldmusic">World Music</option>
+                        <option value="electronic">Electronic</option>
+                        <option value="techno">Techno</option>
+                        <option value="drumandbass">Drum and Bass</option>
+                        <option value="hardtechno">Hard Techno</option>
+                        <option value="trance">Trance</option>
+                        <option value="psytrance">Psytrance</option>
+                        <option value="edm">Edm</option>
+                    </select>
+                </div>
+                <div class="form-group col-2">
+                    <label>Nota</label>
+                    <select class="form-control col-12" formGroupName="key">
+                        <option value=""></option>
+                        <option value="A">A</option>
+                        <option value="A#">A#</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="C#">C#</option>
+                        <option value="D">D</option>
+                        <option value="D#">D#</option>
+                        <option value="E">E</option>
+                        <option value="F">F</option>
+                        <option value="F#">F#</option>
+                        <option value="G">G</option>
+                        <option value="G#">G#</option>
+                    </select>
+                </div>
+                <div class="form-group col-4">
+                    <label>Licencia*</label>
+                    <select class="form-control" formGroupName="license">
+                        <option value=""></option>
+                        <option value="free-to-use">De uso libre</option>
+                        <option value="personal">De uso solo personal</option>
+                        <option value="not-to-use">Con derechos de autor</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label>BPM</label>
+                    <input type="text" class="form-control" formGroupName="bpm">
+                </div>
+                <div class="form-group col-8">
+                    <label>¿Algun tag extra?</label>
+                    <input type="text" class="form-control" formGroupName="extra_tags"
+                        placeholder="Se podrá filtrar por dichos tags...">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Descripción</label>
+                <textarea class="form-control" rows="4" #text formGroupName="description"></textarea>
+                <p class="text-white">
+                    {{text.value.length}} / 240
+                </p>
+            </div>
+            <div class="form-group">
+                <input type="file" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>¿Desea que tu archivo pueda ser descargado por otros usuarios?</label>
+                <input type="checkbox" class="checkbox">
+            </div>
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-warning">Publicar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<app-footer></app-footer>

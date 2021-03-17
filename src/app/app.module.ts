@@ -16,6 +16,7 @@ import { UserComponent } from './components/fullUser/user/user.component';
 import { UserEditComponent } from './components/fullUser/user-edit/user-edit.component';
 import { CollabPostComponent } from './collab-post/collab-post.component';
 import { MessagesComponent } from './components/messages/messages.component';
+import { PostFormComponent } from './components/post-form/post-form.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MessagesComponent } from './components/messages/messages.component';
     UserComponent,
     UserEditComponent,
     CollabPostComponent,
-    MessagesComponent
+    MessagesComponent,
+    PostFormComponent
   ],
   imports: [
     BrowserModule,

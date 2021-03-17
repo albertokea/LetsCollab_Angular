@@ -7,6 +7,7 @@ import { LoginComponent } from './components/fullCover/login/login.component';
 import { RegisterComponent } from './components/fullCover/register/register.component';
 import { UserComponent } from './components/fullUser/user/user.component';
 import { MessagesComponent } from './components/messages/messages.component';
+import { PostFormComponent } from './components/post-form/post-form.component';
 
 const routes: Routes = [
 
@@ -15,9 +16,11 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
   { path: 'collab', component: LetscollabComponent },
+  { path: 'collab/new', component: PostFormComponent },
   { path: 'user', component: UserComponent },
   { path: 'messages', component: MessagesComponent }
 ]
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
