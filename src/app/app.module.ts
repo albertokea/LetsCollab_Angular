@@ -16,13 +16,9 @@ import { UserComponent } from './components/fullUser/user/user.component';
 import { UserEditComponent } from './components/fullUser/user-edit/user-edit.component';
 import { CollabPostComponent } from './collab-post/collab-post.component';
 import { MessagesComponent } from './components/messages/messages.component';
-<<<<<<< HEAD
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-=======
-import { PostFormComponent } from './components/post-form/post-form.component';
->>>>>>> fffde5159728daa0bda4a8be4b49da8ba525f1cf
 
 @NgModule({
   declarations: [
@@ -39,11 +35,6 @@ import { PostFormComponent } from './components/post-form/post-form.component';
     UserEditComponent,
     CollabPostComponent,
     MessagesComponent,
-<<<<<<< HEAD
-
-=======
-    PostFormComponent
->>>>>>> fffde5159728daa0bda4a8be4b49da8ba525f1cf
   ],
   imports: [
     BrowserModule,
