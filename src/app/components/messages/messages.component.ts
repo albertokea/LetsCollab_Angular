@@ -6,8 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit {
-
-  constructor() { }
+  images = []
+  constructor() {
+    this.images = ["../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png"]
+  }
 
   ngOnInit(): void {
   }

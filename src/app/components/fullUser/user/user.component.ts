@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { faAd } from '@fortawesome/free-solid-svg-icons'
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-
+  faAd = faAd
   isDisabled: boolean;
   formDisabled: boolean;
   constructor(private router: Router) {

@@ -9,11 +9,14 @@
             </div>
             <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3 text-center ">
                 <h6 class="text-uppercase mb-3 font-weight-bold text-warning">Secciones</h6>
-                <p class="small mb-2"><a class="text-white mt-2" style="text-decoration:none" href="#">Let's Collab</a>
+                <p class="small mb-2"><a [routerLink]="['/collab']" class="text-white mt-2"
+                        style="text-decoration:none">Let's Collab</a>
                 </p>
-                <p class="small  mb-2"><a class="text-white" style="text-decoration:none" href="#">Drum Machine</a></p>
-                <p class="small  mb-2"><a class="text-white" style="text-decoration:none" href="#">Messages</a></p>
-                <p class="small  mb-2"><a class="text-white" style="text-decoration:none" href="#">User</a></p>
+                <p class="small  mb-2"><a class="text-white" style="text-decoration:none">Drum Machine</a></p>
+                <p class="small  mb-2"><a [routerLink]="['/messages']" class="text-white" style="text-decoration:none"
+                        href="#">Messages</a></p>
+                <p class="small  mb-2"><a [routerLink]="['/user']" class="text-white"
+                        style="text-decoration:none">User</a></p>
             </div>
 
             <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3 ">
