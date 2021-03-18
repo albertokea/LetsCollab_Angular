@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
+import { VisitorsService } from 'src/app/services/visitors.service';
 
 @Component({
   selector: 'login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup
 
   constructor(
-    private usersService: UsersService,
+    private visitorsService: VisitorsService,
     private router: Router) {
 
     this.onRegisterClick = new EventEmitter
@@ -41,9 +42,10 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.errorMessage = null;
-    this.usersService.login(this.loginForm.value)
+    this.visitorsService.login(this.loginForm.value)
       .then(response => {
         if (response.error) {
+
           setTimeout(() => this.errorMessage = response.error, 500);
         } else {
           localStorage.setItem('token_auth', response.token);
@@ -51,7 +53,8 @@ export class LoginComponent implements OnInit {
             .then(result => {
             this.router.navigate(['/home'])
           }) */
-          this.router.navigate(['/'])
+          console.log('Login exitoso');
+          this.router.navigate(['/home'])
           this.errorMessage = null;
         }
       })

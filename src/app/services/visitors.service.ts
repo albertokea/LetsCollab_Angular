@@ -9,18 +9,10 @@ export class VisitorsService {
   baseUrl: string;
 
   constructor(private httpClient: HttpClient) {
-    this.baseUrl = 'http://localhost:3000/api/visitors';
+    this.baseUrl = 'http://localhost:3000/api/';
   }
 
-  insert(formValues) {
-    return this.httpClient.post(this.baseUrl, formValues, this.createHeaders()).toPromise();
-  }
-
-  createHeaders() {
-    return {
-      headers: new HttpHeaders({
-        'authorization': localStorage.getItem('token_auth')
-      })
-    }
+  login(formValues): Promise<any> {
+    return this.httpClient.post(`${this.baseUrl}login`, formValues).toPromise();
   }
 }

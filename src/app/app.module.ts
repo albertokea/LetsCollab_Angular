@@ -14,7 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LetscollabComponent } from './components/letscollab/letscollab.component';
 import { UserComponent } from './components/fullUser/user/user.component';
 import { UserEditComponent } from './components/fullUser/user-edit/user-edit.component';
-import { CollabPostComponent } from './collab-post/collab-post.component';
+import { CollabPostComponent } from './components/collab-post/collab-post.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { HttpClientModule } from '@angular/common/http';
