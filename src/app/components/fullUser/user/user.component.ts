@@ -9,7 +9,7 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  faAd = faAd
+  faAd = faAd;
 
   isDisabled: boolean;
   formDisabled: boolean;

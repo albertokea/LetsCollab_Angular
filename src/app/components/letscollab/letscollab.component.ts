@@ -34,6 +34,10 @@ export class LetscollabComponent implements OnInit {
     this.posts = await this.postsService.getByKey($event.target.value)
   }
 
+  searchByKeyword() {
+
+  }
+
   searchByUser($event) {
     /* this.posts = this.postsService */
   }

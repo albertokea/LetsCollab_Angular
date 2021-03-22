@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { faReply, faEnvelope, faHeart, faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
 import { Post } from 'src/app/interfaces/post';
 import { User } from 'src/app/interfaces/user';
@@ -13,7 +13,9 @@ declare var WaveSurfer;
   styleUrls: ['./collab-post.component.css']
 })
 export class CollabPostComponent implements OnInit {
-  @Input() post;
+  @Input() post: Post;
+  @Output() search: EventEmitter<void>;
+  @Output() keyword: EventEmitter<string>;
 
   faReply = faReply;
   faEnvelope = faEnvelope;
@@ -22,17 +24,17 @@ export class CollabPostComponent implements OnInit {
   faPause = faPause;
 
   user: User;
-  displayTextarea: boolean;
+  profile_picture: string;
 
   wavesurfer: any;
   waveformContainer: string;
   isDisabled: boolean;
 
   constructor(
-    private postsService: PostsService,
-    private usersService: UsersService) {
+    private usersService: UsersService,
+    private postsService: PostsService) {
     this.isDisabled = true;
-    this.displayTextarea = false;
+    this.search = new EventEmitter;
   }
 
   async ngOnInit() {
@@ -46,7 +48,9 @@ export class CollabPostComponent implements OnInit {
       progressColor: 'yellow'
     });
     this.wavesurfer.load('../../../assets/audio/Ocean_Chals_Feb21.mp3');
+
     this.user = await this.usersService.getById(this.post.fk_user);
+    this.user.profile_picture ? this.profile_picture = this.user.profile_picture : this.profile_picture = 'default-user-image.png'
   }
 
   onPlayPause() {
@@ -59,6 +63,23 @@ export class CollabPostComponent implements OnInit {
 
   onReply() {
     this.isDisabled = !this.isDisabled;
+  }
+
+  onSearch($event) {
+    const type = $event.target.value.shift();
+    this.search.emit();
+  }
+
+  async Genre($event) {
+    this.post[0] = await this.postsService.getByGenre($event.target.value)
+  }
+
+  async License($event) {
+    this.post[0] = await this.postsService.getByLicense($event.target.value)
+  }
+
+  async Key($event) {
+    this.post[0] = await this.postsService.getByKey($event.target.value)
   }
 
 }
