@@ -4,7 +4,8 @@
     </div>
 
     <div class=" userContainer ">
-        <img [routerLink]="['/user']" class="userImage" src="../../../assets/images/default-user-image.png" alt="">
+        <img [routerLink]="['/user']" class="userImage" [src]="'../../../assets/images/profile_images/'+ profileImg"
+            alt="">
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

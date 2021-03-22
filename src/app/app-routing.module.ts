@@ -5,7 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LetscollabComponent } from './components/letscollab/letscollab.component';
 import { UserComponent } from './components/fullUser/user/user.component';
 import { MessagesComponent } from './components/messages/messages.component';
-import { PostFormComponent } from './components/post-form/post-form.component';
+import { PostFormComponent } from './components/posts/post-form/post-form.component';
 import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [

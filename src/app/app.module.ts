@@ -14,12 +14,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LetscollabComponent } from './components/letscollab/letscollab.component';
 import { UserComponent } from './components/fullUser/user/user.component';
 import { UserEditComponent } from './components/fullUser/user-edit/user-edit.component';
-import { CollabPostComponent } from './components/collab-post/collab-post.component';
+import { CollabPostComponent } from './components/posts/collab-post/collab-post.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { PostFormComponent } from './components/post-form/post-form.component';
+import { PostFormComponent } from './components/posts/post-form/post-form.component';
+import { LabComponent } from './components/lab/lab.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PostFormComponent } from './components/post-form/post-form.component';
     UserEditComponent,
     CollabPostComponent,
     MessagesComponent,
-    PostFormComponent
+    PostFormComponent,
+    LabComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import jwt_decode from "jwt-decode";
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,27 @@ export class UsersService {
     this.baseUrl = 'http://localhost:3000/api/users';
   }
 
+  getById(id): Promise<User> {
+    return this.httpClient.get<User>(`${this.baseUrl}/${id}`, this.createHeaders()).toPromise()
+  }
+
+  createHeaders() {
+    return {
+      headers: new HttpHeaders({
+        'authorization': localStorage.getItem('token_auth')
+      })
+    }
+  }
+
+  tokenDecode() {
+    const token = localStorage.getItem('token_auth');
+    const decode = jwt_decode(token)
+    const id = decode['userId']
+    return id;
+  }
+
   login(formValues): Promise<any> {
     return this.httpClient.post(`${this.baseUrl}/login`, formValues).toPromise();
   }
+
 }

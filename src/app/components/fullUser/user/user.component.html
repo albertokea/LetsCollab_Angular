@@ -4,12 +4,12 @@
         <div class="headerImg container-fluid rounded">
             <div class="mb-3 ">
                 <img class='img-fluid rounded-circle mx-auto d-block imageUser w-25'
-                    src="../../../assets/images/default-user-image.png" alt="">
+                    [src]="'../../../assets/images/profile_images/'+ user.profile_picture" alt="">
             </div>
 
         </div>
         <div class="text-center">
-            <h4>Sr.Torti</h4>
+            <h4>{{user.user}}</h4>
         </div>
         <div class="row">
             <div class="col-md-12 col-lg-2 col-xl-2 col-12 offset-lg-10 mb-3 " *ngIf="isDisabled==false">
@@ -30,17 +30,16 @@
                 <div>
                     <div>
                         <p class="small"><i class="fab fa-twitter-square"></i><a class=" mt-2 ml-2"
-                                style="text-decoration:none" href="#">@LetsCollab</a></p>
+                                style="text-decoration:none" href="#">@{{user.instagram}}</a></p>
                     </div>
                     <div>
                         <p class="small"><i class="fab fa-instagram"></i><a class=" ml-2" style="text-decoration:none"
-                                href="#">@LetsCollab</a></p>
+                                href="#">@{{user.facebook}}</a></p>
                     </div>
                     <div>
                         <p class="small">
                             <fa-icon [icon]="faAd" class="fa-lg"></fa-icon><a class=" ml-2" style="text-decoration:none"
-                                href="#">Let's
-                                Collab </a>
+                                href="#">@{{user.twitter}}</a>
                         </p>
                     </div>
                     <div>
@@ -52,13 +51,7 @@
             </div>
             <div [ngClass]="{'disabled':isDisabled}"
                 class="col-md-7 col-lg-7 col-xl-7 col-12  offset-lg-1  p-1 text-center text-md-left">
-                <p class="small">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit doloribus sed facere
-                    minima quasi, natus soluta eius cupiditate. Quod ipsa nisi laboriosam earum voluptates! Minima
-                    suscipit magni, earum dolore cupiditate soluta praesentium dolor nulla quae? Provident ea fuga
-                    officia delectus odit iusto velit beatae doloremque debitis fugit iste saepe excepturi, commodi
-                    illum ipsum non totam, nam vero at quaerat! Dignissimos natus quo minima quam ad explicabo rerum
-                    reiciendis vitae optio omnis esse corrupti consequatur iure incidunt quidem, ipsum impedit dolorem
-                    quis? Reprehenderit iure quo officia facilis culpa? Sit, deleniti asperiores.</p>
+                <p class="small">{{user.bio}}</p>
             </div>
 
         </div>
@@ -67,5 +60,6 @@
         </div>
     </div>
 
+    <!-- FALTA POST DEL USUARIO Y FAVORITOS -->
 </div>
 <app-footer></app-footer>

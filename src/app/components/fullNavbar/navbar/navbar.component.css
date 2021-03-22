@@ -11,7 +11,7 @@ nav{
 }
 nav img{
     width: 30%;
-    height: auto;
+    min-height: 100%;
     
 }
 nav .ulContainer{

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { UsersService } from 'src/app/services/users.service';
 @Component({
   selector: 'navbar',
   templateUrl: './navbar.component.html',
@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  profileImg: string;
 
-  ngOnInit(): void {
+  constructor(private usersService: UsersService) {
+  }
+
+  async ngOnInit() {
+    const id = await this.usersService.tokenDecode();
+    const user = await this.usersService.getById(id);
+    console.log(user);
+
+    this.profileImg = user.profile_picture
+    console.log(this.profileImg);
+
   }
 
 }
