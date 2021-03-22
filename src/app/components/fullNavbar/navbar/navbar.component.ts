@@ -17,7 +17,9 @@ export class NavbarComponent implements OnInit {
     const user = await this.usersService.getById(id);
     console.log(user);
 
-    this.profileImg = user.profile_picture
+    user.profile_picture ? this.profileImg = user.profile_picture :
+      this.profileImg = 'default-user-image.png'
+
     console.log(this.profileImg);
 
   }

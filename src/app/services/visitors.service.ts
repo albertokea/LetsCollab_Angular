@@ -9,10 +9,14 @@ export class VisitorsService {
   baseUrl: string;
 
   constructor(private httpClient: HttpClient) {
-    this.baseUrl = 'http://localhost:3000/api/';
+    this.baseUrl = 'http://localhost:3000/api';
+  }
+
+  register(formValues): Promise<any> {
+    return this.httpClient.post(`${this.baseUrl}/register`, formValues).toPromise();
   }
 
   login(formValues): Promise<any> {
-    return this.httpClient.post(`${this.baseUrl}login`, formValues).toPromise();
+    return this.httpClient.post(`${this.baseUrl}/login`, formValues).toPromise();
   }
 }

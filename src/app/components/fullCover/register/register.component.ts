@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UsersService } from 'src/app/services/users.service';
+import { Router } from '@angular/router';
+import { VisitorsService } from 'src/app/services/visitors.service';
 
 @Component({
   selector: 'register',
@@ -13,7 +14,9 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup
 
-  constructor(private usersService: UsersService) {
+  constructor(
+    private visitorsService: VisitorsService,
+    private router: Router) {
     this.onLoginClick = new EventEmitter;
 
     this.registerForm = new FormGroup({
@@ -23,7 +26,7 @@ export class RegisterComponent implements OnInit {
       surname: new FormControl('', [
         Validators.required
       ]),
-      mail: new FormControl('', [
+      email: new FormControl('', [
         Validators.required,
         Validators.pattern(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,4}$/)
       ]),
@@ -68,6 +71,12 @@ export class RegisterComponent implements OnInit {
 
   checkValidator(controlName, validatorName) {
     this.registerForm.get(controlName).hasError(validatorName) && this.registerForm.get(controlName).touched;
+  }
+
+  register() {
+    this.visitorsService.register(this.registerForm.value);
+    alert('Toma yeah!!')
+    this.onLoginClick.emit()
   }
 }
 

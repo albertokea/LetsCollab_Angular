@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { faReply, faEnvelope, faHeart, faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
+import { Post } from 'src/app/interfaces/post';
+import { User } from 'src/app/interfaces/user';
+import { PostsService } from 'src/app/services/posts.service';
+import { UsersService } from 'src/app/services/users.service';
 
 declare var WaveSurfer;
 
@@ -9,6 +13,7 @@ declare var WaveSurfer;
   styleUrls: ['./collab-post.component.css']
 })
 export class CollabPostComponent implements OnInit {
+  @Input() post;
 
   faReply = faReply;
   faEnvelope = faEnvelope;
@@ -16,20 +21,32 @@ export class CollabPostComponent implements OnInit {
   faPlay = faPlay;
   faPause = faPause;
 
+  user: User;
+  displayTextarea: boolean;
+
   wavesurfer: any;
+  waveformContainer: string;
   isDisabled: boolean;
 
-  constructor() {
+  constructor(
+    private postsService: PostsService,
+    private usersService: UsersService) {
     this.isDisabled = true;
+    this.displayTextarea = false;
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+
+  }
+
+  async ngAfterViewInit() {
     this.wavesurfer = WaveSurfer.create({
-      container: '#waveform',
+      container: '.waveContainer' + this.post.idpost,
       waveColor: 'violet',
       progressColor: 'yellow'
     });
     this.wavesurfer.load('../../../assets/audio/Ocean_Chals_Feb21.mp3');
+    this.user = await this.usersService.getById(this.post.fk_user);
   }
 
   onPlayPause() {
@@ -41,7 +58,7 @@ export class CollabPostComponent implements OnInit {
   }
 
   onReply() {
-    this.isDisabled = false
+    this.isDisabled = !this.isDisabled;
   }
 
 }

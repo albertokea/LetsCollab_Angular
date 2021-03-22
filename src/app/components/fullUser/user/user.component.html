@@ -4,12 +4,12 @@
         <div class="headerImg container-fluid rounded">
             <div class="mb-3 ">
                 <img class='img-fluid rounded-circle mx-auto d-block imageUser w-25'
-                    [src]="'../../../assets/images/profile_images/'+ user.profile_picture" alt="">
+                    [src]="'../../../assets/images/profile_images/'+ profileImg" alt="">
             </div>
 
         </div>
         <div class="text-center">
-            <h4>{{user.user}}</h4>
+            <h4>{{userName}}</h4>
         </div>
         <div class="row">
             <div class="col-md-12 col-lg-2 col-xl-2 col-12 offset-lg-10 mb-3 " *ngIf="isDisabled==false">
@@ -30,16 +30,16 @@
                 <div>
                     <div>
                         <p class="small"><i class="fab fa-twitter-square"></i><a class=" mt-2 ml-2"
-                                style="text-decoration:none" href="#">@{{user.instagram}}</a></p>
+                                style="text-decoration:none" href="#">@{{instagram}}</a></p>
                     </div>
                     <div>
                         <p class="small"><i class="fab fa-instagram"></i><a class=" ml-2" style="text-decoration:none"
-                                href="#">@{{user.facebook}}</a></p>
+                                href="#">@{{facebook}}</a></p>
                     </div>
                     <div>
                         <p class="small">
                             <fa-icon [icon]="faAd" class="fa-lg"></fa-icon><a class=" ml-2" style="text-decoration:none"
-                                href="#">@{{user.twitter}}</a>
+                                href="#">@{{twitter}}</a>
                         </p>
                     </div>
                     <div>
@@ -51,7 +51,7 @@
             </div>
             <div [ngClass]="{'disabled':isDisabled}"
                 class="col-md-7 col-lg-7 col-xl-7 col-12  offset-lg-1  p-1 text-center text-md-left">
-                <p class="small">{{user.bio}}</p>
+                <p class="small">{{bio}}</p>
             </div>
 
         </div>
@@ -60,6 +60,6 @@
         </div>
     </div>
 
-    <!-- FALTA POST DEL USUARIO Y FAVORITOS -->
+    <!-- FALTA POST DEL USUARIO Y FAVORITOS? -->
 </div>
 <app-footer></app-footer>

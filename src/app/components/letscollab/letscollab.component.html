@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="form-group col-sm-12 col-md-6">
                         <label>Usuario</label>
-                        <input type="text" name="" class="form-control">
+                        <input type="text" name="" class="form-control" (change)="searchByUser($event)">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label>Palabra clave</label>
@@ -20,13 +20,13 @@
                 <div class="row">
                     <div class="form-group col-lg-3 col-sm-6 col-xs-12">
                         <label>Instrumento/Categoría</label>
-                        <select class="form-control">
+                        <select class="form-control" (change)="searchByType($event)">
                             <option value=""></option>
                         </select>
                     </div>
                     <div class="form-group col-lg-3 col-sm-6">
                         <label>Género</label>
-                        <select class="form-control">
+                        <select class="form-control" (change)="searchByGenre($event)">
                             <option value=""></option>
                             <option value="rock">Rock</option>
                             <option value="pop">Pop</option>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="form-group col-lg-3 col-sm-6">
                         <label>Licencia</label>
-                        <select class="form-control">
+                        <select class="form-control" (click)="searchByLicense($event)">
                             <option value=""></option>
                             <option value="free-to-use">De uso libre</option>
                             <option value="personal">De uso solo personal</option>
@@ -58,7 +58,7 @@
                     </div>
                     <div class="form-group col-lg-3 col-sm-6">
                         <label>Nota</label>
-                        <select class="form-control">
+                        <select class="form-control" (change)="searchByKey($event)">
                             <option value=""></option>
                             <option value="A">A</option>
                             <option value="A#">A#</option>
@@ -77,7 +77,9 @@
                 </div>
             </div>
         </div>
-        <collab-post></collab-post>
+        <div *ngFor="let post of posts">
+            <collab-post [post]="post"></collab-post>
+        </div>
     </div>
     <app-footer></app-footer>
 </div>
