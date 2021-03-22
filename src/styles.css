@@ -9,7 +9,7 @@
     --fontThird: 'Syne Mono', monospace;
     --font-size: 1em;
     --color-grey: #444;
-    --color-bg: #112e;
+    --color-dark-bg: #112e;
 }
 
 html, body { height: 100%; }

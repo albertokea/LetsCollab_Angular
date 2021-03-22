@@ -1,5 +1,5 @@
 .body{
-    background-color: #112e;
+    background-color: var(--color-dark-bg);
 }
 
 label{

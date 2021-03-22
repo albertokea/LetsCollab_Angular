@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faUpload } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-messages',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit {
+  faUpload = faUpload;
   images = []
   constructor() {
     this.images = ["../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png"]
