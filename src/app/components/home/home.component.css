@@ -1,5 +1,5 @@
 .body{
-    background-color: #112e;
+    background-color:var(--color-dark-bg);
 }
 
 .container{
@@ -8,6 +8,7 @@
 
 .carousel-item{
     position: relative;
+    cursor: pointer;
 }
 h1{
     position: absolute;

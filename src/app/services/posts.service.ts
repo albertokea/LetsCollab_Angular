@@ -32,8 +32,8 @@ export class PostsService {
     return this.httpClient.get<Post[]>(this.baseUrl, this.createHeaders()).toPromise()
   }
 
-  getById(id): Promise<Post> {
-    return this.httpClient.get<Post>(`${this.baseUrl}/${id}`, this.createHeaders()).toPromise()
+  getById(id): Promise<Post[]> {
+    return this.httpClient.get<Post[]>(`${this.baseUrl}/${id}`, this.createHeaders()).toPromise()
   }
 
   getByGenre(genre): Promise<Post[]> {
@@ -54,6 +54,10 @@ export class PostsService {
 
   getByType(type): Promise<Post[]> {
     return this.httpClient.get<Post[]>(`${this.baseUrl}/type/${type}`, this.createHeaders()).toPromise()
+  }
+
+  getByUser(iduser): Promise<Post[]> {
+    return this.httpClient.get<Post[]>(`${this.baseUrl}/user/${iduser}`, this.createHeaders()).toPromise();
   }
 
   create(post): Promise<Post> {
