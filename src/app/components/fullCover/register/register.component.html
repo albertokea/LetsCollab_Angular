@@ -1,40 +1,40 @@
 <form [formGroup]="registerForm" class="form-container col-sm-12 col-md-5">
     <div class="form-group col-12">
-        <h5>Nombre</h5>
+        <label>Nombre</label>
         <input type="text" name="" id="" class="form-control" formControlName="name">
         <p class="error" *ngIf="checkValidator('name', 'required')">El
             campo apellido debe tener máximo 10 caracteres </p>
     </div>
     <div class="form-group col-12">
-        <h5>Apellidos</h5>
+        <label>Apellidos</label>
         <input type="text" name="" id="" class="form-control" formControlName="surname">
         <!-- <p class="error"
             *ngIf="this.registerForm.get('surname').hasError('required') && this.registerForm.get('surname').touched;">
             Introduzca sus apellidos</p> -->
     </div>
     <div class="form-group col-12">
-        <h5>Email</h5>
+        <label>Email</label>
         <input type="text" name="" id="" class="form-control" formControlName="email">
         <!-- <p class="error" *ngIf="checkValidator('name', 'required')">Introduzca su nombre</p> -->
     </div>
     <div class="form-group col-12">
-        <h5>Fecha Nacimiento</h5>
+        <label>Fecha Nacimiento</label>
         <input type="text" name="" id="" class="form-control" formControlName="birth_date">
     </div>
     <div class="form-group col-12">
-        <h5>Genero</h5>
+        <label>Genero</label>
         <input type="text" name="" id="" class="form-control" formControlName="gender">
     </div>
     <div class="form-group col-12">
-        <h5>Usuario</h5>
+        <label>Usuario</label>
         <input type="text" name="" id="" class="form-control" formControlName="user">
     </div>
     <div class="form-group col-12">
-        <h5>Contraseña</h5>
+        <label>Contraseña</label>
         <input type="password" name="" id="" class="form-control" formControlName="password">
     </div>
     <div class="form-group col-12">
-        <h5>Repite la contraseña</h5>
+        <label>Repite la contraseña</label>
         <input type="password" name="" id="" class="form-control" formControlName="password_repeat">
     </div>
     <div class="btn-container col-12">

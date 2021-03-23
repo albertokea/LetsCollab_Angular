@@ -48,9 +48,9 @@ export class UserEditComponent implements OnInit {
   }
 
   onConfirm() {
-    const formData = new FormData()
+    /* const formData = new FormData()
     formData.append('profile_picture', this.editForm.get('profile_picture').value)
-    console.log(formData);
+    console.log(this.editForm.get('profile_picture').value); */
 
 
 
@@ -65,13 +65,15 @@ export class UserEditComponent implements OnInit {
 
   }
   onFileChange(event) {
-    if (event.target.files.length > 0) {
+    /* if (event.target.files.length > 0) {
       const file = event.target.files[0]
-      this.editForm.get('profile_picture').setValue(file)
+      console.log(file);
 
-    }
-
+      this.editForm.get('profile_picture').setValue(file) */
 
   }
 
+
 }
+
+
