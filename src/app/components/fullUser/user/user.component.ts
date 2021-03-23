@@ -5,6 +5,7 @@ import { Post } from 'src/app/interfaces/post';
 import { User } from 'src/app/interfaces/user';
 import { PostsService } from 'src/app/services/posts.service';
 import { UsersService } from 'src/app/services/users.service';
+import { faUpload } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -39,8 +40,6 @@ export class UserComponent implements OnInit {
     this.user.profile_picture ? this.profilePicture = this.user.profile_picture : this.profilePicture = 'default-user-image.png';
 
     this.userPosts = await this.postsService.getByUser(id);
-    console.log(this.userPosts);
-
   }
   onEdit() {
     this.isDisabled = true;
