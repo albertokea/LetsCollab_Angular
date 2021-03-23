@@ -15,16 +15,18 @@
             <div class="row">
                 <div class="col-md-12 col-lg-2 col-xl-2 col-12 offset-lg-10 mb-3 " *ngIf="isDisabled==false">
                     <button class="small btn btn-warning btn-block" (click)="onEdit()">
-                        Edit
+                        Editar
                     </button>
                 </div>
                 <div class="col-md-12 col-lg-2 col-xl-2 col-12 offset-lg-10 mb-3 " *ngIf="isDisabled==true">
-                    <button class="small btn btn-success btn-block" (click)="onSuccess()">
-                        ¡Listo!
+                    <button class="small btn btn-warning btn-block" (click)="onSuccess()">
+                        Volver
                     </button>
                 </div>
-                <div>
-
+                <div class="col-md-6 col-lg-6 col-xl-6 col-12  offset-lg-1 p-1 text-center text-md-left bio1"
+                    [ngClass]="{'disabled2':isDisabled}">
+                    <p class="text-white">{{user?.bio}}</p>
+                    <p class="text-white" *ngIf="user?.bio == null">Cuéntanos un poco sobre tí...</p>
                 </div>
                 <div class="column col-md-4 col-lg-2 col-xl-2 col-12 offset-lg-1 p-3 text-center"
                     [ngClass]="{'disabled':isDisabled}">
@@ -57,15 +59,15 @@
                         </div>
                     </div>
                 </div>
-                <div [ngClass]="{'disabled':isDisabled}"
-                    class="col-md-6 col-lg-6 col-xl-6 col-12  offset-lg-1 p-1 text-center text-md-left">
+                <div class="col-md-6 col-lg-6 col-xl-6 col-12  offset-lg-1 p-1 text-center text-md-left bio2"
+                    [ngClass]="{'disabled':isDisabled}">
                     <p class="text-white">{{user?.bio}}</p>
                     <p class="text-white" *ngIf="user?.bio == null">Cuéntanos un poco sobre tí...</p>
                 </div>
 
             </div>
             <div class="login" [ngClass]="{'disabled':formDisabled}">
-                <app-user-edit (onSuccess)="onSuccess()"></app-user-edit>
+                <app-user-edit (goBack)='onSuccess()' (onSuccess)="onSuccess()"></app-user-edit>
             </div>
         </div>
 

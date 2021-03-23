@@ -11,9 +11,7 @@
     background-image: url("../../../../assets/images/lab_hero.jpg");
     background-size: cover;
 }
-.disabled{
-    display: none;
-}
+
 .icon{
     width: 2.5em;
 }
@@ -22,7 +20,26 @@ a{
     cursor: pointer;
     color: white
 }
-
+.bio1{
+    display: none;
+}
+.bio2 {
+    display: block;
+}
+.disabled{
+    display: none;
+}
+@media (max-width:768px){
+    .bio1{
+        display: block;
+    }
+    .bio2{
+        display: none;
+    }
+    .disabled2{
+        display: none;
+    }
+}
 /* .default_profile_img{
     background-image:url('../../../assets/images/profile_images/.default_profile_img');
 } */

@@ -3,39 +3,43 @@
 </div>
 
 <div class="row">
-    <form [formGroup]="editForm" class="col-12 row">
+    <form enctype="multipart/form-data" [formGroup]="editForm" class="col-12 row">
 
         <div class="column col-md-4 col-lg-2 col-xl-2 col-12 offset-lg-1 p-3 text-center">
             <div>
+                <input type="hidden" formControlName="iduser">
                 <div>
                     <p class="small"><img src="../../../../assets/images/instagram.png" class="icon"><input type="text"
-                            class=" col-8 small ml-2 p-0" formControlName="instagram"
-                            [placeholder]="user?.instagram ? user?.instagram : ''"></p>
+                            class=" col-8 small ml-2 p-0" formControlName="instagram"></p>
                 </div>
                 <div>
                     <p class="small"><img src="../../../../assets/images/facebook.png" class="icon"><input type="text"
-                            class=" col-8 small ml-2 p-0" formControlName="twitter"
-                            [placeholder]="user?.facebook ? user?.facebook : ''"></p>
+                            class=" col-8 small ml-2 p-0" formControlName="facebook"></p>
                 </div>
                 <div class="form-group">
                     <p class="small"><img src="../../../../assets/images/twitter.png" class="icon"><input type="text"
-                            class=" col-8 small ml-2 p-0" formControlName="facebook"
-                            [placeholder]="user?.twitter ? user?.twitter : ''"></p>
+                            class=" col-8 small ml-2 p-0" formControlName="twitter"></p>
                 </div>
                 <div>
-                    <p class="small"><input type="text" class=" col-12 small  p-0" formControlName="email"
-                            [value]="user?.email"></p>
+                    <p class="small"><input type="text" class=" col-12 small  p-0" formControlName="email"></p>
                 </div>
             </div>
         </div>
         <div class="col-md-7 col-lg-7 col-xl-7 col-12  offset-lg-1  p-1 text-center text-md-left ">
-            <p class="small"><textarea class="form-control" formControlName='bio' name="" id=""
-                    style="resize:none;width:100%;min-height: 200px;" [value]="user?.bio ? user?.bio : ''"
-                    [placeholder]="user?.bio ? '':'Cuéntanos un poco sobre tí...' "></textarea>
+            <p class="small"><textarea maxlength="240" (keyup)='onKeyUp($event)' class="form-control"
+                    formControlName='bio' name="" id="" style="resize:none;width:100%;min-height: 200px;"
+                    placeholder="Cuéntanos sobre ti"></textarea>
             </p>
             <p class="text-white d-flex justify-content-end">
-                <!-- {{content.value.lenth}} --> / 240
+                {{length}} / 240
             </p>
+        </div>
+        <div class="col-md-7 col-lg-7 col-xl-7 col-12">
+            <label class="text-white" for="">Imagen</label>
+            <input (change)='onFileChange($event)' type="file" formControlName='profile_picture' name="profile_picture">
+        </div>
+        <div class="col-6 offset-3 offset-md-4">
+            <button (click)="onConfirm()" class="btn btn-success btn-block ">Confirmar</button>
         </div>
     </form>
 </div>

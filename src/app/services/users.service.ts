@@ -27,6 +27,15 @@ export class UsersService {
       })
     }
   }
+  createHeaders2() {
+    return {
+      headers: new HttpHeaders({
+        'authorization': localStorage.getItem('token_auth'),
+        'Content-Type': 'multipart/form-data',
+        'Accept': 'application/json'
+      })
+    }
+  }
 
   tokenDecode() {
     const token = localStorage.getItem('token_auth');
@@ -39,4 +48,7 @@ export class UsersService {
     return this.httpClient.post(`${this.baseUrl}/login`, formValues).toPromise();
   }
 
+  update(formValue): Promise<any> {
+    return this.httpClient.put(`${this.baseUrl}/update`, formValue, this.createHeaders2()).toPromise()
+  }
 }
