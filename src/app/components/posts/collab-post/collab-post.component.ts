@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { faReply, faEnvelope, faHeart, faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
+
 import { Post } from 'src/app/interfaces/post';
 import { User } from 'src/app/interfaces/user';
 import { PostsService } from 'src/app/services/posts.service';
@@ -22,6 +23,7 @@ export class CollabPostComponent implements OnInit {
   faHeart = faHeart;
   faPlay = faPlay;
   faPause = faPause;
+  datePublish: string
 
   user: User;
   profile_picture: string;
@@ -35,6 +37,7 @@ export class CollabPostComponent implements OnInit {
     private postsService: PostsService) {
     this.isDisabled = true;
     this.search = new EventEmitter;
+
   }
 
   async ngOnInit() {
@@ -42,6 +45,7 @@ export class CollabPostComponent implements OnInit {
   }
 
   async ngAfterViewInit() {
+    this.datePublish = this.post.date_publish.split('T')[0]
     this.wavesurfer = WaveSurfer.create({
       container: '.waveContainer' + this.post.idpost,
       waveColor: 'violet',
