@@ -56,7 +56,7 @@ export class PostsService {
     return this.httpClient.get<Post[]>(`${this.baseUrl}/type/${type}`, this.createHeaders()).toPromise()
   }
 
-  getByUser(iduser): Promise<Post[]> {
+  getByUserId(iduser): Promise<Post[]> {
     return this.httpClient.get<Post[]>(`${this.baseUrl}/user/${iduser}`, this.createHeaders()).toPromise();
   }
 

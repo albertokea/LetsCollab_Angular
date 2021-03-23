@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
   selector: 'app-post-form',
@@ -8,21 +9,35 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class PostFormComponent implements OnInit {
 
-  postForm: FormGroup
+  postForm: FormGroup;
 
-  constructor() {
+  constructor(private postsService: PostsService) {
     this.postForm = new FormGroup({
-      type: new FormControl(),
-      genre: new FormControl(),
-      key: new FormControl(),
-      license: new FormControl(),
-      bpm: new FormControl(),
-      extra_tags: new FormControl(),
-      description: new FormControl(),
+      type: new FormControl('', [
+        Validators.required
+      ]),
+      genre: new FormControl(''),
+      key_note: new FormControl(''),
+      license: new FormControl('',
+        Validators.required),
+      bpm: new FormControl(''),
+      extra_tags: new FormControl(''),
+      description_text: new FormControl(''),
+      audio: new FormControl('',
+        Validators.required),
+      download: new FormControl('',
+        Validators.required)
     })
   }
 
   ngOnInit(): void {
+  }
+
+  newPost() {
+    const newpost = this.postsService.create(this.postForm.value);
+    console.log(this.postForm.value);
+
+    alert('Exito!!')
   }
 
 }

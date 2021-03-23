@@ -70,7 +70,7 @@ export class RegisterComponent implements OnInit {
   }
 
   checkValidator(controlName, validatorName) {
-    this.registerForm.get(controlName).hasError(validatorName) && this.registerForm.get(controlName).touched;
+    return this.registerForm.get(controlName).hasError(validatorName) && this.registerForm.get(controlName).touched;
   }
 
   register() {

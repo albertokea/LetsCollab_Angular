@@ -1,8 +1,6 @@
 .body{
     background-color: var(--color-dark-bg);
 }
-
-
 .filters-container{
     width: 80%;
     height: auto;
@@ -10,9 +8,24 @@
     padding: 1em;
     position: relative;
 }
-
-
 h2, label{
     color: white;
 }
-
+.iconContainer{
+    width: 4em;
+    height: 4em;
+    border: 1px solid white;
+    border-radius: 25%;
+    position: fixed;
+    right: 5%;
+    bottom: 10%;
+    background-color: #333;
+    cursor: pointer;
+}
+.icon{
+    color: white;
+    font-size: 2.5em;
+    position: relative;
+    top: 10%;
+    left: 10%;
+}

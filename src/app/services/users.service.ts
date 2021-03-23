@@ -16,6 +16,10 @@ export class UsersService {
     return this.httpClient.get<User>(`${this.baseUrl}/${id}`, this.createHeaders()).toPromise()
   }
 
+  getByUser(username): Promise<User> {
+    return this.httpClient.get<User>(`${this.baseUrl}/user/${username}`, this.createHeaders()).toPromise()
+  }
+
   createHeaders() {
     return {
       headers: new HttpHeaders({
