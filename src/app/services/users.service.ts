@@ -35,4 +35,7 @@ export class UsersService {
     return this.httpClient.post(`${this.baseUrl}/login`, formValues).toPromise();
   }
 
+  update(formValue): Promise<any> {
+    return this.httpClient.put(`${this.baseUrl}/update`, formValue, this.createHeaders()).toPromise()
+  }
 }
