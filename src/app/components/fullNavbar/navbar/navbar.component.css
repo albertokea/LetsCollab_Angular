@@ -42,6 +42,14 @@ nav .ulContainer{
 .nav-item a{
     font-size: calc(var(--font-size)*1.3);
 }
+.powerOffButton{
+    transition: 00.5s;
+    color: white;
+}
+.powerOffButton:hover{
+    transition: 00.5s;
+    color: tomato;
+}
 
 @media(max-width:992px){
     .border-bottom-nav{

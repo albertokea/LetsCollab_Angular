@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
+import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'navbar',
   templateUrl: './navbar.component.html',
@@ -7,6 +8,7 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class NavbarComponent implements OnInit {
 
+  faPowerOff = faPowerOff;
   profileImg: string;
 
   constructor(private usersService: UsersService) {
@@ -24,4 +26,7 @@ export class NavbarComponent implements OnInit {
 
   }
 
+  onShutDown() {
+    localStorage.removeItem('token_auth')
+  }
 }

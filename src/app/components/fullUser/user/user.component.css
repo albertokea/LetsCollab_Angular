@@ -11,3 +11,7 @@
 .disabled{
     display: none;
 }
+
+.bio{
+    border: 1px solid gray;
+}
