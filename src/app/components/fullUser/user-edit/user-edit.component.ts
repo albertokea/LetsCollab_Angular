@@ -24,6 +24,7 @@ export class UserEditComponent implements OnInit {
       facebook: new FormControl(''),
       email: new FormControl('',
         Validators.required),
+      profile_picture: new FormControl(''),
       bio: new FormControl(''),
       iduser: new FormControl('')
     })
@@ -40,17 +41,22 @@ export class UserEditComponent implements OnInit {
       facebook: new FormControl(this.user.facebook),
       email: new FormControl(this.user.email,
         Validators.required),
+      profile_picture: new FormControl(''),
       bio: new FormControl(this.user.bio),
       iduser: new FormControl(this.iduser)
     })
   }
 
   onConfirm() {
-    console.log('heybro');
-    console.log(this.editForm.value);
-    this.usersService.update(this.editForm.value)
-    alert('Los cambios han sido guardados')
-    this.goBack.emit()
+    const formData = new FormData()
+    formData.append('profile_picture', this.editForm.get('profile_picture').value)
+    console.log(formData);
+
+
+
+    /* this.usersService.update(this.editForm.value) */
+    /* alert('Los cambios han sido guardados') */
+    /* this.goBack.emit() */
 
   }
   onKeyUp($event) {
@@ -58,6 +64,14 @@ export class UserEditComponent implements OnInit {
     this.length = $event.target.value.length;
 
   }
+  onFileChange(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0]
+      this.editForm.get('profile_picture').setValue(file)
 
+    }
+
+
+  }
 
 }
