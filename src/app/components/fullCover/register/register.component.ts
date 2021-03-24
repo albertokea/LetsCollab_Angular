@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { VisitorsService } from 'src/app/services/visitors.service';
 import { User } from 'src/app/interfaces/user';
 
+declare var Swal;
 @Component({
   selector: 'register',
   templateUrl: './register.component.html',
@@ -91,7 +92,12 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.visitorsService.register(this.registerForm.value);
-    alert('Toma yeah!!')
+    Swal.fire({
+      icon: 'success',
+      title: 'Cuenta creada con éxito',
+      showConfirmButton: false,
+      timer: 2000
+    })
     this.onLoginClick.emit()
   }
 }

@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
 import { UsersService } from 'src/app/services/users.service';
-
+declare var Swal;
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
@@ -64,8 +64,20 @@ export class UserEditComponent implements OnInit {
     formData.append('iduser', this.editForm.value.iduser);
 
     await this.usersService.update(formData);
-    alert('Los cambios han sido guardados');
-    window.location.reload()
+    Swal.fire({
+      icon: 'success',
+      title: 'Datos actualizados con éxito',
+      showConfirmButton: true,
+      allowOutsideClick: false
+
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        window.location.reload()
+
+      }
+    })
+
   }
   onKeyUp($event) {
 
