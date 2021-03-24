@@ -5,7 +5,7 @@
             <div class="headerImg container-fluid rounded">
                 <div class="mb-3 ">
                     <img class='img-fluid rounded-circle mx-auto d-block imageUser w-25'
-                        [src]="'../../../assets/images/profile_images/'+ profilePicture">
+                        [src]="'http://localhost:3000/images/profile_pictures/'+ (user?.profile_picture ? user?.profile_picture : 'default-user-image.png')">
                 </div>
 
             </div>

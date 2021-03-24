@@ -46,7 +46,12 @@ export class LetscollabComponent implements OnInit {
   async searchByUser($event) {
     if ($event.keyCode === 13) {
       const user = await this.usersService.getByUser($event.target.value);
-      this.posts = await this.postsService.getByUserId(user.iduser);
+      if (user) {
+        this.posts = await this.postsService.getByUserId(user.iduser);
+      } else {
+        //TODO
+        alert('Fallo!!')
+      }
     }
   }
 }

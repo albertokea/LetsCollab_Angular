@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
@@ -10,8 +11,11 @@ import { PostsService } from 'src/app/services/posts.service';
 export class PostFormComponent implements OnInit {
 
   postForm: FormGroup;
+  file: any;
 
-  constructor(private postsService: PostsService) {
+  constructor(
+    private postsService: PostsService,
+    private router: Router) {
     this.postForm = new FormGroup({
       type: new FormControl('', [
         Validators.required
@@ -33,11 +37,30 @@ export class PostFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  newPost() {
-    const newpost = this.postsService.create(this.postForm.value);
-    console.log(this.postForm.value);
+  async newPost() {
+    const formData = new FormData();
+    formData.append('audio', this.file);
+    formData.append('type', this.postForm.value.type);
+    formData.append('genre', this.postForm.value.genre);
+    formData.append('key_note', this.postForm.value.key_note);
+    formData.append('license', this.postForm.value.license);
+    formData.append('bpm', this.postForm.value.bpm);
+    formData.append('extra_tags', this.postForm.value.extra_tags);
+    formData.append('description_text', this.postForm.value.description_text);
+    formData.append('download', this.postForm.value.download);
 
-    alert('Exito!!')
+    await this.postsService.create(this.postForm.value);
+    alert('Exito!!');
+    this.router.navigate(['/collab']);
   }
 
+  onFileChange(event) {
+    if (event.target.files.length > 0) {
+      if (event.target.files[0].name.match(/\.(mp3|wav)$/)) {
+        this.file = event.target.files[0]
+      } else {
+        alert('Solo se pueden introducir imagenes en formato mp3, wav');
+      }
+    }
+  }
 }

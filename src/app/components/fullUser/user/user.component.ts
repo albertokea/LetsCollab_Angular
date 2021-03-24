@@ -37,7 +37,6 @@ export class UserComponent implements OnInit {
   async ngOnInit() {
     const id = await this.usersService.tokenDecode();
     this.user = await this.usersService.getById(id);
-    this.user.profile_picture ? this.profilePicture = this.user.profile_picture : this.profilePicture = 'default-user-image.png';
 
     this.userPosts = await this.postsService.getByUserId(id);
   }
