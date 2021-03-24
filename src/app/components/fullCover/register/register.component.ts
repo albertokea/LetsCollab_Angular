@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { VisitorsService } from 'src/app/services/visitors.service';
-
+declare var Swal;
 @Component({
   selector: 'register',
   templateUrl: './register.component.html',
@@ -75,7 +75,12 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.visitorsService.register(this.registerForm.value);
-    alert('Toma yeah!!')
+    Swal.fire({
+      icon: 'success',
+      title: 'Cuenta creada con éxito',
+      showConfirmButton: false,
+      timer: 2000
+    })
     this.onLoginClick.emit()
   }
 }

@@ -5,7 +5,10 @@
     padding: 0 100px 100px 100px;
 }
 .imageUser{
-    width: 200px;
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+    min-height: 150px;
 }
 .headerImg{
     background-image: url("../../../../assets/images/lab_hero.jpg");
@@ -38,6 +41,12 @@ a{
     }
     .disabled2{
         display: none;
+    }
+    .imageUser{
+        width: 100px;
+        min-width: 100px;
+        max-width: 100px;
+        min-height: 100px;
     }
 }
 /* .default_profile_img{

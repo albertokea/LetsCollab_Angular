@@ -28,7 +28,9 @@ nav .ulContainer{
 }
 .userContainer img{
     border-radius: 50%;
-    width: 15%;
+    max-width: 60px;
+    min-width:60px;
+    min-height: 55px;
 } 
 
 .transition{
@@ -66,15 +68,17 @@ nav .ulContainer{
     }
     .userContainer img{
     
-        width: 50px;
+        max-width: 50px;
+    min-width:50px;
+    min-height: 45px;
     } 
  
     .containerUl{
         max-width: none;
     }
     nav img{
-        width: 50px;
-        height: auto;
+        width: 45px;
+        min-width: 45px;
         
     } 
     .imgContainer{
