@@ -31,20 +31,20 @@
                 <div class="column col-md-4 col-lg-2 col-xl-2 col-12 offset-lg-1 p-3 text-center"
                     [ngClass]="{'disabled':isDisabled}">
                     <div>
-                        <div>
+                        <div class="row">
                             <p class="small"><img src="../../../../assets/images/instagram.png" class="icon"><a
                                     class=" mt-2 ml-2" style="text-decoration:none"
                                     [href]="'https://www.instagram.com/'+ user?.instagram">{{user?.instagram}}</a><a
                                     class="text-white" *ngIf="user?.instagram == null">Añadir cuenta</a>
                             </p>
                         </div>
-                        <div>
+                        <div class="row">
                             <p class="small"><img src="../../../../assets/images/facebook.png" class="icon"><a
                                     class=" ml-2" style="text-decoration:none"
                                     href="https://www.facebook.com/">{{user?.facebook}}</a><a class="text-white"
                                     *ngIf="user?.facebook == null">Añadir cuenta</a></p>
                         </div>
-                        <div>
+                        <div class="row">
                             <p class="small">
                                 <img src="../../../../assets/images/twitter.png" class="icon"><a class=" ml-2"
                                     style="text-decoration:none"
