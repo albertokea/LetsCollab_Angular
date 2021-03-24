@@ -1,11 +1,6 @@
 .body{
     background-color:var(--color-dark-bg);
 }
-
-.container{
-    margin-left: 12.5%;
-}
-
 .carousel-item{
     position: relative;
     cursor: pointer;
@@ -17,7 +12,6 @@ h1{
     font-family: var(--fontThird);
     font-size: calc(var(--font-size)*3);
 }
-
 p{
     color: white;
     font-family: var(--fontThird);
@@ -26,7 +20,20 @@ p{
     margin-top: 15%;
     margin-left: 70%;
 }
-
 img{
     z-index: -1;
+    max-height: 570px;
 }
+.h1-img2{
+    position: absolute;
+    margin-left: 32.31%;
+}
+.h1-img3{
+    position: absolute;
+    margin-left: 41%;
+    margin-top: 20%;
+}
+@media(max-width: 4px){
+
+}
+

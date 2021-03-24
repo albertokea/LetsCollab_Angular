@@ -27,8 +27,6 @@ export class PostFormComponent implements OnInit {
       bpm: new FormControl(''),
       extra_tags: new FormControl(''),
       description_text: new FormControl(''),
-      audio: new FormControl('',
-        Validators.required),
       download: new FormControl('',
         Validators.required)
     })
@@ -58,6 +56,7 @@ export class PostFormComponent implements OnInit {
     if (event.target.files.length > 0) {
       if (event.target.files[0].name.match(/\.(mp3|wav)$/)) {
         this.file = event.target.files[0]
+        console.log(this.file)
       } else {
         alert('Solo se pueden introducir imagenes en formato mp3, wav');
       }

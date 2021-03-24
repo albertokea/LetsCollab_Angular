@@ -21,17 +21,6 @@ export class PostsService {
     }
   }
 
-  createHeaders2() {
-    return {
-      headers: new HttpHeaders({
-        'authorization': localStorage.getItem('token_auth'),
-        'Content-Type': 'multipart/form-data',
-        'Accept': 'application/json'
-      })
-    }
-  }
-
-
   tokenDecode() {
     const token = localStorage.getItem('token_auth');
     const decode = jwt_decode(token)
@@ -72,7 +61,7 @@ export class PostsService {
   }
 
   create(post): Promise<Post> {
-    return this.httpClient.post<Post>(`${this.baseUrl}/new`, post, this.createHeaders2()).toPromise();
+    return this.httpClient.post<Post>(`${this.baseUrl}/new`, post, this.createHeaders()).toPromise();
   }
 
   updateById(post): Promise<Post> {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { User } from 'src/app/interfaces/user';
+import { Router } from '@angular/router';
 @Component({
   selector: 'navbar',
   templateUrl: './navbar.component.html',
@@ -13,7 +14,9 @@ export class NavbarComponent implements OnInit {
 
   user: User;
 
-  constructor(private usersService: UsersService) {
+  constructor(
+    private usersService: UsersService,
+    private router: Router) {
   }
 
   async ngOnInit() {
@@ -23,5 +26,6 @@ export class NavbarComponent implements OnInit {
 
   onShutDown() {
     localStorage.removeItem('token_auth')
+    this.router.navigate(['/'])
   }
 }
