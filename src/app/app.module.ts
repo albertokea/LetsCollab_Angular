@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { PostFormComponent } from './components/posts/post-form/post-form.component';
 import { LabComponent } from './components/lab/lab.component';
+import { Error404Component } from './components/error404/error404.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { LabComponent } from './components/lab/lab.component';
     CollabPostComponent,
     MessagesComponent,
     PostFormComponent,
-    LabComponent
+    LabComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,7 @@ figure{
 .cover-image{
     width: 100%;
     height: 100%;
-    background-image: url('../../../../assets/images/coverv2.jpg');
+    background-image: url('http://localhost:3000/images/cover_and_error404/coverv2.jpg');
     background-size: cover;
     position: fixed;
 }
