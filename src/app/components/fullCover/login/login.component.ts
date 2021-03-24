@@ -11,6 +11,7 @@ import { VisitorsService } from 'src/app/services/visitors.service';
 export class LoginComponent implements OnInit {
 
   errorMessage: string;
+  loginError: boolean;
 
   @Output() onRegisterClick: EventEmitter<void>
 
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
 
     this.onRegisterClick = new EventEmitter
 
+    this.loginError = false;
     this.loginForm = new FormGroup({
       user: new FormControl('', [
         Validators.required
@@ -40,26 +42,17 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.errorMessage = null;
     this.visitorsService.login(this.loginForm.value)
       .then(response => {
         if (response.error) {
-
-          setTimeout(() => this.errorMessage = response.error, 500);
+          setTimeout(() => this.loginError = true, 500);
         } else {
           localStorage.setItem('token_auth', response.token);
-          /* Swal.fire('Login correcto', '', 'success')
-            .then(result => {
-            this.router.navigate(['/home'])
-          }) */
-          console.log('Login exitoso');
-          this.router.navigate(['/home'])
-          this.errorMessage = null;
+          setTimeout(() => this.router.navigate(['/home']), 2000)
         }
       })
       .catch(error => {
         console.log(error);
-
       })
   }
 }

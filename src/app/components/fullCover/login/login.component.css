@@ -2,23 +2,22 @@
     margin-left: 55%;
     margin-top: 2%;
 }
-
 .h5{
     color: var(--color-grey);
     font-family: var(--cover-fontSecondary);
 }
-
 .btn-container{
     display: flex;
     justify-content: center;
     margin-top: 5%;
 }
-
 .btn{
     padding: 0.5em;
     width: 100%;
 }
-
+.error{
+    color: tomato;
+}
 @media(max-width: 768px){
 
     .form-container{

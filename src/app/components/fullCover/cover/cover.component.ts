@@ -25,8 +25,6 @@ export class CoverComponent implements OnInit {
     this.isDisabled = true;
     this.registerDisabled = true;
     this.loginDisabled = false;
-    console.log(this.isDisabled, this.loginDisabled, this.registerDisabled);
-
   }
 
   onRegister() {
