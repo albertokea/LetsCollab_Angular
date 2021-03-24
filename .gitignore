@@ -46,4 +46,8 @@ testem.log
 Thumbs.db
 src/assets/audio/Ocean_Chals_Feb21.mp3
 src/assets/audio/Ocean_Chals_Feb21.wav
+<<<<<<< HEAD
 src/assets/audio/maryOnACross.mp3
+=======
+src/assets/audio/(Mastered)ArpTerrorOct20.flac
+>>>>>>> c793a64bce715bf0f2692fbe19cda034468e63d4

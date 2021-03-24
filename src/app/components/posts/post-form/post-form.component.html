@@ -1,16 +1,16 @@
 <navbar></navbar>
 <div class="body">
     <div class="container">
-        <form class="pt-4 pb-5" [formGroup]="postForm">
+        <form class="pt-4 pb-5" [formGroup]="postForm" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="">¿Que quieres ofrecer?*</label>
                 <input type="text" class="form-control" placeholder="Riff de guitarra, base de hip hop, vocal..."
-                    formGroupName="type">
+                    formControlName="type">
             </div>
             <div class="sm-column row">
                 <div class="form-group col-6">
                     <label>Género</label>
-                    <select class="form-control" formGroupName="genre">
+                    <select class="form-control" formControlName="genre">
                         <option value=""></option>
                         <option value="rock">Rock</option>
                         <option value="pop">Pop</option>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group col-2">
                     <label>Nota</label>
-                    <select class="form-control col-12" formGroupName="key">
+                    <select class="form-control col-12" formControlName="key_note">
                         <option value=""></option>
                         <option value="A">A</option>
                         <option value="A#">A#</option>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="form-group col-4">
                     <label>Licencia*</label>
-                    <select class="form-control" formGroupName="license">
+                    <select class="form-control" formControlName="license">
                         <option value=""></option>
                         <option value="free-to-use">De uso libre</option>
                         <option value="personal">De uso solo personal</option>
@@ -62,30 +62,32 @@
             <div class="row">
                 <div class="form-group col-4">
                     <label>BPM</label>
-                    <input type="text" class="form-control" formGroupName="bpm">
+                    <input type="text" class="form-control" formControlName="bpm">
                 </div>
                 <div class="form-group col-8">
                     <label>¿Algun tag extra?</label>
-                    <input type="text" class="form-control" formGroupName="extra_tags"
+                    <input type="text" class="form-control" formControlName="extra_tags"
                         placeholder="Se podrá filtrar por dichos tags...">
                 </div>
             </div>
             <div class="form-group">
                 <label>Descripción</label>
-                <textarea class="form-control" rows="4" #description formGroupName="description"></textarea>
+                <textarea class="form-control" rows="4" #description maxlength="240"
+                    formControlName="description_text"></textarea>
                 <p class="text-white">
                     {{description.value.length}} / 240
                 </p>
             </div>
             <div class="form-group">
-                <input type="file" class="form-control">
+                <input type="file" class="form-control" (change)="onFileChange($event)" formControlName='audio'
+                    name="audio">
             </div>
             <div class="form-group">
-                <label>¿Desea que tu archivo pueda ser descargado por otros usuarios?</label>
-                <input type="checkbox" class="checkbox">
+                <label>¿Desea que su archivo pueda ser descargado por otros usuarios?</label>
+                <input type="checkbox" class="checkbox" formControlName="download">
             </div>
             <div class="d-flex justify-content-center">
-                <button class="btn btn-warning">Publicar</button>
+                <button class="btn btn-warning" (click)="newPost()">Publicar</button>
             </div>
         </form>
     </div>

@@ -1,6 +1,7 @@
 <div class="container mt-3">
     <div>
-        <img [src]="'../../assets/images/profile_images/'+ user?.profile_picture" alt="" class="post-img">
+        <img [src]="'http://localhost:3000/images/profile_pictures/'+ (user?.profile_picture ? user?.profile_picture : 'default-user-image.png')"
+            alt="" class="post-img">
         <h3 class="ml-2">
             {{user?.user}}
         </h3>
@@ -55,7 +56,8 @@
         <form action="">
             <div class="form-group mt-3">
                 <div>
-                    <img src="../../assets/images/default-user-image.png" alt="" class="reply-img mb-3">
+                    <img [src]="'http://localhost:3000/images/profile_pictures/'+ (user?.profile_picture ? user?.profile_picture : 'default-user-image.png')"
+                        alt="" class="reply-img mb-3">
                     <h6 class="ml-2">ReplierUsername</h6>
                 </div>
                 <input type="text" class="form-control reply-input" name="" id="" aria-describedby="helpId"

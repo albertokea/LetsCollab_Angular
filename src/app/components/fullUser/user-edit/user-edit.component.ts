@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -13,10 +14,15 @@ export class UserEditComponent implements OnInit {
   @Output() goBack: EventEmitter<void>
 
   user: User;
-  editForm: FormGroup
-  length: number
-  iduser: number
-  constructor(private usersService: UsersService) {
+  iduser: number;
+
+  editForm: FormGroup;
+  length: number;
+  file: any;
+
+  constructor(
+    private usersService: UsersService,
+    private router: Router) {
     this.goBack = new EventEmitter
     this.editForm = new FormGroup({
       twitter: new FormControl(''),
@@ -47,17 +53,19 @@ export class UserEditComponent implements OnInit {
     })
   }
 
-  onConfirm() {
-    const formData = new FormData()
-    formData.append('profile_picture', this.editForm.get('profile_picture').value)
-    console.log(formData);
+  async onConfirm() {
+    const formData = new FormData();
+    formData.append('profile_picture', this.file);
+    formData.append('twitter', this.editForm.value.twitter);
+    formData.append('instagram', this.editForm.value.instagram);
+    formData.append('facebook', this.editForm.value.facebook);
+    formData.append('email', this.editForm.value.email);
+    formData.append('bio', this.editForm.value.bio);
+    formData.append('iduser', this.editForm.value.iduser);
 
-
-
-    /* this.usersService.update(this.editForm.value) */
-    /* alert('Los cambios han sido guardados') */
-    /* this.goBack.emit() */
-
+    await this.usersService.update(formData);
+    alert('Los cambios han sido guardados');
+    window.location.reload()
   }
   onKeyUp($event) {
 
@@ -66,12 +74,15 @@ export class UserEditComponent implements OnInit {
   }
   onFileChange(event) {
     if (event.target.files.length > 0) {
-      const file = event.target.files[0]
-      this.editForm.get('profile_picture').setValue(file)
-
+      if (event.target.files[0].name.match(/\.(jpg|jpeg|png|gif)$/)) {
+        this.file = event.target.files[0]
+      } else {
+        alert('Solo se pueden introducir imagenes en formato jpg, jpeg, png y gif');
+      }
     }
-
-
   }
 
+
 }
+
+

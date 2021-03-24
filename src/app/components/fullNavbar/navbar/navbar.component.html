@@ -1,10 +1,11 @@
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="imgContainer ">
-        <a [routerLink]="['/home']"><img src="../../../assets/images/LogoLetsCollab.png" alt=""></a>
+        <a [routerLink]="['/home']"><img src="assets/images/LogoLetsCollab.png" alt=""></a>
     </div>
 
     <div class=" userContainer ">
-        <img [routerLink]="['/user']" class="userImage" [src]="'../../../assets/images/profile_images/'+ profileImg"
+        <img [routerLink]="['/user']" class="userImage"
+            [src]="'http://localhost:3000/images/profile_pictures/'+ (user?.profile_picture ? user?.profile_picture : 'default-user-image.png')"
             alt="">
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu"

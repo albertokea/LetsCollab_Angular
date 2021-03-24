@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/interfaces/post';
 import { PostsService } from 'src/app/services/posts.service';
+import { faFeatherAlt } from '@fortawesome/free-solid-svg-icons';
+import { UsersService } from 'src/app/services/users.service';
 
 
 @Component({
@@ -10,9 +12,12 @@ import { PostsService } from 'src/app/services/posts.service';
 })
 export class LetscollabComponent implements OnInit {
 
+  faFeatherAlt = faFeatherAlt;
   posts: Post[];
 
-  constructor(private postsService: PostsService) { }
+  constructor(
+    private postsService: PostsService,
+    private usersService: UsersService) { }
 
   async ngOnInit() {
     this.posts = await this.postsService.getAll()
@@ -38,7 +43,15 @@ export class LetscollabComponent implements OnInit {
 
   }
 
-  searchByUser($event) {
-    /* this.posts = this.postsService */
+  async searchByUser($event) {
+    if ($event.keyCode === 13) {
+      const user = await this.usersService.getByUser($event.target.value);
+      if (user) {
+        this.posts = await this.postsService.getByUserId(user.iduser);
+      } else {
+        //TODO
+        alert('Fallo!!')
+      }
+    }
   }
 }

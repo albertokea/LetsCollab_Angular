@@ -16,19 +16,14 @@ export class UsersService {
     return this.httpClient.get<User>(`${this.baseUrl}/${id}`, this.createHeaders()).toPromise()
   }
 
+  getByUser(username): Promise<User> {
+    return this.httpClient.get<User>(`${this.baseUrl}/user/${username}`, this.createHeaders()).toPromise()
+  }
+
   createHeaders() {
     return {
       headers: new HttpHeaders({
         'authorization': localStorage.getItem('token_auth')
-      })
-    }
-  }
-  createHeaders2() {
-    return {
-      headers: new HttpHeaders({
-        'authorization': localStorage.getItem('token_auth'),
-        'Content-Type': 'multipart/form-data',
-        'Accept': 'application/json'
       })
     }
   }
@@ -45,6 +40,6 @@ export class UsersService {
   }
 
   update(formValue): Promise<any> {
-    return this.httpClient.put(`${this.baseUrl}/update`, formValue, this.createHeaders2()).toPromise()
+    return this.httpClient.put(`${this.baseUrl}/update`, formValue, this.createHeaders()).toPromise()
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
+import { User } from 'src/app/interfaces/user';
 @Component({
   selector: 'navbar',
   templateUrl: './navbar.component.html',
@@ -9,21 +10,15 @@ import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 export class NavbarComponent implements OnInit {
 
   faPowerOff = faPowerOff;
-  profileImg: string;
+
+  user: User;
 
   constructor(private usersService: UsersService) {
   }
 
   async ngOnInit() {
     const id = await this.usersService.tokenDecode();
-    const user = await this.usersService.getById(id);
-    console.log(user);
-
-    user.profile_picture ? this.profileImg = user.profile_picture :
-      this.profileImg = 'default-user-image.png'
-
-    console.log(this.profileImg);
-
+    this.user = await this.usersService.getById(id);
   }
 
   onShutDown() {
