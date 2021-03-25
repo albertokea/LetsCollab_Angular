@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { faAd } from '@fortawesome/free-solid-svg-icons'
 import { Post } from 'src/app/interfaces/post';
 import { User } from 'src/app/interfaces/user';
@@ -16,18 +16,24 @@ export class UserComponent implements OnInit {
 
   isDisabled: boolean;
   formDisabled: boolean;
-
+  idUserPage: number
   user: User;
+  canEdit: boolean;
   bio: string;
   profilePicture: string;
 
   userPosts: Post[];
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private usersService: UsersService,
     private postsService: PostsService
   ) {
+    this.route.params.subscribe(idUser => {
+      this.idUserPage = idUser['id']
+    })
+    this.canEdit = false
     this.isDisabled = false;
     this.formDisabled = true;
     this.profilePicture = 'default-user-image.png'
@@ -36,9 +42,11 @@ export class UserComponent implements OnInit {
 
   async ngOnInit() {
     const id = await this.usersService.tokenDecode();
-    this.user = await this.usersService.getById(id);
-
-    this.userPosts = await this.postsService.getByUserId(id);
+    this.user = await this.usersService.getById(this.idUserPage);
+    if (this.idUserPage == id) {
+      this.canEdit = true;
+    }
+    this.userPosts = await this.postsService.getByUserId(this.idUserPage);
   }
   onEdit() {
     this.isDisabled = true;

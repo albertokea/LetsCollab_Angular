@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [LoginGuard] },
   { path: 'collab', component: LetscollabComponent, canActivate: [LoginGuard] },
   { path: 'collab/new', component: PostFormComponent, canActivate: [LoginGuard] },
-  { path: 'user', component: UserComponent, canActivate: [LoginGuard] },
+  { path: 'user/:id', component: UserComponent, canActivate: [LoginGuard] },
   { path: 'messages', component: MessagesComponent, canActivate: [LoginGuard] },
   { path: '**', component: Error404Component }
 ]

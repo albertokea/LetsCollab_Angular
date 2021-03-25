@@ -13,15 +13,15 @@ export class NavbarComponent implements OnInit {
   faPowerOff = faPowerOff;
 
   user: User;
-
+  id: number
   constructor(
     private usersService: UsersService,
     private router: Router) {
   }
 
   async ngOnInit() {
-    const id = await this.usersService.tokenDecode();
-    this.user = await this.usersService.getById(id);
+    this.id = await this.usersService.tokenDecode();
+    this.user = await this.usersService.getById(this.id);
   }
 
   onShutDown() {
