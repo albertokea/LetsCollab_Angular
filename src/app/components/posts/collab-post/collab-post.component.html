@@ -1,6 +1,7 @@
 <div class="container mt-3">
     <div>
-        <img [src]="'http://localhost:3000/images/profile_pictures/'+ (user?.profile_picture ? user?.profile_picture : 'default-user-image.png')"
+        <img [routerLink]="['/user',user?.iduser]"
+            [src]="'http://localhost:3000/images/profile_pictures/'+ (user?.profile_picture ? user?.profile_picture : 'default-user-image.png')"
             alt="" class="post-img">
         <h3 class="ml-2">
             {{user?.user}}
@@ -60,7 +61,7 @@
                         alt="" class="reply-img mb-3">
                     <h6 class="ml-2">ReplierUsername</h6>
                 </div>
-                <input type="text" class="form-control reply-input" name="" id="" aria-describedby="helpId"
+                <input type="text" class="form-control reply-input" name="" aria-describedby="helpId"
                     placeholder="Escriba su mensaje">
             </div>
             <button class="btn btn-warning mr-auto">Enviar</button>
