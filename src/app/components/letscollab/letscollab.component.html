@@ -13,7 +13,7 @@
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label>Palabra clave</label>
-                        <input type="text" name="" class="form-control">
+                        <input type="text" name="" class="form-control" (keydown)="searchByKeyword($event)">
                     </div>
                 </div>
 
@@ -84,6 +84,7 @@
         <div *ngFor="let post of posts">
             <collab-post [post]="post" (search)="searchByKeyword()"></collab-post>
         </div>
+        <h2 *ngIf="error">Ningún resultado</h2>
     </div>
 </div>
 <app-footer></app-footer>

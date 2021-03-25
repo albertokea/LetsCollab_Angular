@@ -14,6 +14,7 @@ export class LetscollabComponent implements OnInit {
 
   faFeatherAlt = faFeatherAlt;
   posts: Post[];
+  error: boolean;
 
   constructor(
     private postsService: PostsService,
@@ -25,34 +26,42 @@ export class LetscollabComponent implements OnInit {
 
   }
 
-  async searchByType($event) {
-    this.posts = await this.postsService.getByType($event.target.value)
+  async searchByType(event) {
+    this.posts = await this.postsService.getByType(event.target.value)
   }
 
-  async searchByGenre($event) {
-    this.posts = await this.postsService.getByGenre($event.target.value)
+  async searchByGenre(event) {
+    this.posts = await this.postsService.getByGenre(event.target.value)
   }
 
-  async searchByLicense($event) {
-    this.posts = await this.postsService.getByLicense($event.target.value)
+  async searchByLicense(event) {
+    this.posts = await this.postsService.getByLicense(event.target.value)
   }
 
-  async searchByKey($event) {
-    this.posts = await this.postsService.getByKey($event.target.value)
+  async searchByKey(event) {
+    this.posts = await this.postsService.getByKey(event.target.value)
   }
 
-  searchByKeyword() {
-
+  async searchByKeyword(event) {
+    if (event.keyCode === 13) {
+      this.posts = await this.postsService.getByKeyword(event.target.value);
+      if (this.posts) {
+        alert('hola')
+      }
+    }
   }
 
-  async searchByUser($event) {
-    if ($event.keyCode === 13) {
-      const user = await this.usersService.getByUser($event.target.value);
+  async searchByUser(event) {
+    if (event.keyCode === 13) {
+      const user = await this.usersService.getByUser(event.target.value);
       if (user) {
+        this.error = false;
         this.posts = await this.postsService.getByUserId(user.iduser);
       } else {
-        //TODO
-        alert('Fallo!!')
+        setTimeout(() => {
+          this.posts = []
+          this.error = true;
+        }, 2000)
       }
     }
   }

@@ -60,6 +60,10 @@ export class PostsService {
     return this.httpClient.get<Post[]>(`${this.baseUrl}/user/${iduser}`, this.createHeaders()).toPromise();
   }
 
+  getByKeyword(keyword): Promise<Post[]> {
+    return this.httpClient.get<Post[]>(`${this.baseUrl}/keyword/${keyword}`, this.createHeaders()).toPromise();
+  }
+
   create(post): Promise<Post> {
     return this.httpClient.post<Post>(`${this.baseUrl}/new`, post, this.createHeaders()).toPromise();
   }
