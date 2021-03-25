@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
 import { UsersService } from 'src/app/services/users.service';
+import { faPen } from '@fortawesome/free-solid-svg-icons'
 declare var Swal;
 @Component({
   selector: 'app-user-edit',
@@ -12,10 +13,10 @@ declare var Swal;
 export class UserEditComponent implements OnInit {
 
   @Output() goBack: EventEmitter<void>
-
+  faPen = faPen
   user: User;
   iduser: number;
-
+  isDisabled: boolean
   editForm: FormGroup;
   length: number;
   file: any;
@@ -24,6 +25,7 @@ export class UserEditComponent implements OnInit {
     private usersService: UsersService,
     private router: Router) {
     this.goBack = new EventEmitter
+    this.isDisabled = false;
     this.editForm = new FormGroup({
       twitter: new FormControl(''),
       instagram: new FormControl(''),
@@ -38,6 +40,7 @@ export class UserEditComponent implements OnInit {
 
 
   async ngOnInit() {
+
 
     this.iduser = await this.usersService.tokenDecode();
     this.user = await this.usersService.getById(this.iduser)
@@ -55,6 +58,7 @@ export class UserEditComponent implements OnInit {
 
   async onConfirm() {
     const formData = new FormData();
+
     formData.append('profile_picture', this.file);
     formData.append('twitter', this.editForm.value.twitter);
     formData.append('instagram', this.editForm.value.instagram);
@@ -88,12 +92,15 @@ export class UserEditComponent implements OnInit {
     if (event.target.files.length > 0) {
       if (event.target.files[0].name.match(/\.(jpg|jpeg|png|gif)$/)) {
         this.file = event.target.files[0]
+        this.isDisabled = true
       } else {
         alert('Solo se pueden introducir imagenes en formato jpg, jpeg, png y gif');
       }
     }
   }
-
+  onDisable() {
+    this.isDisabled = !this.isDisabled
+  }
 
 }
 

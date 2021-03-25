@@ -14,3 +14,7 @@ input:focus {
   input.ng-invalid.ng-touched{
     border-color: tomato;
 }
+.disabled{
+    display: none;
+}
+
