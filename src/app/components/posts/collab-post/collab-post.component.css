@@ -59,8 +59,25 @@ label{
 .disabled{
     display: none;
 }
-@media(max-width: 576){
-    p{
+@media (max-width: 768px){
+    h5{
         display: block;
+        text-align: center;
+        margin: 5px 0;
+    }
+    p{
+        text-align: center;
+        margin-top: 30%;
+    }
+    .type{
+        text-align: left;
+    }
+    input[type=range], .volume{
+        display: none;
+    }
+}
+@media (max-width: 1992px){
+    .btn{
+        height: 3.5em;
     }
 }

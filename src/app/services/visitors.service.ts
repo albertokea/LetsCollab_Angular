@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,10 @@ export class VisitorsService {
     this.baseUrl = 'http://localhost:3000/api';
   }
 
+  getByUser(user): Promise<User> {
+    return this.httpClient.get<User>(`${this.baseUrl}/${user}`).toPromise()
+  }
+
   register(formValues): Promise<any> {
     return this.httpClient.post(`${this.baseUrl}/register`, formValues).toPromise();
   }
@@ -19,4 +24,5 @@ export class VisitorsService {
   login(formValues): Promise<any> {
     return this.httpClient.post(`${this.baseUrl}/login`, formValues).toPromise();
   }
+
 }

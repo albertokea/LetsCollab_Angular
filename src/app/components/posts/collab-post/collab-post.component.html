@@ -7,7 +7,7 @@
         </h3>
         <h5>{{user?.subtitle}}</h5>
     </div>
-    <p class="text-warning my-2">
+    <p class="text-warning my-2 type">
         {{post?.type}}
     </p>
 
@@ -19,7 +19,7 @@
         </button>
         <div>
             <button class="btn"></button>
-            <label class="pb-2">Volumen</label>
+            <label class="pb-2 volume">Volumen</label>
             <input type="range" class="form-range ml-2 mt-2" min="0" max="100" value="100"
                 (change)="changeVolume($event.target.value)">
         </div>
@@ -38,7 +38,7 @@
             <h5 (click)="onSearch($event)">#{{post?.type}}</h5>
             <h5>Key: {{post?.key_note}}</h5>
             <h5>#{{post?.genre}}</h5>
-            <h5>License: {{post.license}}</h5>
+            <h5>License: {{post?.license}}</h5>
         </div>
         <div>
             <a class="level-item text-secondary icon">

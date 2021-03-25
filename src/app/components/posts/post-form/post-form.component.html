@@ -1,7 +1,7 @@
 <navbar></navbar>
 <div class="body">
     <div class="container">
-        <form class="pt-4 pb-5" [formGroup]="postForm" enctype="multipart/form-data">
+        <form class="pt-4 pb-5" [formGroup]="postForm">
             <div class="form-group">
                 <label for="">¿Que quieres ofrecer?*</label>
                 <input type="text" class="form-control" placeholder="Riff de guitarra, base de hip hop, vocal..."
@@ -79,8 +79,7 @@
                 </p>
             </div>
             <div class="form-group">
-                <input type="file" class="form-control" (change)="onFileChange($event)" formControlName='audio'
-                    name="audio">
+                <input type="file" class="form-control" (change)="onFileChange($event)" name="audio">
             </div>
             <div class="form-group">
                 <label>¿Desea que su archivo pueda ser descargado por otros usuarios?</label>

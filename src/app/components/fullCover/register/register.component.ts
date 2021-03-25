@@ -2,6 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { VisitorsService } from 'src/app/services/visitors.service';
+import { User } from 'src/app/interfaces/user';
+
 declare var Swal;
 @Component({
   selector: 'register',
@@ -12,7 +14,9 @@ export class RegisterComponent implements OnInit {
 
   @Output() onLoginClick: EventEmitter<void>
 
-  registerForm: FormGroup
+  registerForm: FormGroup;
+  userValid: boolean;
+  existingUser: User;
 
   constructor(
     private visitorsService: VisitorsService,
@@ -38,12 +42,14 @@ export class RegisterComponent implements OnInit {
       ]),
       user: new FormControl('', [
         Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(20)
+        Validators.minLength(6),
+        Validators.maxLength(18)
       ]),
       password: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$/)
+        Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{1,100}$/),
+        Validators.minLength(4),
+        Validators.maxLength(20)
       ]),
       password_repeat: new FormControl('', [
         Validators.required
@@ -71,6 +77,17 @@ export class RegisterComponent implements OnInit {
 
   checkValidator(controlName, validatorName) {
     return this.registerForm.get(controlName).hasError(validatorName) && this.registerForm.get(controlName).touched;
+  }
+
+  async userValidator(user) {
+    /* this.existingUser = this.visitorsService.getByUser(user);
+    console.log(user);
+
+    if (user.user === user) {
+      this.userValid = true;
+    } else {
+      this.userValid = false;
+    } */
   }
 
   register() {

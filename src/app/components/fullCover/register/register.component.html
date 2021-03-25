@@ -1,44 +1,70 @@
-<form [formGroup]="registerForm" class="form-container col-sm-12 col-md-5">
+<form [formGroup]="registerForm" class="form-container col-sm-12 col-md-5" (ngSubmit)="register()">
     <div class="form-group col-12">
         <label>Nombre</label>
         <input type="text" name="" id="" class="form-control" formControlName="name">
-        <p class="error" *ngIf="checkValidator('name', 'required')">El
-            campo apellido debe tener máximo 10 caracteres </p>
+        <p class="error" *ngIf="checkValidator('name', 'required')">Introduzca su nombre </p>
     </div>
     <div class="form-group col-12">
         <label>Apellidos</label>
         <input type="text" name="" id="" class="form-control" formControlName="surname">
-        <!-- <p class="error"
-            *ngIf="this.registerForm.get('surname').hasError('required') && this.registerForm.get('surname').touched;">
-            Introduzca sus apellidos</p> -->
+        <p class="error" *ngIf="checkValidator('surname', 'required')">
+            Introduzca su(s) apellido(s)</p>
     </div>
     <div class="form-group col-12">
         <label>Email</label>
         <input type="text" name="" id="" class="form-control" formControlName="email">
-        <!-- <p class="error" *ngIf="checkValidator('name', 'required')">Introduzca su nombre</p> -->
+        <p class="error" *ngIf="checkValidator('email', 'pattern')">
+            Introduzca un email válido</p>
     </div>
     <div class="form-group col-12">
         <label>Fecha Nacimiento</label>
-        <input type="text" name="" id="" class="form-control" formControlName="birth_date">
+        <input type="date" name="" id="" class="form-control" formControlName="birth_date">
     </div>
     <div class="form-group col-12">
         <label>Genero</label>
-        <input type="text" name="" id="" class="form-control" formControlName="gender">
+        <select name="gender" class="form-control" formControlName="gender">
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+            <option value="non_binary">No binario</option>
+            <option value="no_answer">Prefiero no responder</option>
+        </select>
     </div>
     <div class="form-group col-12">
         <label>Usuario</label>
-        <input type="text" name="" id="" class="form-control" formControlName="user">
+        <input type="text" name="" id="" class="form-control" formControlName="user" #user>
+        <p class="error" *ngIf="checkValidator('user', 'required')">
+            Introduzca su nombre de usuario</p>
+        <p class="error" *ngIf="checkValidator('user', 'minlength')">
+            El nombre de usuario debe tener al menos 6 caracteres</p>
+        <p class="error" *ngIf="checkValidator('user', 'maxlength')">
+            El nombre de usuario no puede exceder los 18 caracteres</p>
+
+        <!-- Check user name -->
+
+        <button class="btn btn-dark col-4 btn-sm mt-2 ml-2" (click)="userValidator(user.value)">Comprobar
+            usuario</button>
+        <!-- <p *ngIf="(userValid == true)">
+            Usuario válido
+        </p> -->
     </div>
     <div class="form-group col-12">
         <label>Contraseña</label>
         <input type="password" name="" id="" class="form-control" formControlName="password">
+        <p class="error" *ngIf="checkValidator('password', 'minlength')">
+            La contraseña es demasiado corta</p>
+        <p class="error" *ngIf="checkValidator('password', 'maxlength')">
+            La contraseña es demasiado larga</p>
+        <p class="error" *ngIf="checkValidator('password', 'pattern')">
+            La contraseña debe contener al menos una letra mayúscula, una letra minúscula y un caracter numérico</p>
     </div>
     <div class="form-group col-12">
         <label>Repite la contraseña</label>
         <input type="password" name="" id="" class="form-control" formControlName="password_repeat">
+        <p class="error" *ngIf="registerForm.hasError('passwordvalidator')">
+            Los valores de contraseña no coinciden</p>
     </div>
     <div class="btn-container col-12">
-        <button class="btn btn-dark mt-3" (click)="register()">Registrarse</button>
+        <button class="btn btn-dark mt-3" [disabled]="!registerForm.valid">Registrarse</button>
     </div>
     <div class="text-center mt-2">
         <a class="text-secondary" (click)="onLogin()">¿Ya tienes cuenta? ¡Pasa, te esperamos!</a>

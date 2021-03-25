@@ -45,11 +45,12 @@ nav .ulContainer{
     font-size: calc(var(--font-size)*1.3);
 }
 .powerOffButton{
-    transition: 00.5s;
+    transition: .5s;
     color: white;
+    cursor: pointer;
 }
 .powerOffButton:hover{
-    transition: 00.5s;
+    transition: .5s;
     color: tomato;
 }
 

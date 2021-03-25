@@ -45,13 +45,12 @@ export class CollabPostComponent implements OnInit {
   }
 
   async ngAfterViewInit() {
-    this.datePublish = this.post.date_publish.split('T')[0]
     this.wavesurfer = WaveSurfer.create({
       container: '.waveContainer' + this.post.idpost,
       waveColor: 'violet',
       progressColor: 'yellow'
     });
-    this.wavesurfer.load('../../../assets/audio/Ocean_Chals_Feb21.mp3');
+    this.wavesurfer.load('../../../assets/audio/' + this.post.audio);
 
     this.user = await this.usersService.getById(this.post.fk_user);
     this.user.profile_picture ? this.profile_picture = this.user.profile_picture : this.profile_picture = 'default-user-image.png'
