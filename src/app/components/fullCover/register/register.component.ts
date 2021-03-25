@@ -98,7 +98,7 @@ export class RegisterComponent implements OnInit {
         title: 'Cuenta creada con éxito',
         showConfirmButton: false,
         timer: 2000
-      })
+      });
       this.onLoginClick.emit()
     } else {
 

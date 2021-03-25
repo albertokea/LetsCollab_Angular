@@ -4,7 +4,7 @@
     </div>
 
     <div class=" userContainer ">
-        <img [routerLink]="['/user',user.user]" class="userImage"
+        <img [routerLink]="['/user',user?.user]" class="userImage"
             [src]="'http://localhost:3000/images/profile_pictures/'+ (user?.profile_picture ? user?.profile_picture : 'default-user-image.png')"
             alt="">
     </div>

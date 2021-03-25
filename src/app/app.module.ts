@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { PostFormComponent } from './components/posts/post-form/post-form.component';
 import { LabComponent } from './components/lab/lab.component';
 import { Error404Component } from './components/error404/error404.component';
+import { PostMessageComponent } from './components/post-message/post-message.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { Error404Component } from './components/error404/error404.component';
     MessagesComponent,
     PostFormComponent,
     LabComponent,
-    Error404Component
+    Error404Component,
+    PostMessageComponent
   ],
   imports: [
     BrowserModule,

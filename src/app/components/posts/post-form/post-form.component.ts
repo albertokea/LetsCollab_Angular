@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/interfaces/user';
 import { PostsService } from 'src/app/services/posts.service';
-import { UsersService } from 'src/app/services/users.service';
+
+
+declare var Swal;
 
 @Component({
   selector: 'app-post-form',
@@ -15,10 +16,10 @@ export class PostFormComponent implements OnInit {
   iduser: string;
   postForm: FormGroup;
   file: any;
+  error: boolean;
 
 
   constructor(
-    private usersService: UsersService,
     private postsService: PostsService,
     private router: Router) {
     this.postForm = new FormGroup({
@@ -32,39 +33,47 @@ export class PostFormComponent implements OnInit {
       bpm: new FormControl(''),
       extra_tags: new FormControl(''),
       description_text: new FormControl(''),
-      download: new FormControl('',
-        Validators.required)
-    })
+      download: new FormControl(''),
+      fk_user: new FormControl(''),
+    });
+    this.error = false;
   }
 
   async ngOnInit() {
-    this.iduser = await this.usersService.tokenDecode();
-    /* console.log(this.iduser); */
+
   }
 
   async newPost() {
-    const formData = new FormData();
-    formData.append('audio', this.file);
-    formData.append('type', this.postForm.value.type);
-    formData.append('genre', this.postForm.value.genre);
-    formData.append('key_note', this.postForm.value.key_note);
-    formData.append('license', this.postForm.value.license);
-    formData.append('bpm', this.postForm.value.bpm);
-    formData.append('extra_tags', this.postForm.value.extra_tags);
-    formData.append('description_text', this.postForm.value.description_text);
-    formData.append('download', this.postForm.value.download);
-    formData.append('fk_user', this.iduser);
+    if (this.file && this.postForm.valid) {
+      this.error = false;
+      const formData = new FormData();
+      formData.append('audio', this.file);
+      formData.append('type', this.postForm.value.type);
+      formData.append('genre', this.postForm.value.genre);
+      formData.append('key_note', this.postForm.value.key_note);
+      formData.append('license', this.postForm.value.license);
+      formData.append('bpm', this.postForm.value.bpm);
+      formData.append('extra_tags', this.postForm.value.extra_tags);
+      formData.append('description_text', this.postForm.value.description_text);
+      formData.append('download', this.postForm.value.download);
 
-    await this.postsService.create(formData);
-    alert('Exito!!');
-    this.router.navigate(['/collab']);
+      await this.postsService.create(formData);
+      Swal.fire({
+        icon: 'success',
+        title: 'Post creado con éxito',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.router.navigate(['/collab']);
+    } else {
+      this.error = true;
+    }
   }
 
   onFileChange(event) {
     if (event.target.files.length > 0) {
       if (event.target.files[0].name.match(/\.(mp3|wav)$/)) {
         this.file = event.target.files[0]
-        console.log(this.file)
       } else {
         alert('Solo se pueden introducir imagenes en formato mp3, wav');
       }

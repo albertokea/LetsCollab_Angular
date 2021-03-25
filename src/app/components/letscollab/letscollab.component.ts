@@ -21,7 +21,7 @@ export class LetscollabComponent implements OnInit {
     private usersService: UsersService) { }
 
   async ngOnInit() {
-    this.posts = await this.postsService.getAll();
+    this.posts = await this.postsService.getAll(0);
     console.log(this.posts);
 
   }
@@ -45,8 +45,11 @@ export class LetscollabComponent implements OnInit {
   async searchByKeyword(event) {
     if (event.keyCode === 13) {
       this.posts = await this.postsService.getByKeyword(event.target.value);
-      if (this.posts) {
-        alert('hola')
+      if (!this.posts) {
+        setTimeout(() => {
+          this.posts = []
+          this.error = true;
+        }, 1000)
       }
     }
   }

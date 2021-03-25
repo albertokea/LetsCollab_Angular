@@ -99,7 +99,7 @@
         <div *ngFor="let post of posts">
             <collab-post [post]="post" (search)="searchByKeyword()"></collab-post>
         </div>
-        <h2 *ngIf="error">Ningún resultado</h2>
+        <h2 *ngIf="error" class="text-center">Ningún resultado</h2>
     </div>
 </div>
 <app-footer></app-footer>
