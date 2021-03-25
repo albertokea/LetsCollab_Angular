@@ -21,7 +21,7 @@
             <button class="btn"></button>
             <label class="pb-2 volume">Volumen</label>
             <input type="range" class="form-range ml-2 mt-2" min="0" max="100" value="100"
-                (change)="changeVolume($event.target.value)">
+                (input)="changeVolume($event.target.value)">
         </div>
 
         <div class="d-flex">

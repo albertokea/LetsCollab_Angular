@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   @Output() onLoginClick: EventEmitter<void>
 
   registerForm: FormGroup;
-  userValid: boolean;
+  userValid: number;
   existingUser: User;
 
   constructor(
@@ -80,25 +80,29 @@ export class RegisterComponent implements OnInit {
   }
 
   async userValidator(user) {
-    /* this.existingUser = this.visitorsService.getByUser(user);
-    console.log(user);
+    this.existingUser = await this.visitorsService.getByUser(user);
 
-    if (user.user === user) {
-      this.userValid = true;
+    if (this.existingUser) {
+      this.userValid = 0;
     } else {
-      this.userValid = false;
-    } */
+      this.userValid = 1;
+    }
   }
 
-  register() {
-    this.visitorsService.register(this.registerForm.value);
-    Swal.fire({
-      icon: 'success',
-      title: 'Cuenta creada con éxito',
-      showConfirmButton: false,
-      timer: 2000
-    })
-    this.onLoginClick.emit()
+  register(username) {
+    this.userValidator(username)
+    if (this.userValid === 1) {
+      this.visitorsService.register(this.registerForm.value);
+      Swal.fire({
+        icon: 'success',
+        title: 'Cuenta creada con éxito',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      this.onLoginClick.emit()
+    } else {
+
+    }
   }
 }
 

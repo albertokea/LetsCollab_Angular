@@ -1,4 +1,4 @@
-<form [formGroup]="registerForm" class="form-container col-sm-12 col-md-5" (ngSubmit)="register()">
+<form [formGroup]="registerForm" class="form-container col-sm-12 col-md-5">
     <div class="form-group col-12">
         <label>Nombre</label>
         <input type="text" name="" id="" class="form-control" formControlName="name">
@@ -40,12 +40,17 @@
             El nombre de usuario no puede exceder los 18 caracteres</p>
 
         <!-- Check user name -->
+        <div class="row">
+            <button class="btn btn-dark col-4 btn-sm mt-2 ml-2" (click)="userValidator(user.value)">Comprobar
+                usuario</button>
+            <p *ngIf="(userValid === 1)" class="col-6 text-success mt-4">
+                Usuario válido
+            </p>
+            <p *ngIf="(userValid === 0)" class="col-6 text-danger mt-4">
+                Usuario ya existente
+            </p>
+        </div>
 
-        <button class="btn btn-dark col-4 btn-sm mt-2 ml-2" (click)="userValidator(user.value)">Comprobar
-            usuario</button>
-        <!-- <p *ngIf="(userValid == true)">
-            Usuario válido
-        </p> -->
     </div>
     <div class="form-group col-12">
         <label>Contraseña</label>
@@ -64,7 +69,8 @@
             Los valores de contraseña no coinciden</p>
     </div>
     <div class="btn-container col-12">
-        <button class="btn btn-dark mt-3" [disabled]="!registerForm.valid">Registrarse</button>
+        <button class="btn btn-dark mt-3" (click)="register(user.value)"
+            [disabled]="!registerForm.valid || userValid === 0">Registrarse</button>
     </div>
     <div class="text-center mt-2">
         <a class="text-secondary" (click)="onLogin()">¿Ya tienes cuenta? ¡Pasa, te esperamos!</a>

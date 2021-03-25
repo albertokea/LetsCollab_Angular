@@ -47,7 +47,7 @@ export class PostFormComponent implements OnInit {
     formData.append('description_text', this.postForm.value.description_text);
     formData.append('download', this.postForm.value.download);
 
-    await this.postsService.create(this.postForm.value);
+    await this.postsService.create(formData);
     alert('Exito!!');
     this.router.navigate(['/collab']);
   }

@@ -20,7 +20,9 @@ export class LetscollabComponent implements OnInit {
     private usersService: UsersService) { }
 
   async ngOnInit() {
-    this.posts = await this.postsService.getAll()
+    this.posts = await this.postsService.getAll();
+    console.log(this.posts);
+
   }
 
   async searchByType($event) {
