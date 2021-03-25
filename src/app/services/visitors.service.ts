@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user';
 
@@ -10,7 +10,7 @@ export class VisitorsService {
   baseUrl: string;
 
   constructor(private httpClient: HttpClient) {
-    this.baseUrl = 'http://localhost:3000/api';
+    this.baseUrl = 'http://localhost:3000/api/visitors';
   }
 
   getByUser(user): Promise<User> {
