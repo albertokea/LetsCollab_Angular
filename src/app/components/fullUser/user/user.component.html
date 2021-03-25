@@ -1,10 +1,20 @@
 <navbar></navbar>
 <div class="body pb-4">
     <div class="container pb-0">
-        <div class="pt-5">
-            <div class="headerImg container-fluid rounded">
-                <div class="mb-3 ">
-                    <img class='img-fluid rounded-circle mx-auto d-block imageUser w-25'
+        <div class="pt-5 ">
+            <div class="headerImg container-fluid rounded pb-4"
+                [ngStyle]="{backgroundImage:'url(http://localhost:3000/images/header_pictures/'+(user?.header_picture ? user?.header_picture : 'marioUwUBien.png')+')'}">
+                <form class="formHeader " [formGroup]="headerForm">
+                    <label style="transform: translateY(10px);" for="file-upload"
+                        class="custom-file-upload text-secondary text-warning">
+                        <fa-icon [icon]="faPen" class="fa-lg icon"></fa-icon>
+                    </label>
+                    <input id="file-upload" (change)='onFileChangeHeader($event)' type="file"
+                        formControlName='header_picture' name="header_picture" />
+                    <input type="hidden" formControlName="iduser">
+                </form>
+                <div class=" ">
+                    <img class='img-fluid rounded-circle mx-auto d-block imageUser w-25 '
                         [src]="'http://localhost:3000/images/profile_pictures/'+ (user?.profile_picture ? user?.profile_picture : 'default-user-image.png')">
                 </div>
             </div>

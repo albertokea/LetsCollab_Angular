@@ -11,8 +11,9 @@
     min-height: 150px;
 }
 .headerImg{
-    background-image: url("../../../../assets/images/lab_hero.jpg");
-    background-size: cover;
+    background-image: url("../../../../assets/images/MarioUwUBien.png");
+    background-size:contain;
+    
 }
 
 .icon{
@@ -35,6 +36,10 @@ a{
 .editDisabled{
     display: none;
 }
+input[type="file"] {
+    display: none;
+}
+
 @media (max-width:768px){
     .bio1{
         display: block;
