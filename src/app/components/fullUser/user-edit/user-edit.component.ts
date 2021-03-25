@@ -16,7 +16,8 @@ export class UserEditComponent implements OnInit {
   faPen = faPen
   user: User;
   iduser: number;
-  isDisabled: boolean
+  fileChosen: boolean;
+  isDisabled: boolean;
   editForm: FormGroup;
   length: number;
   file: any;
@@ -25,7 +26,8 @@ export class UserEditComponent implements OnInit {
     private usersService: UsersService,
     private router: Router) {
     this.goBack = new EventEmitter
-    this.isDisabled = false;
+    this.fileChosen = false;
+
     this.editForm = new FormGroup({
       twitter: new FormControl(''),
       instagram: new FormControl(''),
@@ -60,8 +62,12 @@ export class UserEditComponent implements OnInit {
 
   async onConfirm() {
     const formData = new FormData();
+    if (this.fileChosen == true) {
+      formData.append('profile_picture', this.file);
+    } else {
+      formData.append('profile_picture', this.user.profile_picture);
+    }
 
-    formData.append('profile_picture', this.file);
     formData.append('twitter', this.editForm.value.twitter);
     formData.append('instagram', this.editForm.value.instagram);
     formData.append('facebook', this.editForm.value.facebook);
@@ -78,9 +84,7 @@ export class UserEditComponent implements OnInit {
 
     }).then((result) => {
       if (result.isConfirmed) {
-
         window.location.reload()
-
       }
     })
 
@@ -94,7 +98,7 @@ export class UserEditComponent implements OnInit {
     if (event.target.files.length > 0) {
       if (event.target.files[0].name.match(/\.(jpg|jpeg|png|gif)$/)) {
         this.file = event.target.files[0]
-        this.isDisabled = true
+        this.fileChosen = true;
       } else {
         alert('Solo se pueden introducir imagenes en formato jpg, jpeg, png y gif');
       }

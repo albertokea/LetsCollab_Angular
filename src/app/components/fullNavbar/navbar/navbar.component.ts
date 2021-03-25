@@ -24,6 +24,9 @@ export class NavbarComponent implements OnInit {
     this.user = await this.usersService.getById(this.id);
 
   }
+  ngAfterViewInit() {
+
+  }
 
   onShutDown() {
     localStorage.removeItem('token_auth')
