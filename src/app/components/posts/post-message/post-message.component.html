@@ -1,0 +1,8 @@
+<div>
+    <div class="mt-3" [routerLink]="['/user',user?.user]">
+        <img [src]="'http://localhost:3000/images/profile_pictures/'+ (user?.profile_picture ? user?.profile_picture : 'default-user-image.png')"
+            alt="" class="reply-img">
+        <h6 class="ml-2">ReplierUsername</h6>
+    </div>
+    <h4 class="text-white ml-2 mt-2">Que guapo hmano, big up bro!!</h4>
+</div>

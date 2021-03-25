@@ -2,7 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { faReply, faEnvelope, faHeart, faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
 
 import { Post } from 'src/app/interfaces/post';
+import { PostMessage } from 'src/app/interfaces/post-message';
 import { User } from 'src/app/interfaces/user';
+import { PostMessagesService } from 'src/app/services/post-message.service';
 import { PostsService } from 'src/app/services/posts.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -32,16 +34,19 @@ export class CollabPostComponent implements OnInit {
   waveformContainer: string;
   isDisabled: boolean;
 
+  messages: PostMessage[];
+
   constructor(
     private usersService: UsersService,
-    private postsService: PostsService) {
+    private postsService: PostsService,
+    private postMessagesService: PostMessagesService) {
     this.isDisabled = true;
     this.search = new EventEmitter;
 
   }
 
   async ngOnInit() {
-
+    this.messages = await this.postMessagesService.getByPost(this.post.idpost)
   }
 
   async ngAfterViewInit() {
@@ -71,6 +76,15 @@ export class CollabPostComponent implements OnInit {
   onSearch($event) {
     const type = $event.target.value.shift();
     this.search.emit();
+  }
+
+  newMessage(text_message) {
+    const formData = new FormData();
+    formData.append('fk_user', this.user.iduser.toString());
+    formData.append('fk_post', this.post.idpost.toString());
+    formData.append('text', text_message);
+
+    this.postMessagesService.getByPost(this.post.idpost)
   }
 
   async Genre($event) {

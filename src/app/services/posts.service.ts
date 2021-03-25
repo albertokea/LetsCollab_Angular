@@ -29,7 +29,6 @@ export class PostsService {
   }
 
   getAll(offset): Promise<Post[]> {
-    http://localhost:3000/api/posts/offset/10
     return this.httpClient.get<Post[]>(`${this.baseUrl}/offset/${offset}`, this.createHeaders()).toPromise()
   }
 

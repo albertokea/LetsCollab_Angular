@@ -62,7 +62,7 @@ export class LetscollabComponent implements OnInit {
         this.posts = await this.postsService.getByUserId(user.iduser);
       } else {
         setTimeout(() => {
-          this.posts = []
+          this.posts = [];
           this.error = true;
         }, 2000)
       }

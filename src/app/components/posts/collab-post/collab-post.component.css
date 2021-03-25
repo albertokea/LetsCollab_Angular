@@ -9,33 +9,26 @@ img{
 .post-img{
     width: 5em;
 }
-
 .reply-img{
     width: 2.5em;
 }
-
 .reply-input{
     height: 2em;
 }
-
 h3{
     display: inline-block;
     color: white;
 }
-
 h4{
     color: white;
 }
-
 h6{
     display: inline;
     color: white;
 }
-
 hr{
     background-color: white;
 }
-
 h5{
     color: white;
     border: 1px solid white;
@@ -45,7 +38,9 @@ h5{
     margin: 0 5px;
     cursor: pointer;
 }
-
+h6{
+    font-size: 1em;
+}
 a{
     width: 2em;
 }

@@ -53,18 +53,20 @@
             </a>
         </div>
     </div>
+    <div *ngFor="let message of messages">
+        <post-message [message]="message"></post-message>
+    </div>
+
     <div [ngClass]="{'disabled':isDisabled}">
-        <form action="">
-            <div class="form-group mt-3">
-                <div>
-                    <img [src]="'http://localhost:3000/images/profile_pictures/'+ (user?.profile_picture ? user?.profile_picture : 'default-user-image.png')"
-                        alt="" class="reply-img mb-3">
-                    <h6 class="ml-2">ReplierUsername</h6>
-                </div>
-                <input type="text" class="form-control reply-input" name="" aria-describedby="helpId"
-                    placeholder="Escriba su mensaje">
+        <div class="form-group mt-3">
+            <div>
+                <img [src]="'http://localhost:3000/images/profile_pictures/'+ (user?.profile_picture ? user?.profile_picture : 'default-user-image.png')"
+                    alt="" class="reply-img mb-3">
+                <h6 class="ml-2">ReplierUsername</h6>
             </div>
-            <button class="btn btn-warning mr-auto">Enviar</button>
-        </form>
+            <input type="text" class="form-control reply-input" name="" aria-describedby="helpId"
+                placeholder="Escriba su mensaje" #text_message>
+        </div>
+        <button class="btn btn-warning mr-auto" (click)="newMessage(text_message.value)">Enviar</button>
     </div>
 </div>
