@@ -16,16 +16,20 @@ export class UserEditComponent implements OnInit {
   faPen = faPen
   user: User;
   iduser: number;
-  isDisabled: boolean
+  fileChosen: boolean;
+  isDisabled: boolean;
+  fileChosenHeader: boolean;
   editForm: FormGroup;
   length: number;
   file: any;
+  fileHeader: any;
 
   constructor(
     private usersService: UsersService,
     private router: Router) {
     this.goBack = new EventEmitter
-    this.isDisabled = false;
+    this.fileChosen = false;
+
     this.editForm = new FormGroup({
       twitter: new FormControl(''),
       instagram: new FormControl(''),
@@ -33,6 +37,7 @@ export class UserEditComponent implements OnInit {
       email: new FormControl('',
         Validators.required),
       profile_picture: new FormControl(''),
+      header_picture: new FormControl(''),
       bio: new FormControl(''),
       subtitle: new FormControl(''),
       iduser: new FormControl('')
@@ -52,6 +57,7 @@ export class UserEditComponent implements OnInit {
       email: new FormControl(this.user.email,
         Validators.required),
       profile_picture: new FormControl(''),
+      header_picture: new FormControl(''),
       bio: new FormControl(this.user.bio),
       subtitle: new FormControl(this.user.subtitle),
       iduser: new FormControl(this.iduser)
@@ -60,8 +66,20 @@ export class UserEditComponent implements OnInit {
 
   async onConfirm() {
     const formData = new FormData();
+    if (this.fileChosen == true) {
+      formData.append('profile_picture', this.file);
+      this.fileChosen = false;
 
-    formData.append('profile_picture', this.file);
+    } else {
+      formData.append('profile_picture', this.user.profile_picture);
+    }
+    if (this.fileChosenHeader == true) {
+      formData.append('header_picture', this.fileHeader);
+      this.fileChosenHeader = false;
+      this.fileChosenHeader = false;
+    } else {
+      formData.append('header_picture', this.user.header_picture);
+    }
     formData.append('twitter', this.editForm.value.twitter);
     formData.append('instagram', this.editForm.value.instagram);
     formData.append('facebook', this.editForm.value.facebook);
@@ -78,9 +96,7 @@ export class UserEditComponent implements OnInit {
 
     }).then((result) => {
       if (result.isConfirmed) {
-
         window.location.reload()
-
       }
     })
 
@@ -94,7 +110,17 @@ export class UserEditComponent implements OnInit {
     if (event.target.files.length > 0) {
       if (event.target.files[0].name.match(/\.(jpg|jpeg|png|gif)$/)) {
         this.file = event.target.files[0]
-        this.isDisabled = true
+        this.fileChosen = true;
+      } else {
+        alert('Solo se pueden introducir imagenes en formato jpg, jpeg, png y gif');
+      }
+    }
+  }
+  onFileChangeHeader(event) {
+    if (event.target.files.length > 0) {
+      if (event.target.files[0].name.match(/\.(jpg|jpeg|png|gif)$/)) {
+        this.fileHeader = event.target.files[0]
+        this.fileChosenHeader = true;
       } else {
         alert('Solo se pueden introducir imagenes en formato jpg, jpeg, png y gif');
       }

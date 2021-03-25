@@ -34,6 +34,7 @@ export class UserComponent implements OnInit {
     this.route.params.subscribe(username => {
       this.usernamePage = username['username']
     })
+
     this.canEdit = false
     this.isDisabled = false;
     this.formDisabled = true;

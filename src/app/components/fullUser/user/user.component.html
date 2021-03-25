@@ -1,13 +1,12 @@
 <navbar></navbar>
-<div class="body">
-    <div class="container">
+<div class="body pb-4">
+    <div class="container pb-0">
         <div class="pt-5">
             <div class="headerImg container-fluid rounded">
                 <div class="mb-3 ">
                     <img class='img-fluid rounded-circle mx-auto d-block imageUser w-25'
                         [src]="'http://localhost:3000/images/profile_pictures/'+ (user?.profile_picture ? user?.profile_picture : 'default-user-image.png')">
                 </div>
-
             </div>
             <div class="text-center">
                 <h4>{{user?.user}}</h4>
@@ -24,10 +23,11 @@
                         Volver
                     </button>
                 </div>
-                <div class="col-md-7 col-lg-7 col-xl-7 col-12 offset-md-2 p-1 text-center text-md-left bio1"
+                <div class="col-md-7 col-lg-7 col-xl-7 col-12 offset-md-2 p-1 text-left text-md-left bio1"
                     [ngClass]="{'disabled2':isDisabled}">
                     <p class="text-white">{{user?.bio}}</p>
-                    <p class="text-white" *ngIf="user?.bio == null">Cuéntanos un poco sobre tí...</p>
+                    <p class="text-white" *ngIf="user?.bio == null&&canEdit==true">Cuéntanos un poco sobre tí...</p>
+                    <p class="text-white" *ngIf="user?.bio == null&&canEdit==false">Este usuario no tiene biografía</p>
                 </div>
                 <div class="column col-md-3 col-lg-3 col-xl-3 col-12  offset-md-1 p-3 text-center"
                     [ngClass]="{'disabled':isDisabled}">
