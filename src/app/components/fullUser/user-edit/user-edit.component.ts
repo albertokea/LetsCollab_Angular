@@ -34,6 +34,7 @@ export class UserEditComponent implements OnInit {
         Validators.required),
       profile_picture: new FormControl(''),
       bio: new FormControl(''),
+      subtitle: new FormControl(''),
       iduser: new FormControl('')
     })
   }
@@ -52,6 +53,7 @@ export class UserEditComponent implements OnInit {
         Validators.required),
       profile_picture: new FormControl(''),
       bio: new FormControl(this.user.bio),
+      subtitle: new FormControl(this.user.subtitle),
       iduser: new FormControl(this.iduser)
     })
   }
@@ -66,7 +68,7 @@ export class UserEditComponent implements OnInit {
     formData.append('email', this.editForm.value.email);
     formData.append('bio', this.editForm.value.bio);
     formData.append('iduser', this.editForm.value.iduser);
-
+    formData.append('subtitle', this.editForm.value.subtitle);
     await this.usersService.update(formData);
     Swal.fire({
       icon: 'success',
