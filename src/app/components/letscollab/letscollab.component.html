@@ -22,6 +22,20 @@
                         <label>Instrumento/Categoría</label>
                         <select class="form-control" (change)="searchByType($event)">
                             <option value=""></option>
+                            <option value="guitar">Guitarra</option>
+                            <option value="bass">Bajo</option>
+                            <option value="string">Otros cuerda</option>
+                            <option value="vocal">Vocal</option>
+                            <option value="percusion">Percusion</option>
+                            <option value="flute">Flauta</option>
+                            <option value="sax">Saxofon</option>
+                            <option value="wind">Otros viento</option>
+                            <option value="piano">Piano</option>
+                            <option value="instrumental">Base instrumental</option>
+                            <option value="sample">Sample</option>
+                            <option value="oneshot">One shot sample</option>
+                            <option value="electronic">Base electrónica/hip hop</option>
+                            <option value="others">Otros</option>
                         </select>
                     </div>
                     <div class="form-group col-lg-3 col-sm-6">
@@ -74,6 +88,7 @@
                             <option value="G#">G#</option>
                         </select>
                     </div>
+                    <button class="btn btn-warning ml-4">Quitar filtros</button>
                 </div>
             </div>
         </div>

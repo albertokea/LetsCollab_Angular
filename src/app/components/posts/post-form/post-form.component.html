@@ -4,8 +4,23 @@
         <form class="pt-4 pb-5" [formGroup]="postForm">
             <div class="form-group">
                 <label for="">¿Que quieres ofrecer?*</label>
-                <input type="text" class="form-control" placeholder="Riff de guitarra, base de hip hop, vocal..."
-                    formControlName="type">
+                <select class="form-control" formControlName="type">
+                    <option value=""></option>
+                    <option value="guitar">Guitarra</option>
+                    <option value="bass">Bajo</option>
+                    <option value="string">Otros cuerda</option>
+                    <option value="vocal">Vocal</option>
+                    <option value="percusion">Percusion</option>
+                    <option value="flute">Flauta</option>
+                    <option value="sax">Saxofon</option>
+                    <option value="wind">Otros viento</option>
+                    <option value="piano">Piano</option>
+                    <option value="instrumental">Base instrumental</option>
+                    <option value="sample">Sample</option>
+                    <option value="oneshot">One shot sample</option>
+                    <option value="electronic">Base electrónica/hip hop</option>
+                    <option value="others">Otros</option>
+                </select>
             </div>
             <div class="sm-column row">
                 <div class="form-group col-6">

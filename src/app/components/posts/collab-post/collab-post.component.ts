@@ -50,7 +50,7 @@ export class CollabPostComponent implements OnInit {
       waveColor: 'violet',
       progressColor: 'yellow'
     });
-    this.wavesurfer.load('../../../assets/audio/' + this.post.audio);
+    this.wavesurfer.load('http://localhost3000/audio/' + this.post.audio);
 
     this.user = await this.usersService.getById(this.post.fk_user);
     this.user.profile_picture ? this.profile_picture = this.user.profile_picture : this.profile_picture = 'default-user-image.png'
