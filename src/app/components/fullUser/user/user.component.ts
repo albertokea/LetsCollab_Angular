@@ -51,7 +51,7 @@ export class UserComponent implements OnInit {
       }
       this.userPosts = await this.postsService.getByUserId(this.user.iduser);
     } else {
-      this.router.navigate(['**'])
+      this.router.navigate(['error'])
     }
 
   }
