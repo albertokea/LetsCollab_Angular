@@ -33,27 +33,42 @@
                     [ngClass]="{'disabled':isDisabled}">
                     <div>
                         <div class="row">
-                            <p class="small"><img src="../../../../assets/images/instagram.png" class="icon"><a
-                                    class=" mt-2 ml-2" style="text-decoration:none"
+                            <p *ngIf='canEdit' class="small"><img src="../../../../assets/images/instagram.png"
+                                    class="icon"><a class=" mt-2 ml-2" style="text-decoration:none"
                                     [href]="'https://www.instagram.com/'+ user?.instagram">{{user?.instagram}}</a><a
                                     class="text-white" *ngIf="user?.instagram == null">Añadir cuenta</a>
                             </p>
+                            <p *ngIf='!canEdit' class="small"><img src="../../../../assets/images/instagram.png"
+                                    class="icon"><a class=" mt-2 ml-2" style="text-decoration:none"
+                                    [href]="'https://www.instagram.com/'+ user?.instagram">{{user?.instagram}}</a><a
+                                    class="text-white" *ngIf="user?.instagram == null"></a>
+                            </p>
                         </div>
                         <div class="row">
-                            <p class="small"><img src="../../../../assets/images/facebook.png" class="icon"><a
-                                    class=" ml-2" style="text-decoration:none"
+                            <p *ngIf='canEdit' class="small"><img src="../../../../assets/images/facebook.png"
+                                    class="icon"><a class=" ml-2" style="text-decoration:none"
                                     href="https://www.facebook.com/">{{user?.facebook}}</a><a class="text-white"
                                     *ngIf="user?.facebook == null">Añadir cuenta</a></p>
+                            <p *ngIf='!canEdit' class="small"><img src="../../../../assets/images/facebook.png"
+                                    class="icon"><a class=" ml-2" style="text-decoration:none"
+                                    href="https://www.facebook.com/">{{user?.facebook}}</a><a class="text-white"
+                                    *ngIf="user?.facebook == null"></a></p>
                         </div>
                         <div class="row">
-                            <p class="small">
+                            <p *ngIf='canEdit' class="small">
                                 <img src="../../../../assets/images/twitter.png" class="icon"><a class=" ml-2"
                                     style="text-decoration:none"
                                     [href]="'https://www.twitter.com/'+ user?.twitter ">{{user?.twitter}}</a><a
                                     class="text-white" *ngIf="user?.twitter == null">Añadir cuenta</a>
                             </p>
+                            <p *ngIf='!canEdit' class="small">
+                                <img src="../../../../assets/images/twitter.png" class="icon"><a class=" ml-2"
+                                    style="text-decoration:none"
+                                    [href]="'https://www.twitter.com/'+ user?.twitter ">{{user?.twitter}}</a><a
+                                    class="text-white" *ngIf="user?.twitter == null"></a>
+                            </p>
                         </div>
-                        <div>
+                        <div class="row text-align-left">
 
                             <p class="small"><a style="text-decoration:none; cursor: default;"
                                     [href]="'mailto:'+ user?.email">{{user?.email}}</a></p>
@@ -63,7 +78,8 @@
                 <div class="col-md-7 col-lg-7 col-xl-7 col-12 offset-md-1 p-1 text-center text-md-left bio2"
                     [ngClass]="{'disabled':isDisabled}">
                     <p class="text-white">{{user?.bio}}</p>
-                    <p class="text-white" *ngIf="user?.bio == null">Cuéntanos un poco sobre tí...</p>
+                    <p class="text-white" *ngIf="user?.bio == null&&canEdit==true">Cuéntanos un poco sobre tí...</p>
+                    <p class="text-white" *ngIf="user?.bio == null&&canEdit==false">Este usuario no tiene biografía</p>
                 </div>
 
             </div>
