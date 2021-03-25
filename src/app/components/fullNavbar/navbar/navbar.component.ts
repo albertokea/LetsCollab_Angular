@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit {
   async ngOnInit() {
     this.id = await this.usersService.tokenDecode();
     this.user = await this.usersService.getById(this.id);
+
   }
 
   onShutDown() {

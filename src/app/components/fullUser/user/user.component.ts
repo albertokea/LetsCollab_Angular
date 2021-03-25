@@ -16,8 +16,9 @@ export class UserComponent implements OnInit {
 
   isDisabled: boolean;
   formDisabled: boolean;
-  idUserPage: number
+  usernamePage: string
   user: User;
+  allUsers: User[]
   canEdit: boolean;
   bio: string;
   profilePicture: string;
@@ -30,8 +31,8 @@ export class UserComponent implements OnInit {
     private usersService: UsersService,
     private postsService: PostsService
   ) {
-    this.route.params.subscribe(idUser => {
-      this.idUserPage = idUser['id']
+    this.route.params.subscribe(username => {
+      this.usernamePage = username['username']
     })
     this.canEdit = false
     this.isDisabled = false;
@@ -41,12 +42,18 @@ export class UserComponent implements OnInit {
   }
 
   async ngOnInit() {
+
     const id = await this.usersService.tokenDecode();
-    this.user = await this.usersService.getById(this.idUserPage);
-    if (this.idUserPage == id) {
-      this.canEdit = true;
+    this.user = await this.usersService.getByUser(this.usernamePage);
+    if (this.user) {
+      if (this.user.iduser == id) {
+        this.canEdit = true;
+      }
+      this.userPosts = await this.postsService.getByUserId(this.user.iduser);
+    } else {
+      this.router.navigate(['**'])
     }
-    this.userPosts = await this.postsService.getByUserId(this.idUserPage);
+
   }
   onEdit() {
     this.isDisabled = true;
