@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/interfaces/user';
 import { PostsService } from 'src/app/services/posts.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-post-form',
@@ -10,10 +12,13 @@ import { PostsService } from 'src/app/services/posts.service';
 })
 export class PostFormComponent implements OnInit {
 
+  iduser: string;
   postForm: FormGroup;
   file: any;
 
+
   constructor(
+    private usersService: UsersService,
     private postsService: PostsService,
     private router: Router) {
     this.postForm = new FormGroup({
@@ -32,7 +37,9 @@ export class PostFormComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.iduser = await this.usersService.tokenDecode();
+    /* console.log(this.iduser); */
   }
 
   async newPost() {
@@ -46,6 +53,7 @@ export class PostFormComponent implements OnInit {
     formData.append('extra_tags', this.postForm.value.extra_tags);
     formData.append('description_text', this.postForm.value.description_text);
     formData.append('download', this.postForm.value.download);
+    formData.append('fk_user', this.iduser);
 
     await this.postsService.create(formData);
     alert('Exito!!');

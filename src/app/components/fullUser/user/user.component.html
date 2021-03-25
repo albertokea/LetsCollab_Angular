@@ -90,10 +90,10 @@
 
         <hr class="bg-white">
         <h2 class="text-white">Tus publicaciones:</h2>
-        <div *ngFor="let post of userPosts">
-            <collab-post [post]="post" (search)="nothing()"></collab-post>
-        </div>
         <!-- FALTA POST DEL USUARIO Y FAVORITOS? -->
+    </div>
+    <div *ngFor="let post of userPosts">
+        <collab-post [post]="post" (search)="nothing()"></collab-post>
     </div>
 </div>
 <app-footer></app-footer>
