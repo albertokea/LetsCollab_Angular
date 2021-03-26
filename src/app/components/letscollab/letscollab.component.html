@@ -88,7 +88,7 @@
                             <option value="G#">G#</option>
                         </select>
                     </div>
-                    <button class="btn btn-warning ml-4">Quitar filtros</button>
+                    <button class="btn btn-warning ml-4" (click)="removeFilters()">Quitar filtros</button>
                 </div>
             </div>
         </div>
@@ -101,8 +101,9 @@
         </div>
         <h2 *ngIf="error" class="text-center">Ningún resultado</h2>
 
-        <div class="d-flex justify-content-between mt-3">
-            <button [disabled]="page === 0" class="btn btn-dark" (click)="changePage(-1)">Página Anterior</button>
+        <div *ngIf="!error && !loading" class="d-flex justify-content-between mt-3">
+            <button [disabled]="page === 0" class="btn btn-dark" (click)="changePage(-1)">Página
+                Anterior</button>
             <h4 class="text-white">Página {{page + 1}}</h4>
             <button [disabled]="page === lastPage-1" class="btn btn-dark" (click)="changePage(+1)">Siguiente
                 página</button>

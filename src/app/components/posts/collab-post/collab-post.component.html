@@ -31,6 +31,9 @@
             </p>
         </div>
     </div>
+    <div class="ml-3">
+        <p class="text-white mt-3">{{post?.description_text}}</p>
+    </div>
 
     <hr>
 
@@ -53,20 +56,23 @@
             </a>
         </div>
     </div>
-    <div *ngFor="let message of messages">
-        <post-message [message]="message"></post-message>
-    </div>
 
     <div [ngClass]="{'disabled':isDisabled}">
         <div class="form-group mt-3">
             <div>
                 <img [src]="'http://localhost:3000/images/profile_pictures/'+ (user?.profile_picture ? user?.profile_picture : 'default-user-image.png')"
                     alt="" class="reply-img mb-3">
-                <h6 class="ml-2">ReplierUsername</h6>
+                <h6 class="ml-2">{{user?.user}}</h6>
             </div>
-            <input type="text" class="form-control reply-input" name="" aria-describedby="helpId"
-                placeholder="Escriba su mensaje" #text_message>
+            <form [formGroup]="messageForm">
+                <textarea type="text" class="form-control reply-input" name="" aria-describedby="helpId"
+                    placeholder="Escriba su mensaje" #text_message formControlName="text"></textarea>
+            </form>
         </div>
-        <button class="btn btn-warning mr-auto" (click)="newMessage(text_message.value)">Enviar</button>
+        <button class="btn btn-warning btn-sm mr-auto" (click)="newMessage(text_message.value)">Enviar</button>
+    </div>
+
+    <div *ngFor="let message of messages">
+        <post-message [message]="message"></post-message>
     </div>
 </div>

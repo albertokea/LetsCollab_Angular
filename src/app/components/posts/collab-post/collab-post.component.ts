@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { faReply, faEnvelope, faHeart, faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
 
 import { Post } from 'src/app/interfaces/post';
@@ -35,17 +37,24 @@ export class CollabPostComponent implements OnInit {
   isDisabled: boolean;
 
   messages: PostMessage[];
+  messageForm: FormGroup;
 
   constructor(
     private usersService: UsersService,
     private postsService: PostsService,
-    private postMessagesService: PostMessagesService) {
+    private postMessagesService: PostMessagesService,
+    private rouer: Router) {
     this.isDisabled = true;
     this.search = new EventEmitter;
+    this.messageForm = new FormGroup({
+      fk_user: new FormControl(''),
+      fk_post: new FormControl(''),
+      text: new FormControl('')
+    })
   }
 
   async ngOnInit() {
-    this.messages = await this.postMessagesService.getByPost(this.post.idpost)
+    this.messages = await this.postMessagesService.getByPost(this.post.idpost);
   }
 
   async ngAfterViewInit() {
@@ -55,8 +64,6 @@ export class CollabPostComponent implements OnInit {
       progressColor: 'yellow'
     });
     this.wavesurfer.load('http://localhost:3000/audio/' + this.post.audio);
-    console.log(this.post.audio);
-
 
     this.user = await this.usersService.getById(this.post.fk_user);
     this.user.profile_picture ? this.profile_picture = this.user.profile_picture : this.profile_picture = 'default-user-image.png'
@@ -79,13 +86,14 @@ export class CollabPostComponent implements OnInit {
     this.search.emit();
   }
 
-  newMessage(text_message) {
-    const formData = new FormData();
-    formData.append('fk_user', this.user.iduser.toString());
-    formData.append('fk_post', this.post.idpost.toString());
-    formData.append('text', text_message);
-
-    this.postMessagesService.getByPost(this.post.idpost)
+  async newMessage(text_message) {
+    this.messageForm.value.fk_user = this.user.iduser;
+    this.messageForm.value.fk_post = this.post.idpost;
+    if (text_message) {
+      await this.postMessagesService.create(this.messageForm.value);
+      this.isDisabled = true;
+      window.location.reload();
+    }
   }
 
   async Genre($event) {

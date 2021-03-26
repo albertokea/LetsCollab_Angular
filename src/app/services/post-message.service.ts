@@ -33,20 +33,15 @@ export class PostMessagesService {
   }
 
   getByUser(iduser): Promise<PostMessage[]> {
-    return this.httpClient.get<PostMessage[]>(`${this.baseUrl}/post/${iduser}`, this.createHeaders()).toPromise();
+    return this.httpClient.get<PostMessage[]>(`${this.baseUrl}/user/${iduser}`, this.createHeaders()).toPromise();
   }
 
   create(message): Promise<PostMessage> {
-    return this.httpClient.post<PostMessage>(`${this.baseUrl}/post/${message}`, this.createHeaders()).toPromise();
+    return this.httpClient.post<PostMessage>(`${this.baseUrl}/new`, message, this.createHeaders()).toPromise();
   }
 
   deleteById(id): Promise<PostMessage> {
     return this.httpClient.delete<PostMessage>(`${this.baseUrl}/delete/${id}`, this.createHeaders()).toPromise();
   }
-
-
-
-
-
 
 }
