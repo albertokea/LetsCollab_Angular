@@ -36,32 +36,32 @@ export class PostsService {
     return this.httpClient.get<Post[]>(`${this.baseUrl}/${id}`, this.createHeaders()).toPromise()
   }
 
-  getByGenre(genre): Promise<Post[]> {
-    return this.httpClient.get<Post[]>(`${this.baseUrl}/genre/${genre}`, this.createHeaders()).toPromise()
+  getByGenre(genre, offset): Promise<Post[]> {
+    return this.httpClient.get<Post[]>(`${this.baseUrl}/genre/${genre}/offset/${offset}`, this.createHeaders()).toPromise()
   }
 
-  getByLicense(license): Promise<Post[]> {
-    return this.httpClient.get<Post[]>(`${this.baseUrl}/license/${license}`, this.createHeaders()).toPromise()
+  getByLicense(license, offset): Promise<Post[]> {
+    return this.httpClient.get<Post[]>(`${this.baseUrl}/license/${license}/offset/${offset}`, this.createHeaders()).toPromise()
   }
 
-  getByKey(key): Promise<Post[]> {
-    return this.httpClient.get<Post[]>(`${this.baseUrl}/key/${key}`, this.createHeaders()).toPromise()
+  getByKey(key, offset): Promise<Post[]> {
+    return this.httpClient.get<Post[]>(`${this.baseUrl}/key/${key}/offset/${offset}`, this.createHeaders()).toPromise()
   }
 
-  getByBpm(bpm): Promise<Post[]> {
-    return this.httpClient.get<Post[]>(`${this.baseUrl}/bpm/${bpm}`, this.createHeaders()).toPromise()
+  getByBpm(bpm, offset): Promise<Post[]> {
+    return this.httpClient.get<Post[]>(`${this.baseUrl}/bpm/${bpm}/offset/${offset}`, this.createHeaders()).toPromise()
   }
 
-  getByType(type): Promise<Post[]> {
-    return this.httpClient.get<Post[]>(`${this.baseUrl}/type/${type}`, this.createHeaders()).toPromise()
+  getByType(type, offset): Promise<Post[]> {
+    return this.httpClient.get<Post[]>(`${this.baseUrl}/type/${type}/offset/${offset}`, this.createHeaders()).toPromise()
   }
 
-  getByUserId(iduser): Promise<Post[]> {
-    return this.httpClient.get<Post[]>(`${this.baseUrl}/user/${iduser}`, this.createHeaders()).toPromise();
+  getByUserId(iduser, offset): Promise<Post[]> {
+    return this.httpClient.get<Post[]>(`${this.baseUrl}/user/${iduser}/offset/${offset}`, this.createHeaders()).toPromise();
   }
 
-  getByKeyword(keyword): Promise<Post[]> {
-    return this.httpClient.get<Post[]>(`${this.baseUrl}/keyword/${keyword}`, this.createHeaders()).toPromise();
+  getByKeyword(keyword, offset): Promise<Post[]> {
+    return this.httpClient.get<Post[]>(`${this.baseUrl}/keyword/${keyword}/offset/${offset}`, this.createHeaders()).toPromise();
   }
 
   create(post): Promise<Post> {

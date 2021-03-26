@@ -38,24 +38,24 @@ export class LetscollabComponent implements OnInit {
   }
 
   async searchByType(event) {
-    this.posts = await this.postsService.getByType(event.target.value)
+    this.posts = await this.postsService.getByType(event.target.value, 0)
   }
 
   async searchByGenre(event) {
-    this.posts = await this.postsService.getByGenre(event.target.value)
+    this.posts = await this.postsService.getByGenre(event.target.value, 0)
   }
 
   async searchByLicense(event) {
-    this.posts = await this.postsService.getByLicense(event.target.value)
+    this.posts = await this.postsService.getByLicense(event.target.value, 0)
   }
 
   async searchByKey(event) {
-    this.posts = await this.postsService.getByKey(event.target.value)
+    this.posts = await this.postsService.getByKey(event.target.value, 0)
   }
 
   async searchByKeyword(event) {
     if (event.keyCode === 13) {
-      this.posts = await this.postsService.getByKeyword(event.target.value);
+      this.posts = await this.postsService.getByKeyword(event.target.value, 0);
       if (!this.posts) {
         setTimeout(() => {
           this.posts = []
@@ -70,7 +70,7 @@ export class LetscollabComponent implements OnInit {
       const user = await this.usersService.getByUser(event.target.value);
       if (user) {
         this.error = false;
-        this.posts = await this.postsService.getByUserId(user.iduser);
+        /* this.posts = await this.postsService.getByUserId(user.iduser); */
       } else {
         setTimeout(() => {
           this.posts = [];

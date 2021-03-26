@@ -89,15 +89,15 @@ export class CollabPostComponent implements OnInit {
   }
 
   async Genre($event) {
-    this.post[0] = await this.postsService.getByGenre($event.target.value)
+    this.post[0] = await this.postsService.getByGenre($event.target.value, 0)
   }
 
   async License($event) {
-    this.post[0] = await this.postsService.getByLicense($event.target.value)
+    this.post[0] = await this.postsService.getByLicense($event.target.value, 0)
   }
 
   async Key($event) {
-    this.post[0] = await this.postsService.getByKey($event.target.value)
+    this.post[0] = await this.postsService.getByKey($event.target.value, 0)
   }
 
 }
