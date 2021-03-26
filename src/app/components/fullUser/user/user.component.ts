@@ -7,6 +7,7 @@ import { PostsService } from 'src/app/services/posts.service';
 import { UsersService } from 'src/app/services/users.service';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { FormControl, FormGroup } from '@angular/forms';
+declare var Swal;
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -105,8 +106,19 @@ export class UserComponent implements OnInit {
 
         console.log(formData);
 
-        const idk = await this.usersService.updateHeader(formData)
-        console.log(idk);
+        await this.usersService.updateHeader(formData)
+        Swal.fire({
+          icon: 'success',
+          title: 'Datos actualizados con éxito',
+          showConfirmButton: true,
+          allowOutsideClick: false
+
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.reload()
+          }
+        })
+
 
       } else {
         alert('Solo se pueden introducir imagenes en formato jpg, jpeg, png y gif');
