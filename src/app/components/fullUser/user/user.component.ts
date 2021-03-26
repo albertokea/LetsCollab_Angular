@@ -15,8 +15,10 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class UserComponent implements OnInit {
   faAd = faAd;
   faPen = faPen
+
   isDisabled: boolean;
   formDisabled: boolean;
+
   usernamePage: string
   user: User;
   allUsers: User[]
@@ -27,6 +29,10 @@ export class UserComponent implements OnInit {
   userPosts: Post[];
   headerForm: FormGroup
   fileChosenHeader: boolean
+
+  page: number;
+  lastPage: number;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -41,12 +47,12 @@ export class UserComponent implements OnInit {
       this.usernamePage = username['username']
     })
 
-
     this.canEdit = false
     this.isDisabled = false;
     this.formDisabled = true;
     this.profilePicture = 'default-user-image.png'
 
+    this.page = 0;
   }
 
   async ngOnInit() {
@@ -58,7 +64,9 @@ export class UserComponent implements OnInit {
       if (this.user.iduser == id) {
         this.canEdit = true;
       }
-      this.userPosts = await this.postsService.getByUserId(this.user.iduser);
+      const responsePosts = await this.postsService.getAll(0);
+      this.userPosts = responsePosts.result;
+      this.lastPage = responsePosts.info.pages;
     } else {
       this.router.navigate(['error'])
       this.headerForm = new FormGroup({
@@ -68,8 +76,14 @@ export class UserComponent implements OnInit {
 
     }
 
-
   }
+
+  async changePage(prevNextPage) {
+    this.page = this.page + prevNextPage;
+    const response = await this.postsService.getAll(this.page * 10);
+    this.userPosts = response.result;
+  }
+
   onEdit() {
     this.isDisabled = true;
     this.formDisabled = false;

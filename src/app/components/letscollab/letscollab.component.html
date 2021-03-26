@@ -100,6 +100,13 @@
             <collab-post [post]="post" (search)="searchByKeyword()"></collab-post>
         </div>
         <h2 *ngIf="error" class="text-center">Ningún resultado</h2>
+
+        <div class="d-flex justify-content-between mt-3">
+            <button [disabled]="page === 0" class="btn btn-dark" (click)="changePage(-1)">Página Anterior</button>
+            <h4 class="text-white">Página {{page + 1}}</h4>
+            <button [disabled]="page === lastPage-1" class="btn btn-dark" (click)="changePage(+1)">Siguiente
+                página</button>
+        </div>
     </div>
 </div>
 <app-footer></app-footer>

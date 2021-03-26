@@ -13,17 +13,28 @@ import { UsersService } from 'src/app/services/users.service';
 export class LetscollabComponent implements OnInit {
 
   faFeatherAlt = faFeatherAlt;
-  posts: Post[];
+  posts: any;
   error: boolean;
+
+  page: number;
+  lastPage: number;
 
   constructor(
     private postsService: PostsService,
-    private usersService: UsersService) { }
+    private usersService: UsersService) {
+    this.page = 0;
+  }
+
+  async changePage(prevNextPage) {
+    this.page = this.page + prevNextPage;
+    const response = await this.postsService.getAll(this.page * 10);
+    this.posts = response.result;
+  }
 
   async ngOnInit() {
-    this.posts = await this.postsService.getAll(0);
-    console.log(this.posts);
-
+    const response = await this.postsService.getAll(0);
+    this.posts = response.result;
+    this.lastPage = response.info.pages;
   }
 
   async searchByType(event) {

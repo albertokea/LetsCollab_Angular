@@ -28,8 +28,8 @@ export class PostsService {
     return id;
   }
 
-  getAll(offset): Promise<Post[]> {
-    return this.httpClient.get<Post[]>(`${this.baseUrl}/offset/${offset}`, this.createHeaders()).toPromise()
+  getAll(offset): Promise<any> {
+    return this.httpClient.get<any>(`${this.baseUrl}/offset/${offset}`, this.createHeaders()).toPromise()
   }
 
   getById(id): Promise<Post[]> {
