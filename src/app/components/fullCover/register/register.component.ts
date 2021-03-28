@@ -90,9 +90,8 @@ export class RegisterComponent implements OnInit {
   }
 
   register(username) {
-    this.userValidator(username)
-    if (this.userValid === 1) {
-      this.visitorsService.register(this.registerForm.value);
+      setTimeout(() => {
+        this.visitorsService.register(this.registerForm.value);
       Swal.fire({
         icon: 'success',
         title: 'Cuenta creada con éxito',
@@ -100,9 +99,7 @@ export class RegisterComponent implements OnInit {
         timer: 2000
       });
       this.onLoginClick.emit()
-    } else {
-
-    }
+      },1000);
   }
 }
 

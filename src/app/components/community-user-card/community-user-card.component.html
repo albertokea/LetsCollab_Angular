@@ -1,0 +1,9 @@
+<div class="mt-5 text-center">
+    <img class="rounded-circle"
+        [src]="'http://localhost:3000/images/profile_pictures/'+ (user?.profile_picture ? user?.profile_picture : 'default-user-image.png')"
+        alt="Generic placeholder image" width="140" height="140" [routerLink]="['/user',user?.user]">
+    <h2 class="text-white" [routerLink]="['/user',user?.user]">{{user?.user}}</h2>
+    <h3 class="text-warning">{{user?.subtitle}}</h3>
+    <p class="text-white mx-3">{{user?.bio}}
+    </p>
+</div>

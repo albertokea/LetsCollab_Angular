@@ -13,11 +13,11 @@
 .headerImg{
     background-image: url("../../../../assets/images/MarioUwUBien.png");
     background-size:contain;
-    
 }
 
 .icon{
     width: 2.5em;
+    cursor: pointer;
 }
 a{
     text-decoration: none;

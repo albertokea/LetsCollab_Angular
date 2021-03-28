@@ -8,6 +8,7 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { PostFormComponent } from './components/posts/post-form/post-form.component';
 import { LoginGuard } from './guards/login.guard';
 import { Error404Component } from './components/error404/error404.component';
+import { CommunityComponent } from './components/community/community.component';
 
 const routes: Routes = [
 
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'collab/new', component: PostFormComponent, canActivate: [LoginGuard] },
   { path: 'user/:username', component: UserComponent, canActivate: [LoginGuard] },
   { path: 'messages', component: MessagesComponent, canActivate: [LoginGuard] },
+  { path: 'community', component: CommunityComponent, canActivate: [LoginGuard]},
   { path: '**', component: Error404Component }
 ]
 
