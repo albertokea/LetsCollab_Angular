@@ -80,9 +80,16 @@
                     <input type="text" class="form-control" formControlName="bpm">
                 </div>
                 <div class="form-group col-8">
-                    <label>¿Algun tag extra?</label>
-                    <input type="text" class="form-control" formControlName="extra_tags"
-                        placeholder="Se podrá filtrar por dichos tags...">
+                    <div class="row">
+                        <label>¿Algun tag extra?</label>
+                        <span *ngFor='let tag of extraTags'
+                            class="text-white ml-2 border border-white rounded mb-2 px-1">
+                            <p class="p-0 mb-0">#{{tag}}</p>
+                        </span>
+                    </div>
+
+                    <input type="text" (keydown.enter)='onSeparate($event)' class="form-control"
+                        formControlName="extra_tags" placeholder="Se podrá filtrar por dichos tags..." #extraTagsInput>
                 </div>
             </div>
             <div class="form-group">
