@@ -3,6 +3,12 @@
     border-radius: 10px;
     padding: 1em;
 }
+a{
+    text-decoration: none;
+    cursor: pointer;
+    
+}
+
 img{
     cursor: pointer;
 }
@@ -56,7 +62,28 @@ label{
 .user{
     cursor: pointer;
 }
+
+.deleteDisabled{
+    display: none;
+}
+.delete{
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    color: white;
+    border-color: white;
+    background-color: tomato;
+    top: 2%;
+}
+.container{
+    position: relative;
+}
+
 @media (max-width: 768px){
+    .delete{
+        right: 2%;
+    }
+
     h5{
         display: block;
         text-align: center;

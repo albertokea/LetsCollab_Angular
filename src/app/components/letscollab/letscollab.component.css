@@ -11,6 +11,9 @@
 h2, label{
     color: white;
 }
+.index{
+    z-index: 1;
+}
 .iconContainer{
     width: 4em;
     height: 4em;

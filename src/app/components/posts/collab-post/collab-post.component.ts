@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { faReply, faEnvelope, faHeart, faPlay, faPause, faDownload } from '@fortawesome/free-solid-svg-icons';
+import { faReply, faEnvelope, faHeart, faPlay, faPause, faDownload, faCrosshairs } from '@fortawesome/free-solid-svg-icons';
 
 import { Post } from 'src/app/interfaces/post';
 import { PostMessage } from 'src/app/interfaces/post-message';
@@ -11,7 +11,7 @@ import { PostsService } from 'src/app/services/posts.service';
 import { UsersService } from 'src/app/services/users.service';
 
 declare var WaveSurfer;
-
+declare var Swal;
 @Component({
   selector: 'collab-post',
   templateUrl: './collab-post.component.html',
@@ -29,28 +29,33 @@ export class CollabPostComponent implements OnInit {
   faPlay = faPlay;
   faPause = faPause;
   faUpload = faDownload;
+  faCross = faCrosshairs;
   datePublish: string
-
+  canDelete: boolean
   user: User;
   userReply: User;
   profile_picture: string;
-
+  id: number
   wavesurfer: any;
   waveformContainer: string;
   isDisabled: boolean;
-
+  limitReplys: number
   extraTags: any[];
-
+  showMore: boolean
   messages: PostMessage[];
   messageForm: FormGroup;
   username: string;
+  showLess: boolean;
   constructor(
     private usersService: UsersService,
     private postsService: PostsService,
     private postMessagesService: PostMessagesService,
     private rouer: Router) {
-    this.extraTags = []
+    this.canDelete = false;
+    this.extraTags = [];
+    this.limitReplys = 2;
     this.isDisabled = true;
+    this.showMore = true;
     this.search = new EventEmitter;
     this.messageForm = new FormGroup({
       fk_user: new FormControl(''),
@@ -65,6 +70,11 @@ export class CollabPostComponent implements OnInit {
     const id = await this.usersService.tokenDecode();
     this.userReply = await this.usersService.getById(id);
     this.extraTags = this.post.extra_tags.split(',')
+    if (this.messages.length <= this.limitReplys) {
+      this.showMore = false;
+    }
+
+
   }
 
   async ngAfterViewInit() {
@@ -75,11 +85,14 @@ export class CollabPostComponent implements OnInit {
     });
     this.wavesurfer.load('http://localhost:3000/audio/' + this.post.audio);
 
-    console.log(this.extraTags);
 
     this.user = await this.usersService.getById(this.post.fk_user);
     this.user.profile_picture ? this.profile_picture = this.user.profile_picture : this.profile_picture = 'default-user-image.png'
     this.username = this.user.user;
+    this.id = this.usersService.tokenDecode();
+    if (this.id == this.post.fk_user) {
+      this.canDelete = true;
+    }
   }
 
   onPlayPause() {
@@ -122,4 +135,42 @@ export class CollabPostComponent implements OnInit {
     this.post[0] = await this.postsService.getByKey($event.target.value, 0)
   }
 
+  onDeletePost() {
+
+    Swal.fire({
+      title: '¿Estás seguro de que quieres eliminar tu post?',
+      text: "No podrás revertir esta acción",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Sí, borrarlo',
+      allowOutsideClick: false
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+
+        await this.postsService.deleteById(this.post.idpost),
+          window.location.reload()
+
+      }
+    })
+  }
+
+  onShowMore() {
+    this.limitReplys += 10;
+    this.showLess = true
+    if ((this.messages.length < this.limitReplys)) {
+      this.showMore = false
+    }
+
+  }
+  onShowLess() {
+    this.showMore = true;
+    this.limitReplys -= 10
+    if (this.limitReplys < 10) {
+      this.showLess = false;
+    }
+
+  }
 }
