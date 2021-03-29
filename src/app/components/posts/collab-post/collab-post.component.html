@@ -81,11 +81,20 @@
                     placeholder="Escriba su mensaje" #text_message formControlName="text"></textarea>
             </form>
         </div>
-        <button class="btn btn-warning btn-sm mr-auto" (click)="newMessage(text_message.value)">Enviar</button>
+        <button class="btn btn-warning btn-sm d-block " (click)="newMessage(text_message.value)">Enviar</button>
+    </div>
+    <div *ngIf="messages?.length!=0">
+        <div *ngFor="let message of messages; let i=index">
+            <div *ngIf='i<limitReplys'>
+                <post-message [message]="message"></post-message>
+            </div>
+
+        </div>
+        <div class="text-center">
+            <a *ngIf='showMore==true' class="text-center text-warning mr-3" (click)='onShowMore()'>Mostrar más</a>
+            <a *ngIf='showLess==true' class="text-center text-warning" (click)='onShowLess()'>Mostrar menos</a>
+        </div>
+
     </div>
 
-    <div *ngFor="let message of messages">
-        <post-message [message]="message"></post-message>
-    </div>
-    <a class="text-center">Mostrar más</a>
 </div>

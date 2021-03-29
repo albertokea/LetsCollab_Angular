@@ -39,20 +39,23 @@ export class CollabPostComponent implements OnInit {
   wavesurfer: any;
   waveformContainer: string;
   isDisabled: boolean;
-
+  limitReplys: number
   extraTags: any[];
-
+  showMore: boolean
   messages: PostMessage[];
   messageForm: FormGroup;
   username: string;
+  showLess: boolean;
   constructor(
     private usersService: UsersService,
     private postsService: PostsService,
     private postMessagesService: PostMessagesService,
     private rouer: Router) {
     this.canDelete = false;
-    this.extraTags = []
+    this.extraTags = [];
+    this.limitReplys = 2;
     this.isDisabled = true;
+    this.showMore = true;
     this.search = new EventEmitter;
     this.messageForm = new FormGroup({
       fk_user: new FormControl(''),
@@ -67,6 +70,11 @@ export class CollabPostComponent implements OnInit {
     const id = await this.usersService.tokenDecode();
     this.userReply = await this.usersService.getById(id);
     this.extraTags = this.post.extra_tags.split(',')
+    if (this.messages.length <= this.limitReplys) {
+      this.showMore = false;
+    }
+
+
   }
 
   async ngAfterViewInit() {
@@ -77,7 +85,6 @@ export class CollabPostComponent implements OnInit {
     });
     this.wavesurfer.load('http://localhost:3000/audio/' + this.post.audio);
 
-    console.log(this.extraTags);
 
     this.user = await this.usersService.getById(this.post.fk_user);
     this.user.profile_picture ? this.profile_picture = this.user.profile_picture : this.profile_picture = 'default-user-image.png'
@@ -148,5 +155,22 @@ export class CollabPostComponent implements OnInit {
 
       }
     })
+  }
+
+  onShowMore() {
+    this.limitReplys += 10;
+    this.showLess = true
+    if ((this.messages.length < this.limitReplys)) {
+      this.showMore = false
+    }
+
+  }
+  onShowLess() {
+    this.showMore = true;
+    this.limitReplys -= 10
+    if (this.limitReplys < 10) {
+      this.showLess = false;
+    }
+
   }
 }

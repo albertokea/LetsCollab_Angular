@@ -63,7 +63,7 @@
                     </div>
                     <div class="form-group col-lg-3 col-sm-6">
                         <label>Licencia</label>
-                        <select class="form-control" (click)="searchByLicense($event)">
+                        <select class="form-control" (change)="searchByLicense($event)">
                             <option value=""></option>
                             <option value="free-to-use">De uso libre</option>
                             <option value="personal">De uso solo personal</option>
@@ -92,8 +92,8 @@
                 </div>
             </div>
         </div>
-        <div class="iconContainer">
-            <fa-icon [icon]="faFeatherAlt" [routerLink]="['/collab/new']" class="fa-lg icon" title="Envía un mensaje">
+        <div class="iconContainer index">
+            <fa-icon [icon]="faFeatherAlt" [routerLink]="['/collab/new']" class="fa-lg icon " title="Envía un mensaje">
             </fa-icon>
         </div>
         <div *ngFor="let post of posts">
