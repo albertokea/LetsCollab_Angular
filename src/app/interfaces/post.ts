@@ -5,8 +5,8 @@ export interface Post {
     audio: string;
     date_publish: string;
     key_note: string;
-    bpm: number;
-    extra_tags: string;
+    bpm?: number;
+    extra_tags?: string;
     download: boolean;
     like_active: boolean;
     description_text: string;

@@ -21,13 +21,6 @@ export class PostMessagesService {
     }
   }
 
-  tokenDecode() {
-    const token = localStorage.getItem('token_auth');
-    const decode = jwt_decode(token)
-    const id = decode['userId']
-    return id;
-  }
-
   getByPost(idpost): Promise<PostMessage[]> {
     return this.httpClient.get<PostMessage[]>(`${this.baseUrl}/post/${idpost}`, this.createHeaders()).toPromise();
   }

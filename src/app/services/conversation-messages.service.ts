@@ -10,7 +10,7 @@ export class ConversationMessagesService {
   baseUrl: string;
 
   constructor(private httpClient: HttpClient) {
-    this.baseUrl = 'http://localhost:3000/api/conversations';
+    this.baseUrl = 'http://localhost:3000/api/conversationMessages';
   }
 
   createHeaders() {
@@ -21,7 +21,7 @@ export class ConversationMessagesService {
     }
   }
 
-  getMessages(idconversation, iduser): Promise<ConversationMessage[]> {
-    return this.httpClient.get<ConversationMessage[]>(`${this.baseUrl}/${idconversation}/user/${iduser}`, this.createHeaders()).toPromise()
+  getMessages(idconversation): Promise<ConversationMessage[]> {
+    return this.httpClient.get<ConversationMessage[]>(`${this.baseUrl}/${idconversation}`, this.createHeaders()).toPromise()
   }
 }

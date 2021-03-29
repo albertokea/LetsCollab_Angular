@@ -1,0 +1,16 @@
+<navbar></navbar>
+<div class="body py-4">
+    <div class="container p-0 " style="max-width: 700px; border-radius: 10px;">
+        <div class="wrapper" style="max-height: 100px; border-radius: 10px;">
+            <div *ngFor="let conversation of conversations; let i = index">
+                <img style="width: 80px;" class="rounded-circle mb-3 p-2 profile_picture"
+                    [src]="'http://localhost:3000/images/profile_pictures/'+ (images[i] ? images[i]: 'default-user-image.png')"
+                    [id]="conversation.idconversation" (click)="selectConversation(conversation)" alt="">
+            </div>
+        </div>
+
+        <conversation #conversation></conversation>
+
+    </div>
+</div>
+<app-footer></app-footer>

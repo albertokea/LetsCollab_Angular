@@ -19,7 +19,8 @@
 
     <div class="d-flex justify-content-between">
         <button class="btn btn-warning ml-3" (click)="onPlayPause()">
-            <fa-icon [icon]="faPlay"></fa-icon>
+            <fa-icon *ngIf="!playPressed" [icon]="faPlay"></fa-icon>
+            <fa-icon *ngIf="playPressed" [icon]="faPause"></fa-icon>
         </button>
         <div>
             <button class="btn"></button>
@@ -59,7 +60,8 @@
                 <fa-icon [icon]="faReply" class="fa-lg" (click)="onReply()"></fa-icon>
             </a>
             <a class="level-item mr-2 icon">
-                <fa-icon [icon]="faHeart" class="fa-lg"></fa-icon>
+                <fa-icon [icon]="faHeart" class="fa-lg" (click)="onLike()" [ngClass]="{'text-danger': likeActive}">
+                </fa-icon>
             </a>
         </div>
 

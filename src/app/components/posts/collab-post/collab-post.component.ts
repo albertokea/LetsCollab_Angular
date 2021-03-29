@@ -1,11 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { faReply, faEnvelope, faHeart, faPlay, faPause, faDownload, faCrosshairs } from '@fortawesome/free-solid-svg-icons';
+import { faReply, faEnvelope, faHeart, faPlay, faPause, faDownload, faCrosshairs, faPauseCircle } from '@fortawesome/free-solid-svg-icons';
+import { Like } from 'src/app/interfaces/like';
 
 import { Post } from 'src/app/interfaces/post';
 import { PostMessage } from 'src/app/interfaces/post-message';
 import { User } from 'src/app/interfaces/user';
+import { LikesService } from 'src/app/services/likes.service';
 import { PostMessagesService } from 'src/app/services/post-message.service';
 import { PostsService } from 'src/app/services/posts.service';
 import { UsersService } from 'src/app/services/users.service';
@@ -30,38 +32,52 @@ export class CollabPostComponent implements OnInit {
   faPause = faPause;
   faUpload = faDownload;
   faCross = faCrosshairs;
-  datePublish: string
-  canDelete: boolean
+  faPauseCircle = faPauseCircle;
+  playPressed: boolean;
+
+  canDelete: boolean;
+  datePublish: string;
   user: User;
   userReply: User;
   profile_picture: string;
-  id: number
+  id: number;
+
   wavesurfer: any;
   waveformContainer: string;
+
   isDisabled: boolean;
-  limitReplys: number
+  limitReplys: number;
   extraTags: any[];
-  showMore: boolean
+
+  like: Like;
+  idlike: number;
+  likeActive: boolean;
   messages: PostMessage[];
   messageForm: FormGroup;
   username: string;
+  showMore: boolean;
   showLess: boolean;
+
   constructor(
     private usersService: UsersService,
     private postsService: PostsService,
     private postMessagesService: PostMessagesService,
-    private rouer: Router) {
+    private likesService: LikesService) {
     this.canDelete = false;
     this.extraTags = [];
     this.limitReplys = 2;
     this.isDisabled = true;
     this.showMore = true;
     this.search = new EventEmitter;
+    this.likeActive = false;
+
     this.messageForm = new FormGroup({
       fk_user: new FormControl(''),
       fk_post: new FormControl(''),
       text: new FormControl('')
     })
+
+    this.playPressed = false;
   }
 
   async ngOnInit() {
@@ -70,11 +86,18 @@ export class CollabPostComponent implements OnInit {
     const id = await this.usersService.tokenDecode();
     this.userReply = await this.usersService.getById(id);
     this.extraTags = this.post.extra_tags.split(',')
+
     if (this.messages.length <= this.limitReplys) {
       this.showMore = false;
     }
 
+    this.like = await this.likesService.getLike(this.post.idpost, this.user.iduser);
+    if (this.like) {
+      console.log(this.like);
 
+      this.likeActive = true;
+      this.idlike = this.like.idlike
+    }
   }
 
   async ngAfterViewInit() {
@@ -96,7 +119,8 @@ export class CollabPostComponent implements OnInit {
   }
 
   onPlayPause() {
-    this.wavesurfer.playPause()
+    this.playPressed = !this.playPressed;
+    this.wavesurfer.playPause();
   }
 
   changeVolume(newVolume) {
@@ -111,6 +135,23 @@ export class CollabPostComponent implements OnInit {
   onSearch($event) {
     const type = $event.target.value.shift();
     this.search.emit();
+  }
+
+  async onLike() {
+    if (this.like) {
+      this.likeActive = false;
+      this.like = null;
+      this.likesService.delete(this.idlike)
+    } else {
+      this.likeActive = true;
+      this.like = {
+        "fk_post": this.post.idpost,
+        "fk_user": this.user.iduser,
+      }
+      this.likesService.create(this.like);
+      this.like = await this.likesService.getLike(this.post.idpost, this.user.iduser);
+      this.idlike = this.like.idlike
+    }
   }
 
   async newMessage(text_message) {

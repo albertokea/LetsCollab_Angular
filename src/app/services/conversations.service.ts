@@ -21,15 +21,15 @@ export class ConversationsService {
     }
   }
 
-  getByConversationId(idconversation): Promise<{ info: any, results: Conversation }> {
-    return this.httpClient.get<{ info: any, results: Conversation }>(`${this.baseUrl}/${idconversation}`, this.createHeaders()).toPromise()
+  getByConversationId(idconversation): Promise<Conversation> {
+    return this.httpClient.get<Conversation>(`${this.baseUrl}/${idconversation}`, this.createHeaders()).toPromise();
   }
 
-  getByUserId(iduser): Promise<{ info: any, results: Conversation }> {
-    return this.httpClient.get<{ info: any, results: Conversation }>(`${this.baseUrl}/user/${iduser}`, this.createHeaders()).toPromise()
+  getByUserId(iduser): Promise<Conversation[]> {
+    return this.httpClient.get<Conversation[]>(`${this.baseUrl}/user/${iduser}`, this.createHeaders()).toPromise()
   }
 
-  getByUsersIds(iduser1, iduser2): Promise<{ info: any, results: Conversation }> {
-    return this.httpClient.get<{ info: any, results: Conversation }>(`${this.baseUrl}/users/${iduser1}/user2/${iduser2}`, this.createHeaders()).toPromise()
+  getByUsersIds(iduser1, iduser2): Promise<Conversation> {
+    return this.httpClient.get<Conversation>(`${this.baseUrl}/users/${iduser1}/user2/${iduser2}`, this.createHeaders()).toPromise()
   }
 }

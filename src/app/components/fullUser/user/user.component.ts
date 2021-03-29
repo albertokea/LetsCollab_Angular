@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faAd } from '@fortawesome/free-solid-svg-icons'
 import { Post } from 'src/app/interfaces/post';
 import { User } from 'src/app/interfaces/user';
 import { PostsService } from 'src/app/services/posts.service';
 import { UsersService } from 'src/app/services/users.service';
-import { faPen } from '@fortawesome/free-solid-svg-icons';
+import { faPen, faAd, faStar, faUndo } from '@fortawesome/free-solid-svg-icons';
 import { FormControl, FormGroup } from '@angular/forms';
+import { LikesService } from 'src/app/services/likes.service';
+import { Like } from 'src/app/interfaces/like';
 declare var Swal;
 @Component({
   selector: 'app-user',
@@ -16,6 +17,8 @@ declare var Swal;
 export class UserComponent implements OnInit {
   faAd = faAd;
   faPen = faPen
+  faStar = faStar;
+  faUndo = faUndo;
 
   isDisabled: boolean;
   formDisabled: boolean;
@@ -31,14 +34,19 @@ export class UserComponent implements OnInit {
   headerForm: FormGroup
   fileChosenHeader: boolean
 
+  userLikes: Like[];
+  likeActive: boolean;
+
   page: number;
   lastPage: number;
+  error: boolean;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private usersService: UsersService,
-    private postsService: PostsService
+    private postsService: PostsService,
+    private likesService: LikesService
   ) {
 
     this.headerForm = new FormGroup({
@@ -56,6 +64,8 @@ export class UserComponent implements OnInit {
     this.profilePicture = 'default-user-image.png'
 
     this.page = 0;
+    this.likeActive = false;
+    this.error = false;
   }
 
   async ngOnInit() {
@@ -76,9 +86,8 @@ export class UserComponent implements OnInit {
         header_picture: new FormControl(),
         iduser: new FormControl(this.user.iduser)
       })
-
     }
-
+    this.userLikes = await this.likesService.getByUser(this.user.iduser);
   }
 
   seeMore() {
@@ -100,6 +109,37 @@ export class UserComponent implements OnInit {
   nothing() {
 
   }
+
+  onLike() {
+    this.userPosts = []
+    this.page = 0;
+    setTimeout(() => {
+      if (this.userLikes) {
+        this.likeActive = true;
+        this.userLikes.forEach(async like => {
+          let favouritePost = await this.postsService.getById(like.fk_post);
+          this.userPosts.unshift(favouritePost);
+        });
+      } else {
+        this.error = true;
+      }
+    }, 1000);
+  }
+
+  onUserPosts() {
+    this.userPosts = []
+    this.page = 0;
+    setTimeout(async () => {
+      const response = await this.postsService.getByUserId(this.user.iduser, this.page * 10);
+      if (response.result) {
+        this.userPosts = response.result;
+        this.likeActive = false;
+      } else {
+        this.error = true;
+      }
+    }, 1000)
+  }
+
   async onFileChangeHeader(event) {
     if (event.target.files.length > 0) {
       if (event.target.files[0].name.match(/\.(jpg|jpeg|png|gif)$/)) {

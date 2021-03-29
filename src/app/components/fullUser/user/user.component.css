@@ -11,13 +11,18 @@
     min-height: 150px;
 }
 .headerImg{
-    background-image: url("../../../../assets/images/MarioUwUBien.png");
     background-size:contain;
 }
-
 .icon{
     width: 2.5em;
     cursor: pointer;
+}
+.favIcon{
+    cursor:pointer;
+    color: yellow;
+}
+.favIcon:hover{
+    color: rgb(165, 165, 7);
 }
 a{
     text-decoration: none;

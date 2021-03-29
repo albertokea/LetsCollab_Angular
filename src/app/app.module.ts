@@ -15,7 +15,7 @@ import { LetscollabComponent } from './components/letscollab/letscollab.componen
 import { UserComponent } from './components/fullUser/user/user.component';
 import { UserEditComponent } from './components/fullUser/user-edit/user-edit.component';
 import { CollabPostComponent } from './components/posts/collab-post/collab-post.component';
-import { MessagesComponent } from './components/messages/messages.component';
+import { MessagesComponent } from './components/fullMessage/messages/messages.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -25,6 +25,8 @@ import { Error404Component } from './components/error404/error404.component';
 import { PostMessageComponent } from './components/posts/post-message/post-message.component';
 import { CommunityComponent } from './components/community/community.component';
 import { CommunityUserCardComponent } from './components/community-user-card/community-user-card.component';
+import { ConversationComponent } from './components/fullMessage/conversation/conversation.component';
+import { ConversationMessageComponent } from './components/fullMessage/conversation-message/conversation-message.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { CommunityUserCardComponent } from './components/community-user-card/com
     Error404Component,
     PostMessageComponent,
     CommunityComponent,
-    CommunityUserCardComponent
+    CommunityUserCardComponent,
+    ConversationComponent,
+    ConversationMessageComponent
   ],
   imports: [
     BrowserModule,

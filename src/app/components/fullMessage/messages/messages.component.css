@@ -1,0 +1,57 @@
+.body{
+    background-color: var(--color-dark-bg);
+}
+.imgBack{
+    background-image: url(http://localhost:3000/images/messages/Music_Monitor.jpg); 
+    background-repeat: repeat;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+.profile_picture{
+    cursor: pointer;
+}
+cdk-virtual-scroll-viewport{
+    height: 80vh;
+    width: 10vw;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+cdk-virtual-scroll-viewport li{
+   
+    list-style: none;
+}
+.wrapper{
+    display: flex;
+    overflow-x: auto;
+    height: 200px;
+    max-height: 200px;
+     border-radius: 10px;
+}
+.wrapper2{
+    max-height: 500px;
+    overflow-x: auto;
+    
+}
+.wrapper2::-webkit-scrollbar{
+   width: 0;
+}
+input[type="file"] {
+    display: none;
+}
+input[type="text"]{
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    height: 6em;
+}
+label{
+    padding-right: 5px;
+    border: 1px solid #666;
+}   
+.icon{
+    color: black
+}

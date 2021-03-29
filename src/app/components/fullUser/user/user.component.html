@@ -102,13 +102,21 @@
         </div>
 
         <hr class="bg-white">
-        <h2 class="text-white">Tus publicaciones:</h2>
+        <div class="d-flex justify-content-between">
+            <h2 *ngIf="!likeActive" class="text-white">Tus publicaciones:</h2>
+            <h2 *ngIf="likeActive" class="text-white">Tus publicaciones favoritas:</h2>
+            <fa-icon *ngIf="!likeActive" [icon]="faStar" class="fa-2x favIcon" (click)="onLike()"></fa-icon>
+            <fa-icon *ngIf="likeActive" [icon]="faUndo" class="fa-2x text-white" (click)="onUserPosts()"></fa-icon>
+        </div>
+        <div *ngIf="error" class="text-center">
+            <h2 class="text-white">Aún no tienes ningún favorito</h2>
+        </div>
 
         <div *ngFor="let post of userPosts">
             <collab-post [post]="post" (search)="nothing()"></collab-post>
         </div>
         <div class="text-center mt-5">
-            <button *ngIf="page != lastPage-1" class="btn btn-dark" (click)="seeMore()">Ver
+            <button *ngIf="page != lastPage-1 && !likeActive" class="btn btn-dark" (click)="seeMore()">Ver
                 más...</button>
         </div>
     </div>
