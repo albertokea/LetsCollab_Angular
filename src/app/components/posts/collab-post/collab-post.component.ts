@@ -38,6 +38,8 @@ export class CollabPostComponent implements OnInit {
   waveformContainer: string;
   isDisabled: boolean;
 
+  extraTags: any[];
+
   messages: PostMessage[];
   messageForm: FormGroup;
   username: string;
@@ -46,6 +48,7 @@ export class CollabPostComponent implements OnInit {
     private postsService: PostsService,
     private postMessagesService: PostMessagesService,
     private rouer: Router) {
+    this.extraTags = []
     this.isDisabled = true;
     this.search = new EventEmitter;
     this.messageForm = new FormGroup({
@@ -58,6 +61,7 @@ export class CollabPostComponent implements OnInit {
   async ngOnInit() {
 
     this.messages = await this.postMessagesService.getByPost(this.post.idpost);
+    this.extraTags = this.post.extra_tags.split(',')
   }
 
   async ngAfterViewInit() {
@@ -67,6 +71,8 @@ export class CollabPostComponent implements OnInit {
       progressColor: 'yellow'
     });
     this.wavesurfer.load('http://localhost:3000/audio/' + this.post.audio);
+
+    console.log(this.extraTags);
 
     this.user = await this.usersService.getById(this.post.fk_user);
     this.user.profile_picture ? this.profile_picture = this.user.profile_picture : this.profile_picture = 'default-user-image.png'
@@ -84,9 +90,7 @@ export class CollabPostComponent implements OnInit {
   onReply() {
     this.isDisabled = !this.isDisabled;
   }
-  /*  onDownload(file) {
-     const fileName = this.post.audio;
-   } */
+
 
   onSearch($event) {
     const type = $event.target.value.shift();

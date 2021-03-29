@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PostsService } from 'src/app/services/posts.service';
@@ -17,11 +17,15 @@ export class PostFormComponent implements OnInit {
   postForm: FormGroup;
   file: any;
   error: boolean;
+  extraTags: any[]
 
+  @ViewChild('extraTagsInput') extraTagsInput: ElementRef;
 
   constructor(
+
     private postsService: PostsService,
     private router: Router) {
+    this.extraTags = []
     this.postForm = new FormGroup({
       type: new FormControl('', [
         Validators.required
@@ -47,6 +51,9 @@ export class PostFormComponent implements OnInit {
     if (this.file && this.postForm.valid) {
       this.error = false;
       const formData = new FormData();
+      this.postForm.value.extra_tags = this.extraTags.join(',')
+      console.log(this.postForm.value.extra_tags);
+
       formData.append('audio', this.file);
       formData.append('type', this.postForm.value.type);
       formData.append('genre', this.postForm.value.genre);
@@ -78,5 +85,14 @@ export class PostFormComponent implements OnInit {
         alert('Solo se pueden introducir imagenes en formato mp3, wav');
       }
     }
+  }
+
+
+  onSeparate(event) {
+    const tag = event.target.value
+    console.log(tag);
+    if (tag !== '')
+      this.extraTags.push(tag)
+    this.extraTagsInput.nativeElement.value = ''
   }
 }

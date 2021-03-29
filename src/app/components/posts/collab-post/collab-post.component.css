@@ -36,7 +36,7 @@ h5{
     display: inline;
     padding: 2px;
     margin: 0 5px;
-    cursor: pointer;
+    
 }
 h6{
     font-size: 1em;
@@ -52,6 +52,9 @@ label{
 }
 .disabled{
     display: none;
+}
+.user{
+    cursor: pointer;
 }
 @media (max-width: 768px){
     h5{
