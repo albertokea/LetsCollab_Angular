@@ -6,7 +6,10 @@
         <h3 class="ml-2 user" [routerLink]="['/user',username]">
             {{user?.user}}
         </h3>
-        <h5>{{user?.subtitle}}</h5>
+        <h5 *ngIf="user?.subtitle">{{user?.subtitle}}</h5>
+        <h5 [ngClass]="{'deleteDisabled':!canDelete}" title="Borrar post" (click)='onDeletePost()' class="px-2  delete">
+            X
+        </h5>
     </div>
     <p class="text-warning my-2 type">
         {{post?.type}}

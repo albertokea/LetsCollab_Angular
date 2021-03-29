@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { faReply, faEnvelope, faHeart, faPlay, faPause, faDownload } from '@fortawesome/free-solid-svg-icons';
+import { faReply, faEnvelope, faHeart, faPlay, faPause, faDownload, faCrosshairs } from '@fortawesome/free-solid-svg-icons';
 
 import { Post } from 'src/app/interfaces/post';
 import { PostMessage } from 'src/app/interfaces/post-message';
@@ -11,7 +11,7 @@ import { PostsService } from 'src/app/services/posts.service';
 import { UsersService } from 'src/app/services/users.service';
 
 declare var WaveSurfer;
-
+declare var Swal;
 @Component({
   selector: 'collab-post',
   templateUrl: './collab-post.component.html',
@@ -29,11 +29,12 @@ export class CollabPostComponent implements OnInit {
   faPlay = faPlay;
   faPause = faPause;
   faUpload = faDownload;
+  faCross = faCrosshairs;
   datePublish: string
-
+  canDelete: boolean
   user: User;
   profile_picture: string;
-
+  id: number
   wavesurfer: any;
   waveformContainer: string;
   isDisabled: boolean;
@@ -48,6 +49,7 @@ export class CollabPostComponent implements OnInit {
     private postsService: PostsService,
     private postMessagesService: PostMessagesService,
     private rouer: Router) {
+    this.canDelete = false;
     this.extraTags = []
     this.isDisabled = true;
     this.search = new EventEmitter;
@@ -77,6 +79,10 @@ export class CollabPostComponent implements OnInit {
     this.user = await this.usersService.getById(this.post.fk_user);
     this.user.profile_picture ? this.profile_picture = this.user.profile_picture : this.profile_picture = 'default-user-image.png'
     this.username = this.user.user;
+    this.id = this.usersService.tokenDecode();
+    if (this.id == this.post.fk_user) {
+      this.canDelete = true;
+    }
   }
 
   onPlayPause() {
@@ -119,4 +125,25 @@ export class CollabPostComponent implements OnInit {
     this.post[0] = await this.postsService.getByKey($event.target.value, 0)
   }
 
+  onDeletePost() {
+
+    Swal.fire({
+      title: '¿Estás seguro de que quieres eliminar tu post?',
+      text: "No podrás revertir esta acción",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Sí, borrarlo',
+      allowOutsideClick: false
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+
+        await this.postsService.deleteById(this.post.idpost),
+          window.location.reload()
+
+      }
+    })
+  }
 }

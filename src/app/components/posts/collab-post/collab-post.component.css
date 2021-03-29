@@ -56,7 +56,31 @@ label{
 .user{
     cursor: pointer;
 }
+.btn{
+    height: 10%;
+    margin-left: 65%;
+}
+.deleteDisabled{
+    display: none;
+}
+.delete{
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    color: white;
+    border-color: white;
+    background-color: tomato;
+    top: 2%;
+}
+.container{
+    position: relative;
+}
+
 @media (max-width: 768px){
+    .delete{
+        right: 2%;
+    }
+
     h5{
         display: block;
         text-align: center;
