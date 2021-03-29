@@ -33,6 +33,7 @@ export class CollabPostComponent implements OnInit {
   datePublish: string
   canDelete: boolean
   user: User;
+  userReply: User;
   profile_picture: string;
   id: number
   wavesurfer: any;
@@ -63,6 +64,8 @@ export class CollabPostComponent implements OnInit {
   async ngOnInit() {
 
     this.messages = await this.postMessagesService.getByPost(this.post.idpost);
+    const id = await this.usersService.tokenDecode();
+    this.userReply = await this.usersService.getById(id);
     this.extraTags = this.post.extra_tags.split(',')
   }
 
@@ -104,7 +107,7 @@ export class CollabPostComponent implements OnInit {
   }
 
   async newMessage(text_message) {
-    this.messageForm.value.fk_user = this.user.iduser;
+    this.messageForm.value.fk_user = this.userReply.iduser;
     this.messageForm.value.fk_post = this.post.idpost;
     if (text_message) {
       await this.postMessagesService.create(this.messageForm.value);

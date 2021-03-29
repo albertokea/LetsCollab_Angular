@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PostsService } from 'src/app/services/posts.service';
 import { faFeatherAlt } from '@fortawesome/free-solid-svg-icons';
 import { UsersService } from 'src/app/services/users.service';
@@ -18,92 +18,145 @@ export class LetscollabComponent implements OnInit {
 
   page: number;
   lastPage: number;
+  filter: string;
+  filterKeyword: any;
+  response: any;
+
+  @ViewChild('selectGenre') selectGenre: ElementRef;
 
   constructor(
     private postsService: PostsService,
     private usersService: UsersService) {
     this.page = 0;
+    this.filter = 'all';
   }
 
   async ngOnInit() {
-    const response = await this.postsService.getAll(0);
-    this.posts = response.result;
-    this.lastPage = response.info.pages;
+    this.response = await this.postsService.getAll(0);
+    this.posts = this.response.result;
+    this.lastPage = this.response.info.pages;
   }
 
   async removeFilters() {
-    const response = await this.postsService.getAll(0);
-    this.posts = response.result;
+    this.response = await this.postsService.getAll(0);
+    this.posts = this.response.result;
     this.error = false;
+    this.filter = 'all'
   }
 
   async changePage(prevNextPage) {
     this.page = this.page + prevNextPage;
-    const response = await this.postsService.getAll(this.page * 10);
-    this.posts = response.result;
+    switch (this.filter) {
+      case "all":
+        this.response = await this.postsService.getAll(this.page * 10);
+        this.search(this.response);
+        break;
+      case "type":
+        this.response = await this.postsService.getByType(this.filterKeyword, this.page * 10);
+        this.search(this.response);
+        break;
+      case "genre":
+        this.response = await this.postsService.getByGenre(this.filterKeyword, this.page * 10);
+        this.search(this.response);
+        break;
+      case "license":
+        this.response = await this.postsService.getByLicense(this.filterKeyword, this.page * 10);
+        this.search(this.response);
+        break;
+      case "key":
+        this.response = await this.postsService.getByKey(this.filterKeyword, this.page * 10);
+        this.search(this.response);
+        break;
+      case "keyword":
+        this.response = await this.postsService.getByKeyword(this.filterKeyword, this.page * 10);
+        this.search(this.response);
+        break;
+      case "user":
+        console.log(this.filterKeyword);
+        console.log(this.filter)
+        this.response = await this.postsService.getByUserId(this.filterKeyword, this.page * 10);
+        this.search(this.response);
+        console.log(this.response);
+        break;
+    }
   }
 
   async searchByType(event) {
-    this.posts = [];
-    this.loading = true;
-    const response = await this.postsService.getByType(event.target.value, 0);
-    if (response.result) this.search(response.result)
+    this.initSearch();
+    this.page = 0;
+    this.filter = 'type'
+    this.filterKeyword = event.target.value;
+    this.response = await this.postsService.getByType(event.target.value, 0);
+    if (this.response.result) this.search(this.response)
     else this.err()
   }
 
   async searchByGenre(event) {
-    this.posts = [];
-    this.loading = true;
-    const response = await this.postsService.getByGenre(event.target.value, 0);
-    if (response.result) this.search(response.result)
+    this.initSearch();
+    this.filter = 'genre'
+    this.filterKeyword = event.target.value;
+    this.response = await this.postsService.getByGenre(event.target.value, 0);
+    if (this.response.result) this.search(this.response)
     else this.err()
   }
 
   async searchByLicense(event) {
-    this.posts = [];
-    this.loading = true;
-    const response = await this.postsService.getByLicense(event.target.value, 0);
-    if (response.result) this.search(response.result)
+    this.selectGenre.nativeElement.value = "";
+    this.initSearch();
+    this.filter = 'license'
+    this.filterKeyword = event.target.value;
+    this.response = await this.postsService.getByLicense(event.target.value, 0);
+    if (this.response.result) this.search(this.response)
     else this.err()
   }
 
   async searchByKey(event) {
-    this.posts = [];
-    this.loading = true;
-    const response = await this.postsService.getByKey(event.target.value, 0);
-    if (response.result) this.search(response.result)
+    this.initSearch();
+    this.filter = 'key'
+    this.filterKeyword = event.target.value;
+    this.response = await this.postsService.getByKey(event.target.value, 0);
+    if (this.response.result) this.search(this.response)
     else this.err()
 
   }
 
   async searchByKeyword(event) {
     if (event.keyCode === 13) {
-      this.posts = [];
-      this.loading = true;
-      const response = await this.postsService.getByKeyword(event.target.value, 0);
-      if (response.result) this.search(response.result);
+      this.initSearch();
+      this.filter = 'keyword'
+      this.filterKeyword = event.target.value;
+      this.response = await this.postsService.getByKeyword(event.target.value, 0);
+      if (this.response.result) this.search(this.response);
       else this.err();
     }
   }
 
   async searchByUser(event) {
     if (event.keyCode === 13) {
-      this.posts = [];
-      this.loading = true;
+      this.initSearch();
+      this.filter = 'user';
       const user = await this.usersService.getByUser(event.target.value);
+      this.filterKeyword = user.iduser;
       if (user) {
-        const response = await this.postsService.getByUserId(user.iduser, 0);
-        if (response.result) this.search(response.result);
+        this.response = await this.postsService.getByUserId(user.iduser, 0);
+        if (this.response.result) this.search(this.response);
         else this.err()
       } else this.err()
     }
   }
 
-  search(result) {
+  initSearch() {
+    this.posts = [];
+    this.loading = true;
+    this.page = 0;
+  }
+
+  search(response) {
     setTimeout(() => {
-      this.posts = result;
+      this.posts = response.result;
       this.error = false;
       this.loading = false;
+      this.lastPage = response.info.pages;
     }, 1000)
   }
 

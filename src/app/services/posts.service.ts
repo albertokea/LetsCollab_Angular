@@ -39,8 +39,8 @@ export class PostsService {
     return id;
   }
 
-  getAll(offset): Promise<any> {
-    return this.httpClient.get<any>(`${this.baseUrl}/offset/${offset}`, this.createHeaders()).toPromise()
+  getAll(offset): Promise<{ info: any, results: Post[] }> {
+    return this.httpClient.get<{ info: any, results: Post[] }>(`${this.baseUrl}/offset/${offset}`, this.createHeaders()).toPromise()
   }
 
   getById(id): Promise<any> {
