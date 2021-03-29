@@ -10,7 +10,7 @@ export class MessagesComponent implements OnInit {
   faUpload = faUpload;
   images = []
   constructor() {
-    this.images = ["../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png"]
+    this.images = ["http://localhost:3000/images/profile_pictures/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png", "../../../assets/images/default-user-image.png"]
   }
 
   ngOnInit(): void {
