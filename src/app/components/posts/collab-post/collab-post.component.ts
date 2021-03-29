@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { faReply, faEnvelope, faHeart, faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
+import { faReply, faEnvelope, faHeart, faPlay, faPause, faDownload } from '@fortawesome/free-solid-svg-icons';
 
 import { Post } from 'src/app/interfaces/post';
 import { PostMessage } from 'src/app/interfaces/post-message';
@@ -13,7 +13,8 @@ declare var WaveSurfer;
 @Component({
   selector: 'collab-post',
   templateUrl: './collab-post.component.html',
-  styleUrls: ['./collab-post.component.css']
+  styleUrls: ['./collab-post.component.css'],
+
 })
 export class CollabPostComponent implements OnInit {
   @Input() post: Post;
@@ -25,6 +26,7 @@ export class CollabPostComponent implements OnInit {
   faHeart = faHeart;
   faPlay = faPlay;
   faPause = faPause;
+  faUpload = faDownload;
   datePublish: string
 
   user: User;
@@ -73,6 +75,9 @@ export class CollabPostComponent implements OnInit {
   onReply() {
     this.isDisabled = !this.isDisabled;
   }
+  /*  onDownload(file) {
+     const fileName = this.post.audio;
+   } */
 
   onSearch($event) {
     const type = $event.target.value.shift();

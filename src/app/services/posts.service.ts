@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import jwt_decode from "jwt-decode";
 import { Post } from '../interfaces/post';
+/* import 'rxjs/Rx';
+import { Observable } from 'rxjs' */
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +23,15 @@ export class PostsService {
     }
   }
 
+  downloadHeaders() {
+    return {
+
+      headers: new HttpHeaders({
+        'authorization': localStorage.getItem('token_auth'),
+        'Content-Type': 'aplication/json'
+      })
+    }
+  }
   tokenDecode() {
     const token = localStorage.getItem('token_auth');
     const decode = jwt_decode(token)
@@ -76,4 +87,11 @@ export class PostsService {
     return this.httpClient.delete<Post>(`${this.baseUrl}/delete/${id}`, this.createHeaders()).toPromise();
   }
 
+  /*  downloadFIle(file: string): Promise<any> {
+     var body = { filename: file };
+     return this.httpClient.post<any>(`${this.baseUrl}/download`, body, {
+       responseType: 'blob',
+       headers: new HttpHeaders(({ 'authorization': localStorage.getItem('token_auth'), 'Content-type': 'aplication/json' }))
+     }).toPromise()
+   } */
 }
