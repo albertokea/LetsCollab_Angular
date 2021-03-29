@@ -23,6 +23,8 @@ import { PostFormComponent } from './components/posts/post-form/post-form.compon
 import { LabComponent } from './components/lab/lab.component';
 import { Error404Component } from './components/error404/error404.component';
 import { PostMessageComponent } from './components/posts/post-message/post-message.component';
+import { CommunityComponent } from './components/community/community.component';
+import { CommunityUserCardComponent } from './components/community-user-card/community-user-card.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { PostMessageComponent } from './components/posts/post-message/post-messa
     PostFormComponent,
     LabComponent,
     Error404Component,
-    PostMessageComponent
+    PostMessageComponent,
+    CommunityComponent,
+    CommunityUserCardComponent
   ],
   imports: [
     BrowserModule,

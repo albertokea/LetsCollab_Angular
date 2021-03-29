@@ -9,6 +9,8 @@
                         class="custom-file-upload text-secondary text-warning">
                         <fa-icon [icon]="faPen" class="fa-lg icon"></fa-icon>
                     </label>
+                    <p class="ml-2 text-secondary" style="display: inline;" [ngClass]="{'editDisabled':!canEdit}">Añada
+                        un banner a su perfil...</p>
                     <input id="file-upload" (change)='onFileChangeHeader($event)' type="file"
                         formControlName='header_picture' name="header_picture" />
                     <input type="hidden" formControlName="iduser">
@@ -104,11 +106,9 @@
         <div *ngFor="let post of userPosts">
             <collab-post [post]="post" (search)="nothing()"></collab-post>
         </div>
-        <div class="d-flex justify-content-between mt-3">
-            <button [disabled]="page === 0" class="btn btn-dark" (click)="changePage(-1)">Página Anterior</button>
-            <h4 class="text-white">Página {{page + 1}}</h4>
-            <button [disabled]="page === lastPage-1" class="btn btn-dark" (click)="changePage(+1)">Siguiente
-                página</button>
+        <div class="text-center mt-5">
+            <button *ngIf="page != lastPage-1" class="btn btn-dark" (click)="seeMore()">Ver
+                más...</button>
         </div>
     </div>
 </div>

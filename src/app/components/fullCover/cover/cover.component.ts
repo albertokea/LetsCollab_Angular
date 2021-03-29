@@ -22,14 +22,18 @@ export class CoverComponent implements OnInit {
   }
 
   onLogin() {
-    this.isDisabled = true;
-    this.registerDisabled = true;
-    this.loginDisabled = false;
+    setTimeout(() => {
+      this.isDisabled = true;
+      this.registerDisabled = true;
+      this.loginDisabled = false;
+    },500);
   }
 
   onRegister() {
-    this.isDisabled = true;
+    setTimeout(() => {
+      this.isDisabled = true;
     this.loginDisabled = true;
     this.registerDisabled = false;
+    },500);
   }
 }

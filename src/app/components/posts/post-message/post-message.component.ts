@@ -18,8 +18,7 @@ export class PostMessageComponent implements OnInit {
     private usersService: UsersService) { }
 
   async ngOnInit() {
-    const id = await this.usersService.tokenDecode();
-    this.user = await this.usersService.getById(id);
+    this.user = await this.usersService.getById(this.message.fk_user);
   }
 
 }

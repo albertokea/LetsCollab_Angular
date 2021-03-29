@@ -3,4 +3,5 @@ export interface PostMessage {
     fk_post: number;
     fk_user: number;
     text: string;
+    date_publish: Date;
 }

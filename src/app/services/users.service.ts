@@ -12,6 +12,10 @@ export class UsersService {
     this.baseUrl = 'http://localhost:3000/api/users';
   }
 
+  getAll(offset): Promise<any> {
+    return this.httpClient.get<any>(`${this.baseUrl}/offset/${offset}`, this.createHeaders()).toPromise()
+  }
+
   getById(id): Promise<User> {
     return this.httpClient.get<User>(`${this.baseUrl}/${id}`, this.createHeaders()).toPromise()
   }

@@ -40,13 +40,15 @@ export class UserComponent implements OnInit {
     private usersService: UsersService,
     private postsService: PostsService
   ) {
+
     this.headerForm = new FormGroup({
       header_picture: new FormControl(''),
       iduser: new FormControl('')
-    })
+    });
+
     this.route.params.subscribe(username => {
       this.usernamePage = username['username']
-    })
+    });
 
     this.canEdit = false
     this.isDisabled = false;
@@ -65,7 +67,7 @@ export class UserComponent implements OnInit {
       if (this.user.iduser == id) {
         this.canEdit = true;
       }
-      const responsePosts = await this.postsService.getAll(0);
+      const responsePosts = await this.postsService.getByUserId(this.user.iduser, 0);
       this.userPosts = responsePosts.result;
       this.lastPage = responsePosts.info.pages;
     } else {
@@ -79,10 +81,12 @@ export class UserComponent implements OnInit {
 
   }
 
-  async changePage(prevNextPage) {
-    this.page = this.page + prevNextPage;
-    const response = await this.postsService.getAll(this.page * 10);
-    this.userPosts = response.result;
+  seeMore() {
+    setTimeout(async () => {
+      this.page += 1;
+      const response = await this.postsService.getByUserId(this.user.iduser, this.page * 10);
+      response.result.forEach(post => this.userPosts.push(post));
+    }, 1000);
   }
 
   onEdit() {
