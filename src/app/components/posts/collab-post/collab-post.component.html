@@ -63,9 +63,9 @@
     <div [ngClass]="{'disabled':isDisabled}">
         <div class="form-group mt-3">
             <div>
-                <img [src]="'http://localhost:3000/images/profile_pictures/'+ (user?.profile_picture ? user?.profile_picture : 'default-user-image.png')"
+                <img [src]="'http://localhost:3000/images/profile_pictures/'+ (userReply?.profile_picture ? user?.profile_picture : 'default-user-image.png')"
                     alt="" class="reply-img mb-3">
-                <h6 class="ml-2">{{user?.user}}</h6>
+                <h6 class="ml-2">{{userReply?.user}}</h6>
             </div>
             <form [formGroup]="messageForm">
                 <textarea type="text" class="form-control reply-input" name="" aria-describedby="helpId"
@@ -78,4 +78,5 @@
     <div *ngFor="let message of messages">
         <post-message [message]="message"></post-message>
     </div>
+    <a class="text-center">Mostrar más</a>
 </div>
