@@ -5,12 +5,13 @@
             <div class="headerImg container-fluid rounded pb-4"
                 [ngStyle]="{backgroundImage:'url(http://localhost:3000/images/header_pictures/'+(user?.header_picture ? user?.header_picture : 'marioUwUBien.png')+')'}">
                 <form class="formHeader " [formGroup]="headerForm">
-                    <label style="transform: translateY(10px);" for="file-upload"
+                    <label [ngClass]="{'editDisabled':!canEdit}" style="transform: translateY(10px);" for="file-upload"
                         class="custom-file-upload text-secondary text-warning">
                         <fa-icon [icon]="faPen" class="fa-lg icon"></fa-icon>
+                        <p class="ml-2 text-secondary" style="display: inline;">Añada
+                            un banner a su perfil...</p>
                     </label>
-                    <p class="ml-2 text-secondary" style="display: inline;" [ngClass]="{'editDisabled':!canEdit}">Añada
-                        un banner a su perfil...</p>
+
                     <input id="file-upload" (change)='onFileChangeHeader($event)' type="file"
                         formControlName='header_picture' name="header_picture" />
                     <input type="hidden" formControlName="iduser">

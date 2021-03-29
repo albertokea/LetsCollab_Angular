@@ -40,7 +40,7 @@ export class CollabPostComponent implements OnInit {
 
   messages: PostMessage[];
   messageForm: FormGroup;
-
+  username: string;
   constructor(
     private usersService: UsersService,
     private postsService: PostsService,
@@ -56,6 +56,7 @@ export class CollabPostComponent implements OnInit {
   }
 
   async ngOnInit() {
+
     this.messages = await this.postMessagesService.getByPost(this.post.idpost);
   }
 
@@ -69,6 +70,7 @@ export class CollabPostComponent implements OnInit {
 
     this.user = await this.usersService.getById(this.post.fk_user);
     this.user.profile_picture ? this.profile_picture = this.user.profile_picture : this.profile_picture = 'default-user-image.png'
+    this.username = this.user.user;
   }
 
   onPlayPause() {

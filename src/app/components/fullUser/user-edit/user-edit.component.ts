@@ -67,14 +67,29 @@ export class UserEditComponent implements OnInit {
     } else {
       formData.append('profile_picture', this.user.profile_picture);
     }
-
-    formData.append('twitter', this.editForm.value.twitter);
-    formData.append('instagram', this.editForm.value.instagram);
-    formData.append('facebook', this.editForm.value.facebook);
-    formData.append('email', this.editForm.value.email);
-    formData.append('bio', this.editForm.value.bio);
+    if (this.editForm.value.twitter != null) {
+      formData.append('twitter', this.editForm.value.twitter);
+    }
+    if (this.editForm.value.instagram != null) {
+      formData.append('instagram', this.editForm.value.instagram);
+    }
+    if (this.editForm.value.facebook != null) {
+      formData.append('facebook', this.editForm.value.facebook);
+    }
+    if (this.editForm.value.email != null) {
+      formData.append('email', this.editForm.value.email);
+    }
+    if (this.editForm.value.bio != null) {
+      formData.append('bio', this.editForm.value.bio);
+    }
+    if (this.editForm.value.twitter != null) {
+      formData.append('twitter', this.editForm.value.twitter);
+    }
     formData.append('iduser', this.editForm.value.iduser);
-    formData.append('subtitle', this.editForm.value.subtitle);
+    if (this.editForm.value.subtitle != null) {
+      formData.append('subtitle', this.editForm.value.subtitle);
+    }
+
     await this.usersService.update(formData);
     Swal.fire({
       icon: 'success',
