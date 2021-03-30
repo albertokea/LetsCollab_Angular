@@ -4,10 +4,11 @@ import { Post } from 'src/app/interfaces/post';
 import { User } from 'src/app/interfaces/user';
 import { PostsService } from 'src/app/services/posts.service';
 import { UsersService } from 'src/app/services/users.service';
-import { faPen, faAd, faStar, faUndo } from '@fortawesome/free-solid-svg-icons';
+import { faPen, faAd, faStar, faUndo, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FormControl, FormGroup } from '@angular/forms';
 import { LikesService } from 'src/app/services/likes.service';
 import { Like } from 'src/app/interfaces/like';
+import { ConversationsService } from 'src/app/services/conversations.service';
 declare var Swal;
 @Component({
   selector: 'app-user',
@@ -19,6 +20,7 @@ export class UserComponent implements OnInit {
   faPen = faPen
   faStar = faStar;
   faUndo = faUndo;
+  faEnvelope = faEnvelope;
 
   isDisabled: boolean;
   formDisabled: boolean;
@@ -46,7 +48,8 @@ export class UserComponent implements OnInit {
     private router: Router,
     private usersService: UsersService,
     private postsService: PostsService,
-    private likesService: LikesService
+    private likesService: LikesService,
+    private conversationsService: ConversationsService
   ) {
 
     this.headerForm = new FormGroup({
@@ -89,6 +92,21 @@ export class UserComponent implements OnInit {
       })
     }
     this.userLikes = await this.likesService.getByUser(this.user.iduser);
+  }
+
+  async onConversation() {
+    let myId = await this.usersService.tokenDecode();
+    let conversation = await this.conversationsService.getByUsersIds(this.user.iduser, myId);
+    if (conversation) {
+      this.router.navigate([`/messages/${conversation.idconversation}`])
+    } else {
+      const body = {
+        fk_user1: myId,
+        fk_user2: this.user.iduser
+      }
+      const result = await this.conversationsService.create(body);
+      this.router.navigate([`/messages/${result.insertId}`])
+    }
   }
 
   seeMore() {
