@@ -68,7 +68,7 @@ export class CollabPostComponent implements OnInit {
     this.limitReplys = 2;
     this.isDisabled = true;
     this.showMore = true;
-    this.search = new EventEmitter;
+    this.search = new EventEmitter();
     this.likeActive = false;
 
     this.messageForm = new FormGroup({
@@ -85,16 +85,18 @@ export class CollabPostComponent implements OnInit {
     this.messages = await this.postMessagesService.getByPost(this.post.idpost);
     const id = await this.usersService.tokenDecode();
     this.userReply = await this.usersService.getById(id);
-    this.extraTags = this.post.extra_tags.split(',')
+    if (this.post.extra_tags) {
+      this.extraTags = this.post.extra_tags.split(',')
+    }
 
     if (this.messages.length <= this.limitReplys) {
       this.showMore = false;
     }
 
     this.like = await this.likesService.getLike(this.post.idpost, this.user.iduser);
+
     if (this.like) {
       console.log(this.like);
-
       this.likeActive = true;
       this.idlike = this.like.idlike
     }
