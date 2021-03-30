@@ -24,4 +24,8 @@ export class ConversationMessagesService {
   getMessages(idconversation): Promise<ConversationMessage[]> {
     return this.httpClient.get<ConversationMessage[]>(`${this.baseUrl}/${idconversation}`, this.createHeaders()).toPromise()
   }
+
+  create(message): Promise<ConversationMessage> {
+    return this.httpClient.post<ConversationMessage>(`${this.baseUrl}/new`, message, this.createHeaders()).toPromise()
+  }
 }
