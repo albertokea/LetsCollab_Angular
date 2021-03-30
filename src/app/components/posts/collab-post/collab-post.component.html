@@ -1,12 +1,12 @@
 <div class="container mt-3">
     <div>
         <img [routerLink]="['/user',username]"
-            [src]="'http://localhost:3000/images/profile_pictures/'+ (user?.profile_picture ? user?.profile_picture : 'default-user-image.png')"
+            [src]="'http://localhost:3000/images/profile_pictures/'+ (postUser?.profile_picture ? postUser?.profile_picture : 'default-user-image.png')"
             alt="" class="post-img">
         <h3 class="ml-2 user" [routerLink]="['/user',username]">
-            {{user?.user}}
+            {{postUser?.user}}
         </h3>
-        <h5 *ngIf="user?.subtitle">{{user?.subtitle}}</h5>
+        <h5 *ngIf="postUser?.subtitle">{{postUser?.subtitle}}</h5>
         <h5 [ngClass]="{'deleteDisabled':!canDelete}" title="Borrar post" (click)='onDeletePost()' class="px-2  delete">
             X
         </h5>
@@ -54,7 +54,7 @@
                 <fa-icon [icon]="faUpload" class="fa-lg"></fa-icon>
             </a>
             <a class="level-item text-secondary icon">
-                <fa-icon [icon]="faEnvelope" class="fa-lg"></fa-icon>
+                <fa-icon [icon]="faEnvelope" class="fa-lg" (click)="onConversation()"></fa-icon>
             </a>
             <a class="level-item mx-3 icon">
                 <fa-icon [icon]="faReply" class="fa-lg" (click)="onReply()"></fa-icon>
@@ -75,9 +75,9 @@
     <div [ngClass]="{'disabled':isDisabled}">
         <div class="form-group mt-3">
             <div>
-                <img [src]="'http://localhost:3000/images/profile_pictures/'+ (userReply?.profile_picture ? user?.profile_picture : 'default-user-image.png')"
+                <img [src]="'http://localhost:3000/images/profile_pictures/'+ (myUser?.profile_picture ? myUser?.profile_picture : 'default-user-image.png')"
                     alt="" class="reply-img mb-3">
-                <h6 class="ml-2">{{userReply?.user}}</h6>
+                <h6 class="ml-2">{{myUser?.user}}</h6>
             </div>
             <form [formGroup]="messageForm">
                 <textarea type="text" class="form-control reply-input" name="" aria-describedby="helpId"
