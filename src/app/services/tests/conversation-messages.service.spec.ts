@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ConversationMessagesService } from './conversation-messages.service';
+import { ConversationMessagesService } from '../conversation-messages.service';
 
 describe('ConversationMessagesService', () => {
   let service: ConversationMessagesService;
