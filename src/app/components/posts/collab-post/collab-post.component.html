@@ -49,8 +49,8 @@
             <h5>License: {{post?.license}}</h5>
         </div>
         <div>
-            <a [href]="'http://localhost:3000/audio/'+post?.audio" target="_blank"
-                class="level-item mr-3 text-secondary icon">
+            <a [ngClass]="{'cantDownload':!canDownload}" [href]="'http://localhost:3000/audio/'+post?.audio"
+                target="_blank" class="level-item mr-3 text-secondary icon">
                 <fa-icon [icon]="faUpload" class="fa-lg"></fa-icon>
             </a>
             <a class="level-item text-secondary icon">
