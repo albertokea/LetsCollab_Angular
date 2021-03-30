@@ -54,8 +54,9 @@ export class UserComponent implements OnInit {
       iduser: new FormControl('')
     });
 
-    this.route.params.subscribe(username => {
-      this.usernamePage = username['username']
+    this.route.params.subscribe(async username => {
+      this.usernamePage = username['username'];
+      this.user = await this.usersService.getByUser(this.usernamePage);
     });
 
     this.canEdit = false
