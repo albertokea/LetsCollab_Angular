@@ -50,10 +50,10 @@
         </div>
         <div>
             <a [href]="'http://localhost:3000/audio/'+post?.audio" target="_blank"
-                class="level-item mr-3 text-secondary icon">
+                class="level-item text-secondary icon" [ngClass]="{'mr-3':canMessage}">
                 <fa-icon [icon]="faUpload" class="fa-lg"></fa-icon>
             </a>
-            <a class="level-item text-secondary icon">
+            <a *ngIf="canMessage" class="level-item text-secondary icon">
                 <fa-icon [icon]="faEnvelope" class="fa-lg" (click)="onConversation()"></fa-icon>
             </a>
             <a class="level-item mx-3 icon">
@@ -94,8 +94,8 @@
 
         </div>
         <div class="text-center">
-            <a *ngIf='showMore==true' class="text-center text-warning mr-3" (click)='onShowMore()'>Mostrar más</a>
-            <a *ngIf='showLess==true' class="text-center text-warning" (click)='onShowLess()'>Mostrar menos</a>
+            <a *ngIf='showMore' class="text-center text-warning mr-3" (click)='onShowMore()'>Mostrar más</a>
+            <a *ngIf='showLess' class="text-center text-warning" (click)='onShowLess()'>Mostrar menos</a>
         </div>
 
     </div>

@@ -144,12 +144,9 @@ export class UserComponent implements OnInit {
   async onFileChangeHeader(event) {
     if (event.target.files.length > 0) {
       if (event.target.files[0].name.match(/\.(jpg|jpeg|png|gif)$/)) {
-
         this.headerImg = event.target.files[0]
         const formData = new FormData();
         formData.append('header_picture', this.headerImg)
-
-        console.log(formData);
 
         await this.usersService.updateHeader(formData)
         Swal.fire({

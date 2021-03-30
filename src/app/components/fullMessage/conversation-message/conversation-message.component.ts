@@ -13,13 +13,22 @@ export class ConversationMessageComponent implements OnInit {
 
   user: User;
   isMyUser: boolean;
+  notMyUser: boolean;
 
 
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService) {
+    this.isMyUser = false;
+    this.notMyUser = false;
+  }
 
-  async ngOnInit() {
+  ngOnInit(): void {
+
+  }
+
+  async ngOnChanges() {
     const id = await this.usersService.tokenDecode();
     if (this.message.fk_user === id) this.isMyUser = true;
+    else this.notMyUser = true;
   }
 
 }

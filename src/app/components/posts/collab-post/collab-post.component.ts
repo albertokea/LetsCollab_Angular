@@ -58,6 +58,7 @@ export class CollabPostComponent implements OnInit {
   username: string;
   showMore: boolean;
   showLess: boolean;
+  canMessage: boolean;
 
   constructor(
     private usersService: UsersService,
@@ -73,6 +74,7 @@ export class CollabPostComponent implements OnInit {
     this.showMore = true;
     this.search = new EventEmitter();
     this.likeActive = false;
+    this.canMessage = true;
 
     this.messageForm = new FormGroup({
       fk_user: new FormControl(''),
@@ -99,9 +101,12 @@ export class CollabPostComponent implements OnInit {
     this.like = await this.likesService.getLike(this.post.idpost, this.myUser.iduser);
 
     if (this.like) {
-      console.log(this.like);
       this.likeActive = true;
       this.idlike = this.like.idlike
+    }
+
+    if (this.postUser.iduser === id) {
+      this.canMessage = false;
     }
   }
 
@@ -137,28 +142,17 @@ export class CollabPostComponent implements OnInit {
   }
 
   async onConversation() {
-    if (this.myUser.iduser != this.post.fk_user) {
-      console.log(this.myUser.iduser);
-      console.log(this.post.fk_user);
-
-      let conversation = await this.conversationsService.getByUsersIds(this.myUser.iduser, this.post.fk_user);
-      console.log(conversation.idconversation);
-      if (conversation.idconversation) {
-        console.log('navigate');
-
-        this.router.navigate([`/messages/${conversation.idconversation}`])
-      } else {
-        const body = {
-          fk_user1: this.myUser.iduser,
-          fk_user2: this.post.fk_user
-        }
-        conversation = await this.conversationsService.create(body);
-        console.log('create');
-
-        console.log(conversation);
+    let conversation = await this.conversationsService.getByUsersIds(this.myUser.iduser, this.post.fk_user);
+    if (conversation) {
+      this.router.navigate([`/messages/${conversation.idconversation}`])
+    } else {
+      const body = {
+        fk_user1: this.myUser.iduser,
+        fk_user2: this.post.fk_user
       }
+      const result = await this.conversationsService.create(body);
+      this.router.navigate([`/messages/${result.insertId}`])
     }
-
   }
 
 

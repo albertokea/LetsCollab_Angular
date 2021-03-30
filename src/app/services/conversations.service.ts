@@ -33,7 +33,7 @@ export class ConversationsService {
     return this.httpClient.get<Conversation>(`${this.baseUrl}/users/${iduser1}/user2/${iduser2}`, this.createHeaders()).toPromise();
   }
 
-  create(conversation): Promise<Conversation> {
-    return this.httpClient.post<Conversation>(`${this.baseUrl}/new`, conversation, this.createHeaders()).toPromise();
+  create(conversation): Promise<any> {
+    return this.httpClient.post<any>(`${this.baseUrl}/new`, conversation, this.createHeaders()).toPromise();
   }
 }

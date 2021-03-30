@@ -52,7 +52,6 @@ export class PostFormComponent implements OnInit {
       this.error = false;
       const formData = new FormData();
       this.postForm.value.extra_tags = this.extraTags.join(',')
-      console.log(this.postForm.value.extra_tags);
 
       formData.append('audio', this.file);
       formData.append('type', this.postForm.value.type);
@@ -90,7 +89,6 @@ export class PostFormComponent implements OnInit {
 
   onSeparate(event) {
     const tag = event.target.value
-    console.log(tag);
     if (tag !== '')
       this.extraTags.push(tag)
     this.extraTagsInput.nativeElement.value = ''

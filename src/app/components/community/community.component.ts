@@ -18,7 +18,6 @@ export class CommunityComponent implements OnInit {
 
   async ngOnInit() {
     const response = await this.usersService.getAll(0);
-    console.log(response);
     this.allUsers = response.result;
     this.lastPage = response.info.pages
   }

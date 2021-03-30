@@ -72,11 +72,8 @@ export class LetscollabComponent implements OnInit {
         this.search(this.response);
         break;
       case "user":
-        console.log(this.filterKeyword);
-        console.log(this.filter)
         this.response = await this.postsService.getByUserId(this.filterKeyword, this.page * 10);
         this.search(this.response);
-        console.log(this.response);
         break;
     }
   }
@@ -136,8 +133,8 @@ export class LetscollabComponent implements OnInit {
       this.initSearch();
       this.filter = 'user';
       const user = await this.usersService.getByUser(event.target.value);
-      this.filterKeyword = user.iduser;
       if (user) {
+        this.filterKeyword = user.iduser;
         this.response = await this.postsService.getByUserId(user.iduser, 0);
         if (this.response.result) this.search(this.response);
         else this.err()

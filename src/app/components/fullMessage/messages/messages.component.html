@@ -5,11 +5,12 @@
             <div *ngFor="let conversation of conversations; let i = index">
                 <img style="width: 80px;" class="rounded-circle mb-3 p-2 profile_picture"
                     [src]="'http://localhost:3000/images/profile_pictures/'+ (images[i] ? images[i]: 'default-user-image.png')"
-                    [id]="conversation.idconversation" (click)="selectConversation(conversation)" alt="">
+                    [routerLink]="['/messages',conversation?.idconversation]" (click)="selectConversation(conversation)"
+                    alt="">
             </div>
         </div>
 
-        <conversation #conversation></conversation>
+        <conversation #conversation [conversation]="currentConversation"></conversation>
 
     </div>
 </div>
