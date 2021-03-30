@@ -60,6 +60,7 @@ export class CollabPostComponent implements OnInit {
   showLess: boolean;
   canMessage: boolean;
 
+  canDownload: boolean;
   constructor(
     private usersService: UsersService,
     private postsService: PostsService,
@@ -76,6 +77,7 @@ export class CollabPostComponent implements OnInit {
     this.likeActive = false;
     this.canMessage = true;
 
+    this.canDownload = false;
     this.messageForm = new FormGroup({
       fk_user: new FormControl(''),
       fk_post: new FormControl(''),
@@ -86,7 +88,13 @@ export class CollabPostComponent implements OnInit {
   }
 
   async ngOnInit() {
+    console.log(this.post.license);
 
+    if (this.post.license != 'not-to-use') {
+      console.log('xd');
+
+      this.canDownload = true
+    }
     this.messages = await this.postMessagesService.getByPost(this.post.idpost);
     const id = await this.usersService.tokenDecode();
     this.myUser = await this.usersService.getById(id);

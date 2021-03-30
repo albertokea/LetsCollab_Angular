@@ -51,6 +51,8 @@
         <div>
             <a [href]="'http://localhost:3000/audio/'+post?.audio" target="_blank"
                 class="level-item text-secondary icon" [ngClass]="{'mr-3':canMessage}">
+            <a [ngClass]="{'cantDownload':!canDownload}" [href]="'http://localhost:3000/audio/'+post?.audio"
+                target="_blank" class="level-item mr-3 text-secondary icon">
                 <fa-icon [icon]="faUpload" class="fa-lg"></fa-icon>
             </a>
             <a *ngIf="canMessage" class="level-item text-secondary icon">
@@ -65,8 +67,8 @@
             </a>
 
         </div>
-
     </div>
+    
     <div class="mt-3 row">
         <span *ngFor='let tag of extraTags' class="text-white mb-2 px-1">
             <h5 *ngIf="post?.extra_tags" class="">#{{tag}}</h5>
