@@ -10,7 +10,8 @@ export class FavouritesService {
   baseUrl: string;
 
   constructor(private httpClient: HttpClient) {
-    this.baseUrl = 'http://localhost:3000/api/conversations';
+    /* this.baseUrl = 'http://localhost:3000/api/favourites'; */
+    this.baseUrl = 'https://letscollab-back.herokuapp.com/api/favourites';
   }
 
   createHeaders() {

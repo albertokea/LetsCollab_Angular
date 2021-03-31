@@ -10,7 +10,8 @@ export class LikesService {
   baseUrl: string;
 
   constructor(private httpClient: HttpClient) {
-    this.baseUrl = 'http://localhost:3000/api/likes'
+    /* this.baseUrl = 'http://localhost:3000/api/likes'; */
+    this.baseUrl = 'https://letscollab-back.herokuapp.com/api/likes';
   }
 
   createHeaders() {

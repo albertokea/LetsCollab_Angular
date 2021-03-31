@@ -24,11 +24,10 @@
             <div class="text-center">
                 <h4>{{user?.user}}</h4>
             </div>
+            <fa-icon *ngIf="!canEdit" [icon]="faEnvelope" class="fa-2x icon text-secondary offset-1 pb-2"
+                title="Ir a conversación" (click)="onConversation()">
+            </fa-icon>
             <div class="row">
-
-                <fa-icon *ngIf="!canEdit" [icon]="faEnvelope" class="fa-2x icon text-secondary offset-1 pb-2"
-                    title="Ir a conversación" (click)="onConversation()">
-                </fa-icon>
 
                 <div [ngClass]="{'editDisabled':!canEdit}" class="col-md-12 col-lg-2 col-xl-2 col-12 offset-lg-10 mb-3 "
                     *ngIf="isDisabled==false">

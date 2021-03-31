@@ -10,7 +10,8 @@ export class PostMessagesService {
 
   baseUrl: string;
   constructor(private httpClient: HttpClient) {
-    this.baseUrl = 'http://localhost:3000/api/postMessages';
+    /* this.baseUrl = 'http://localhost:3000/api/postMessages'; */
+    this.baseUrl = 'https://letscollab-back.herokuapp.com/api/postMessages';
   }
 
   createHeaders() {

@@ -10,7 +10,8 @@ export class VisitorsService {
   baseUrl: string;
 
   constructor(private httpClient: HttpClient) {
-    this.baseUrl = 'http://localhost:3000/api/visitors';
+    /* this.baseUrl = 'http://localhost:3000/api/visitors'; */
+    this.baseUrl = 'https://letscollab-back.herokuapp.com/api/visitors';
   }
 
   getByUser(user): Promise<User> {

@@ -10,7 +10,8 @@ export class ConversationMessagesService {
   baseUrl: string;
 
   constructor(private httpClient: HttpClient) {
-    this.baseUrl = 'http://localhost:3000/api/conversationMessages';
+    /* this.baseUrl = 'http://localhost:3000/api/conversationMessages'; */
+    this.baseUrl = 'https://letscollab-back.herokuapp.com/api/conversationMessages';
   }
 
   createHeaders() {

@@ -12,7 +12,8 @@ export class PostsService {
 
   baseUrl: string;
   constructor(private httpClient: HttpClient) {
-    this.baseUrl = 'http://localhost:3000/api/posts';
+    /* this.baseUrl = 'http://localhost:3000/api/posts'; */
+    this.baseUrl = 'https://letscollab-back.herokuapp.com/api/posts';
   }
 
   createHeaders() {

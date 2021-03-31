@@ -9,7 +9,8 @@ import { User } from '../interfaces/user';
 export class UsersService {
   baseUrl: string;
   constructor(private httpClient: HttpClient) {
-    this.baseUrl = 'http://localhost:3000/api/users';
+    /* this.baseUrl = 'http://localhost:3000/api/users'; */
+    this.baseUrl = 'https://letscollab-back.herokuapp.com/api/users';
   }
 
   getAll(offset): Promise<any> {
@@ -22,6 +23,10 @@ export class UsersService {
 
   getByUser(username): Promise<User> {
     return this.httpClient.get<User>(`${this.baseUrl}/user/${username}`, this.createHeaders()).toPromise()
+  }
+
+  getByKeyword(keyword): Promise<User[]> {
+    return this.httpClient.get<User[]>(`${this.baseUrl}/keyword/${keyword}`, this.createHeaders()).toPromise()
   }
 
   createHeaders() {
