@@ -7,6 +7,7 @@ import { Like } from 'src/app/interfaces/like';
 import { Post } from 'src/app/interfaces/post';
 import { PostMessage } from 'src/app/interfaces/post-message';
 import { User } from 'src/app/interfaces/user';
+import { ConversationsService } from 'src/app/services/conversations.service';
 import { LikesService } from 'src/app/services/likes.service';
 import { PostMessagesService } from 'src/app/services/post-message.service';
 import { PostsService } from 'src/app/services/posts.service';
@@ -37,8 +38,8 @@ export class CollabPostComponent implements OnInit {
 
   canDelete: boolean;
   datePublish: string;
-  user: User;
-  userReply: User;
+  postUser: User;
+  myUser: User;
   profile_picture: string;
   id: number;
 
@@ -57,12 +58,16 @@ export class CollabPostComponent implements OnInit {
   username: string;
   showMore: boolean;
   showLess: boolean;
+  canMessage: boolean;
+
   canDownload: boolean;
   constructor(
     private usersService: UsersService,
     private postsService: PostsService,
     private postMessagesService: PostMessagesService,
-    private likesService: LikesService) {
+    private likesService: LikesService,
+    private conversationsService: ConversationsService,
+    private router: Router) {
     this.canDelete = false;
     this.extraTags = [];
     this.limitReplys = 2;
@@ -70,6 +75,8 @@ export class CollabPostComponent implements OnInit {
     this.showMore = true;
     this.search = new EventEmitter();
     this.likeActive = false;
+    this.canMessage = true;
+
     this.canDownload = false;
     this.messageForm = new FormGroup({
       fk_user: new FormControl(''),
@@ -90,7 +97,7 @@ export class CollabPostComponent implements OnInit {
     }
     this.messages = await this.postMessagesService.getByPost(this.post.idpost);
     const id = await this.usersService.tokenDecode();
-    this.userReply = await this.usersService.getById(id);
+    this.myUser = await this.usersService.getById(id);
     if (this.post.extra_tags) {
       this.extraTags = this.post.extra_tags.split(',')
     }
@@ -99,14 +106,16 @@ export class CollabPostComponent implements OnInit {
       this.showMore = false;
     }
 
-    this.like = await this.likesService.getLike(this.post.idpost, this.user.iduser);
+    this.like = await this.likesService.getLike(this.post.idpost, this.myUser.iduser);
 
     if (this.like) {
-      console.log(this.like);
       this.likeActive = true;
       this.idlike = this.like.idlike
     }
 
+    if (this.postUser.iduser === id) {
+      this.canMessage = false;
+    }
   }
 
   async ngAfterViewInit() {
@@ -118,9 +127,9 @@ export class CollabPostComponent implements OnInit {
     this.wavesurfer.load('http://localhost:3000/audio/' + this.post.audio);
 
 
-    this.user = await this.usersService.getById(this.post.fk_user);
-    this.user.profile_picture ? this.profile_picture = this.user.profile_picture : this.profile_picture = 'default-user-image.png'
-    this.username = this.user.user;
+    this.postUser = await this.usersService.getById(this.post.fk_user);
+    this.postUser.profile_picture ? this.profile_picture = this.postUser.profile_picture : this.profile_picture = 'default-user-image.png'
+    this.username = this.postUser.user;
     this.id = this.usersService.tokenDecode();
     if (this.id == this.post.fk_user) {
       this.canDelete = true;
@@ -140,6 +149,20 @@ export class CollabPostComponent implements OnInit {
     this.isDisabled = !this.isDisabled;
   }
 
+  async onConversation() {
+    let conversation = await this.conversationsService.getByUsersIds(this.myUser.iduser, this.post.fk_user);
+    if (conversation) {
+      this.router.navigate([`/messages/${conversation.idconversation}`])
+    } else {
+      const body = {
+        fk_user1: this.myUser.iduser,
+        fk_user2: this.post.fk_user
+      }
+      const result = await this.conversationsService.create(body);
+      this.router.navigate([`/messages/${result.insertId}`])
+    }
+  }
+
 
   onSearch($event) {
     const type = $event.target.value.shift();
@@ -155,16 +178,16 @@ export class CollabPostComponent implements OnInit {
       this.likeActive = true;
       this.like = {
         "fk_post": this.post.idpost,
-        "fk_user": this.user.iduser,
+        "fk_user": this.myUser.iduser,
       }
       this.likesService.create(this.like);
-      this.like = await this.likesService.getLike(this.post.idpost, this.user.iduser);
+      this.like = await this.likesService.getLike(this.post.idpost, this.myUser.iduser);
       this.idlike = this.like.idlike
     }
   }
 
   async newMessage(text_message) {
-    this.messageForm.value.fk_user = this.userReply.iduser;
+    this.messageForm.value.fk_user = this.myUser.iduser;
     this.messageForm.value.fk_post = this.post.idpost;
     if (text_message) {
       await this.postMessagesService.create(this.messageForm.value);

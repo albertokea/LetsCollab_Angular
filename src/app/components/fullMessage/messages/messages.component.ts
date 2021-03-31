@@ -39,18 +39,17 @@ export class MessagesComponent implements OnInit {
     this.conversations.forEach(async conversation => {
       if (this.user.iduser != conversation.fk_user1) {
         let user2 = await this.usersService.getById(conversation.fk_user1);
-        this.images.unshift(user2.profile_picture);
+        this.images.push(user2.profile_picture);
       }
       if (this.user.iduser != conversation.fk_user2) {
         let user2 = await this.usersService.getById(conversation.fk_user2);
-        this.images.unshift(user2.profile_picture);
+        this.images.push(user2.profile_picture);
       }
     });
   }
 
   selectConversation(conversation) {
     this.currentConversation = conversation;
-    this.conversationActive.setConversation(conversation)
   }
 
 

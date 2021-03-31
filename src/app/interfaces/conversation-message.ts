@@ -4,4 +4,5 @@ export interface ConversationMessage {
     fk_user: number;
     fk_conversation: number;
     date_publish: Date;
+    file?: string;
 }

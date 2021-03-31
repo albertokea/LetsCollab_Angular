@@ -1,9 +1,10 @@
 <div class="container border border-dark  imgBack" style="min-height: 500px; border-radius: 10px;border-bottom-left-radius: 0;
     border-bottom-right-radius: 0; overflow: hidden;">
-
-    <!-- <div class="wrapper2" *ngFor="let message of messages">
-        <conversation-message message="message"></conversation-message>
-    </div> -->
+    <div class="wrapper2" #wrapper2>
+        <div *ngFor="let message of messages">
+            <conversation-message [message]="message"></conversation-message>
+        </div>
+    </div>
 </div>
 
 <div class="m-0 p-0">
@@ -14,8 +15,9 @@
             </label>
         </div>
 
-        <input id="file-upload" type="file" class="col-2">
-        <textarea class="p-1" style="width: 100%; min-height: 50px;border:2px solid black; border-top: 0;"></textarea>
+        <input id="file-upload" type="file" class="col-2" name="file" (change)="onFileChange($event)">
+        <textarea class="p-1" style="width: 100%; min-height: 50px;border:2px solid black; border-top: 0;"
+            (keydown)="sendMessage($event)"></textarea>
 
     </form>
 </div>

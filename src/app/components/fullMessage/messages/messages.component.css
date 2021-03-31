@@ -10,6 +10,7 @@
 }
 .profile_picture{
     cursor: pointer;
+    min-height: 80px;
 }
 cdk-virtual-scroll-viewport{
     height: 80vh;
