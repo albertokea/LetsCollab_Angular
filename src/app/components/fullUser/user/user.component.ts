@@ -33,7 +33,7 @@ export class UserComponent implements OnInit {
   userPosts: Post[];
   headerForm: FormGroup
   fileChosenHeader: boolean
-
+  headerChosen: boolean
   userLikes: Like[];
   likeActive: boolean;
 
@@ -48,7 +48,7 @@ export class UserComponent implements OnInit {
     private postsService: PostsService,
     private likesService: LikesService
   ) {
-
+    this.headerChosen = false;
     this.headerForm = new FormGroup({
       header_picture: new FormControl(''),
       iduser: new FormControl('')
@@ -73,6 +73,11 @@ export class UserComponent implements OnInit {
     this.fileChosenHeader = false;
     const id = await this.usersService.tokenDecode();
     this.user = await this.usersService.getByUser(this.usernamePage);
+
+
+    if (this.user.header_picture) {
+      this.headerChosen = true
+    }
     if (this.user) {
       if (this.user.iduser == id) {
         this.canEdit = true;
@@ -88,6 +93,8 @@ export class UserComponent implements OnInit {
       })
     }
     this.userLikes = await this.likesService.getByUser(this.user.iduser);
+
+
   }
 
   seeMore() {

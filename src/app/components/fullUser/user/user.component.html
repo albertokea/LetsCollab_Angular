@@ -8,7 +8,7 @@
                     <label [ngClass]="{'editDisabled':!canEdit}" style="transform: translateY(10px);" for="file-upload"
                         class="custom-file-upload text-secondary text-warning">
                         <fa-icon [icon]="faPen" class="fa-lg icon"></fa-icon>
-                        <p class="ml-2 text-secondary" style="display: inline;">Añada
+                        <p *ngIf='headerChosen==false' class="ml-2 text-secondary" style="display: inline;">Añada
                             un banner a su perfil...</p>
                     </label>
 

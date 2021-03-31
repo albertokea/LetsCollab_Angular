@@ -44,7 +44,9 @@ a{
 input[type="file"] {
     display: none;
 }
-
+.headerChosen{
+    display: none;
+}
 @media (max-width:768px){
     .bio1{
         display: block;

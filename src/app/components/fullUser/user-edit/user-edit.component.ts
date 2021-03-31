@@ -82,9 +82,6 @@ export class UserEditComponent implements OnInit {
     if (this.editForm.value.bio != null) {
       formData.append('bio', this.editForm.value.bio);
     }
-    if (this.editForm.value.twitter != null) {
-      formData.append('twitter', this.editForm.value.twitter);
-    }
     formData.append('iduser', this.editForm.value.iduser);
     if (this.editForm.value.subtitle != null) {
       formData.append('subtitle', this.editForm.value.subtitle);
