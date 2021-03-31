@@ -1,6 +1,6 @@
 <div>
     <div class="mt-3" [routerLink]="['/user',user?.user]">
-        <img [src]="'http://localhost:3000/images/profile_pictures/'+ (user?.profile_picture ? user?.profile_picture : 'default-user-image.png')"
+        <img [src]="'https://letscollab-back.herokuapp.comimages/profile_pictures/'+ (user?.profile_picture ? user?.profile_picture : 'default-user-image.png')"
             alt="" class="reply-img">
         <h6 class="ml-2">{{user?.user}}</h6>
     </div>

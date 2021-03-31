@@ -124,7 +124,7 @@ export class CollabPostComponent implements OnInit {
       waveColor: 'violet',
       progressColor: 'yellow'
     });
-    this.wavesurfer.load('http://localhost:3000/audio/' + this.post.audio);
+    this.wavesurfer.load('https://letscollab-back.herokuapp.com/audio/' + this.post.audio);
 
 
     this.postUser = await this.usersService.getById(this.post.fk_user);

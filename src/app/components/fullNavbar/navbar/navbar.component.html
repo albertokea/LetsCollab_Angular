@@ -5,7 +5,7 @@
 
     <div class=" userContainer ">
         <img [routerLink]="['/user',user?.user]" class="userImage"
-            [src]="'http://localhost:3000/images/profile_pictures/'+ (user?.profile_picture ? user?.profile_picture : 'default-user-image.png')"
+            [src]="'https://letscollab-back.herokuapp.com/images/profile_pictures/'+ (user?.profile_picture ? user?.profile_picture : 'default-user-image.png')"
             alt="">
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu"

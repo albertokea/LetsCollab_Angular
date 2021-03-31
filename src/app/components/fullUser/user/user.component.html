@@ -3,7 +3,7 @@
     <div class="container pb-0">
         <div class="pt-5 ">
             <div class="headerImg container-fluid rounded pb-4"
-                [ngStyle]="{backgroundImage:'url(http://localhost:3000/images/header_pictures/'+(user?.header_picture ? user?.header_picture : 'marioUwUBien.png')+')'}">
+                [ngStyle]="{backgroundImage:'url(https://letscollab-back.herokuapp.com/images/header_pictures/'+(user?.header_picture ? user?.header_picture : 'marioUwUBien.png')+')'}">
                 <form class="formHeader " [formGroup]="headerForm">
                     <label [ngClass]="{'editDisabled':!canEdit}" style="transform: translateY(10px);" for="file-upload"
                         class="custom-file-upload text-secondary text-warning">
@@ -18,7 +18,7 @@
                 </form>
                 <div class=" ">
                     <img class='img-fluid rounded-circle mx-auto d-block imageUser w-25 '
-                        [src]="'http://localhost:3000/images/profile_pictures/'+ (user?.profile_picture ? user?.profile_picture : 'default-user-image.png')">
+                        [src]="'https://letscollab-back.herokuapp.com/images/profile_pictures/'+ (user?.profile_picture ? user?.profile_picture : 'default-user-image.png')">
                 </div>
             </div>
             <div class="text-center">

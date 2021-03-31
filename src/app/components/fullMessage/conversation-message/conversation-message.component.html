@@ -1,6 +1,7 @@
 <div class="p-2 mt-5" [ngClass]="{'bg-warning':notMyUser, 'ml-2': notMyUser}"
     [ngClass]="{'bg-light':isMyUser, 'ml-auto': isMyUser}" style="max-width: 60%; border-radius: 10px;">
     <p *ngIf="!message?.file" class="text-black">{{message?.text}}</p>
-    <p *ngIf="message?.file" class="text-black"><a [href]="'http://localhost:3000/messages/audio/' + message?.text"
-            download="audio.mp3">Ir a audio</a></p>
+    <p *ngIf="message?.file" class="text-black"><a
+            [href]="'https://letscollab-back.herokuapp.com/messages/audio/' + message?.text" download="audio.mp3">Ir a
+            audio</a></p>
 </div>

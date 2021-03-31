@@ -6,7 +6,7 @@ figure{
 .cover-image{
     width: 100%;
     height: 100%;
-    background-image: url('http://localhost:3000/images/cover/coverv2.jpg');
+    background-image: url('https://letscollab-back.herokuapp.com/images/cover/coverv2.jpg');
     background-size: cover;
     position: fixed;
 }

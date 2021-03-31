@@ -1,7 +1,7 @@
 <div class="container mt-3">
     <div>
         <img [routerLink]="['/user',username]"
-            [src]="'http://localhost:3000/images/profile_pictures/'+ (postUser?.profile_picture ? postUser?.profile_picture : 'default-user-image.png')"
+            [src]="'https://letscollab-back.herokuapp.com/images/profile_pictures/'+ (postUser?.profile_picture ? postUser?.profile_picture : 'default-user-image.png')"
             alt="" class="post-img">
         <h3 class="ml-2 user" [routerLink]="['/user',username]">
             {{postUser?.user}}
@@ -49,11 +49,12 @@
             <h5>License: {{post?.license}}</h5>
         </div>
         <div>
-            <a [href]="'http://localhost:3000/audio/'+post?.audio" target="_blank"
+            <a [href]="'https://letscollab-back.herokuapp.com/audio/'+post?.audio" target="_blank"
                 class="level-item text-secondary icon" [ngClass]="{'mr-3':canMessage}">
             </a>
-            <a [ngClass]="{'cantDownload':!canDownload}" [href]="'http://localhost:3000/audio/'+post?.audio"
-                target="_blank" class="level-item mr-3 text-secondary icon">
+            <a [ngClass]="{'cantDownload':!canDownload}"
+                [href]="'https://letscollab-back.herokuapp.com/audio/'+post?.audio" target="_blank"
+                class="level-item mr-3 text-secondary icon">
                 <fa-icon [icon]="faUpload" class="fa-lg"></fa-icon>
             </a>
             <a *ngIf="canMessage" class="level-item text-secondary icon">
@@ -78,7 +79,7 @@
     <div [ngClass]="{'disabled':isDisabled}">
         <div class="form-group mt-3">
             <div>
-                <img [src]="'http://localhost:3000/images/profile_pictures/'+ (myUser?.profile_picture ? myUser?.profile_picture : 'default-user-image.png')"
+                <img [src]="'https://letscollab-back.herokuapp.comimages/profile_pictures/'+ (myUser?.profile_picture ? myUser?.profile_picture : 'default-user-image.png')"
                     alt="" class="reply-img mb-3">
                 <h6 class="ml-2">{{myUser?.user}}</h6>
             </div>
